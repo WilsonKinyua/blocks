@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Get started with Blocks - Manage all your properties in one place.</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
@@ -43,8 +45,14 @@
                                             {{ session('message') }}
                                         </div>
                                     @endif
+                                    @if (session('status'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
+                            {{-- login form --}}
                             <form method="POST" action="{{ route('login') }}" id="login">
                                 @csrf
                                 <div class="row">
@@ -99,6 +107,7 @@
                                 </div>
                                 <br>
                             </form>
+                            {{-- create account form --}}
                             <form id='signup' class="hide">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -164,8 +173,7 @@
                                 <br>
                                 <a href="#" class='togle-forms'>🔐 Login Instead</a>
                             </form>
-
-
+                            {{-- change password form --}}
                             <form id='password' class='hide'>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -201,21 +209,34 @@
                                 <span class="password">🔐 <a class="btn" href="#">Back to
                                         Login</a></span>
                             </form>
-
-                            <form id='reset' class='hide'>
+                            {{-- reset password form --}}
+                            <form method="POST" action="{{ route('password.email') }}" id='reset' class='hide'>
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-12">
+                                        @if (session('status'))
+                                            <div class="alert alert-success" role="alert">
+                                                {{ session('status') }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <input class="form-control" type="email" name="email">
+                                            <input
+                                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                                type="email" name="email" required>
+                                            @if ($errors->has('email'))
+                                                <div class="invalid-feedback">
+                                                    {{ $errors->first('email') }}
+                                                </div>
+                                            @endif
                                             <span class="form-label">Email:</span>
                                         </div>
                                     </div>
-
-
                                 </div>
                                 <br>
                                 <div class="form-btn">
-                                    <button class="submit-btn">Reset Password</button>
+                                    <button class="submit-btn" type="submit">Reset Password</button>
                                 </div>
                                 <br>
                                 <a href="#" class='reset'> Back to Login</a>

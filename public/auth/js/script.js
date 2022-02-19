@@ -46,61 +46,61 @@ $(".password").on("click", function () {
 //     });
 // });
 
-$("#signup").on("submit", function (e) {
-    e.preventDefault();
+// $("#signup").on("submit", function (e) {
+//     e.preventDefault();
 
-    let data = new FormData(this);
-    data.append("signup", true);
+//     let data = new FormData(this);
+//     data.append("signup", true);
 
-    $.ajax({
-        type: "POST",
-        url: "/api/",
-        data: data,
-        processData: false,
-        contentType: false,
-        error: function (jqXHR, textStatus, errorMessage) {
-            console.log(errorMessage);
-        },
-        success: function (response) {
-            console.log(response);
+//     $.ajax({
+//         type: "POST",
+//         url: "/api/",
+//         data: data,
+//         processData: false,
+//         contentType: false,
+//         error: function (jqXHR, textStatus, errorMessage) {
+//             console.log(errorMessage);
+//         },
+//         success: function (response) {
+//             console.log(response);
 
-            console.log($(".e1").val());
-            if (response.success) {
-                $(".e2").val($(".e1").val());
-                $("#signup").toggleClass("hide", 300);
-                $("#password").toggleClass("hide", 300);
-            } else alert(response.msg);
-        },
-    });
-});
-$("#password").on("submit", function (e) {
-    e.preventDefault();
-    if ($(".p1").val() !== $(".p2").val()) {
-        $(".p1").val("");
-        $(".p2").val("");
-        return alert("Passwords do not match, try again!");
-    }
-    let data = new FormData(this);
-    data.append("save_pass", true);
+//             console.log($(".e1").val());
+//             if (response.success) {
+//                 $(".e2").val($(".e1").val());
+//                 $("#signup").toggleClass("hide", 300);
+//                 $("#password").toggleClass("hide", 300);
+//             } else alert(response.msg);
+//         },
+//     });
+// });
+// $("#password").on("submit", function (e) {
+//     e.preventDefault();
+//     if ($(".p1").val() !== $(".p2").val()) {
+//         $(".p1").val("");
+//         $(".p2").val("");
+//         return alert("Passwords do not match, try again!");
+//     }
+//     let data = new FormData(this);
+//     data.append("save_pass", true);
 
-    $.ajax({
-        type: "POST",
-        url: "/api/",
-        data: data,
-        processData: false,
-        contentType: false,
-        error: function (jqXHR, textStatus, errorMessage) {
-            console.log(errorMessage);
-        },
-        success: function (response) {
-            console.log(response);
+//     $.ajax({
+//         type: "POST",
+//         url: "/api/",
+//         data: data,
+//         processData: false,
+//         contentType: false,
+//         error: function (jqXHR, textStatus, errorMessage) {
+//             console.log(errorMessage);
+//         },
+//         success: function (response) {
+//             console.log(response);
 
-            if (response.success) {
-                window.location = "/admin/";
-            } else alert(response.msg);
-        },
-    });
-});
+//             if (response.success) {
+//                 window.location = "/admin/";
+//             } else alert(response.msg);
+//         },
+//     });
+// });
 $(".tnc").on("click", () => {
     window.open(
         "https://blocks.co.ke/get-started/Blocks%20Terms%20and%20Conditions.pdf",
