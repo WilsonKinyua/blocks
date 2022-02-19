@@ -11,10 +11,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use SoftDeletes;
+    use InteractsWithMedia;
     use Notifiable;
     use HasFactory;
 
@@ -32,9 +36,17 @@ class User extends Authenticatable
         'deleted_at',
     ];
 
+    protected $appends = [
+        'avatar',
+    ];
+
     protected $fillable = [
         'name',
         'email',
+        'gender',
+        'phone',
+        'location',
+        'no_of_properties',
         'email_verified_at',
         'password',
         'remember_token',
@@ -46,6 +58,18 @@ class User extends Authenticatable
     public function getIsAdminAttribute()
     {
         return $this->roles()->where('id', 1)->exists();
+    }
+
+    public function getAvatarAttribute()
+    {
+        $file = $this->getMedia('avatar')->last();
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
     }
 
     public function getEmailVerifiedAtAttribute($value)

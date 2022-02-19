@@ -108,17 +108,33 @@
                                 <br>
                             </form>
                             {{-- create account form --}}
-                            <form id='signup' class="hide">
+                            <form method="POST" action="{{ route('register') }}" id='signup' class="hide">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input class="form-control" type="text" name="name">
+                                            <input id="name" type="text"
+                                                class="form-control @error('name') is-invalid @enderror" name="name"
+                                                value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                             <span class="form-label">Name</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input class="form-control e1" type="email" name="email">
+                                            <input id="email" type="email"
+                                                class="form-control @error('email') is-invalid @enderror" name="email"
+                                                value="{{ old('email') }}" required autocomplete="email">
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                             <span class="form-label">Email</span>
                                         </div>
                                     </div>
@@ -126,21 +142,21 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input class="form-control" type="tel" name="phone">
+                                            <input class="form-control" type="tel" name="phone" required>
                                             <span class="form-label">Phone</span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input class="form-control" type="text" name="location">
+                                            <input class="form-control" type="text" name="location" required>
                                             <span class="form-label">Location</span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input class="form-control" type="number" name="properties">
+                                            <input class="form-control" type="number" name="no_of_properties">
                                             <span class="form-label">No. of Properties</span>
                                         </div>
                                     </div>
@@ -155,9 +171,28 @@
                                             <span class="select-arrow"></span>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input id="password" type="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                name="password" required autocomplete="new-password">
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                            <span class="form-label">Password</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input id="password-confirm" type="password" class="form-control"
+                                                name="password_confirmation" required autocomplete="new-password">
+                                            <span class="form-label">Confirm Password</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
-
                                     <div class="col-md-6">
                                         <div class="form-inline">
                                             <input class="" type="checkbox" required>
@@ -168,7 +203,7 @@
                                 </div>
                                 <br>
                                 <div class="form-btn">
-                                    <button class="submit-btn">Get Started</button>
+                                    <button class="submit-btn" type="submit">Get Started</button>
                                 </div>
                                 <br>
                                 <a href="#" class='togle-forms'>🔐 Login Instead</a>
