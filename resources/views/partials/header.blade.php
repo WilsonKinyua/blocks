@@ -2,7 +2,7 @@
     <div class="page-header-inner ">
         <!-- logo start -->
         <div class="page-logo">
-            <a href="./">
+            <a href="{{ route('admin.home')}}">
                 <span class="logo-icon material-icons fa-rotate-45">school</span>
                 <span class="logo-default" style="font-family: cambria; font-weight:bolder;">Blocks</span> </a>
         </div>
@@ -89,7 +89,7 @@
         <div class="hor-menu hidden-sm hidden-xs">
             <ul class="nav navbar-nav">
                 <li class="mega-menu-dropdown active open">
-                    <a href="./" class="dropdown-toggle"> <i class="material-icons">dashboard</i> Dashboard
+                    <a href="{{ route('admin.home')}}" class="dropdown-toggle"> <i class="material-icons">dashboard</i> Dashboard
                         <span class="selected"></span>
                     </a>
                 </li>
@@ -122,7 +122,7 @@
                                 <i class="fa fa-briefcase"></i> Manage </a>
                         </li>
                         <li class="dropdown-submenu">
-                            <a href="">
+                            <a href="{{ route('admin.properties.create') }}">
                                 <i class="fa fa-hospital-o"></i> Add New</a>
                         </li>
                     </ul>

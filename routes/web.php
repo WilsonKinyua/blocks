@@ -37,7 +37,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('inventories/media', 'InventoryController@storeMedia')->name('inventories.storeMedia');
     Route::post('inventories/ckmedia', 'InventoryController@storeCKEditorImages')->name('inventories.storeCKEditorImages');
     Route::resource('inventories', 'InventoryController');
+
+    // properties
+    Route::resource('properties', 'PropertyController');
 });
+
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
     if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {
