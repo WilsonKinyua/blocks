@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -40,13 +40,13 @@
             </button>
 
             <ul class="c-header-nav ml-auto">
-                @if(count(config('panel.available_languages', [])) > 1)
+                @if (count(config('panel.available_languages', [])) > 1)
                     <li class="c-header-nav-item dropdown d-md-down-none">
                         <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             {{ strtoupper(app()->getLocale()) }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            @foreach(config('panel.available_languages') as $langLocale => $langName)
+                            @foreach (config('panel.available_languages') as $langLocale => $langName)
                                 <a class="dropdown-item" href="{{ url()->current() }}?change_language={{ $langLocale }}">{{ strtoupper($langLocale) }} ({{ $langName }})</a>
                             @endforeach
                         </div>
@@ -62,17 +62,17 @@
 
 
                 <div class="container-fluid">
-                    @if(session('message'))
+                    @if (session('message'))
                         <div class="row mb-2">
                             <div class="col-lg-12">
                                 <div class="alert alert-success" role="alert">{{ session('message') }}</div>
                             </div>
                         </div>
                     @endif
-                    @if($errors->count() > 0)
+                    @if ($errors->count() > 0)
                         <div class="alert alert-danger">
                             <ul class="list-unstyled">
-                                @foreach($errors->all() as $error)
+                                @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
@@ -226,6 +226,111 @@
 
     </script>
     @yield('scripts')
+</body>
+
+</html> --}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Blocks | Admin Dashboard</title>
+    <!-- google font -->
+    <link href="{{ asset('google-fonts/css6079.css?family=Poppins:300,400,500,600,700') }}" rel="stylesheet"
+        type="text/css" />
+    <!-- icons -->
+    <link href="{{ asset('fonts/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('fonts/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('fonts/material-design-icons/material-icon.css') }}" rel="stylesheet" type="text/css" />
+    <!--bootstrap -->
+    <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- data tables -->
+    <link href="{{ asset('plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <!-- Material Design Lite CSS -->
+    <link rel="stylesheet" href="{{ asset('plugins/material/material.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/material_style.css') }}">
+    <!-- Styles -->
+    <link href="{{ asset('css/theme/full/theme_style.css') }}" rel="stylesheet" id="rt_style_components"
+        type="text/css" />
+    <link href="{{ asset('css/plugins.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/theme/full/style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/theme/full/theme-color.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/sweet-alert/sweetalert2.min.css') }}" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    @yield('css')
+</head>
+<!-- END HEAD -->
+
+<body
+    class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md page-full-width header-white white-sidebar-color logo-white">
+    <div class="page-wrapper">
+
+        <!-- start header -->
+        @include('partials.header')
+        <!-- end header -->
+
+        <!-- start page container -->
+        <div class="page-container">
+            @if (session('message'))
+                <div class="row mb-2">
+                    <div class="col-lg-12">
+                        <div class="alert alert-success" role="alert">{{ session('message') }}</div>
+                    </div>
+                </div>
+            @endif
+            @if ($errors->count() > 0)
+                <div class="alert alert-danger">
+                    <ul class="list-unstyled">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @yield('content')
+
+        </div>
+        <!-- end page container -->
+
+        <!-- start footer -->
+        @include('partials.footer')
+        <!-- end footer -->
+    </div>
+    <!-- start js include path -->
+
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('plugins/popper/popper.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-blockui/jquery.blockui.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
+    <!-- bootstrap -->
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+
+    <!-- data tables -->
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- counterup -->
+    <script src="{{ asset('plugins/counterup/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('plugins/counterup/jquery.counterup.min.js') }}"></script>
+    <!-- Common js-->
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/layout.js') }}"></script>
+    <script src="{{ asset('js/theme-color.js') }}"></script>
+    <!-- material -->
+    <script src="{{ asset('plugins/material/material.min.js') }}"></script>
+    <script src="{{ asset('plugins/sweet-alert/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('plugins/sweet-alert/sweetalert2.min.js') }}"></script>
+    @yield('js')
 </body>
 
 </html>
