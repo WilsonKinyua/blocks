@@ -64,12 +64,14 @@
                         </li>
                         <li class="divider"> </li>
                         <li>
-                            <a href="#lock_screen" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                            <a href="#lock_screen"
+                                onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                                 <i class="icon-lock"></i> Lock
                             </a>
                         </li>
                         <li>
-                            <a href="" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                            <a href=""
+                                onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                                 <i class="icon-logout"></i> Log Out </a>
                         </li>
                     </ul>
@@ -111,23 +113,28 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class="mega-menu-dropdown mega-menu-dropdown">
-                    <a href="#" class="dropdown-toggle"> <i class="material-icons">business</i> Properties
-                        <i class="fa fa-angle-down"></i>
-                        <span class="arrow "></span>
-                    </a>
-                    <ul class="dropdown-menu pull-left">
-                        <li class="dropdown-submenu">
-                            <a href="">
-                                <i class="fa fa-briefcase"></i> Manage </a>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a href="{{ route('admin.properties.create') }}">
-                                <i class="fa fa-hospital-o"></i> Add New</a>
-                        </li>
-                    </ul>
-                </li>
+                @can('property_access')
+                    <li class="mega-menu-dropdown mega-menu-dropdown">
+                        <a href="#" class="dropdown-toggle"> <i class="material-icons">business</i> Properties
+                            <i class="fa fa-angle-down"></i>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                            @can('property_access')
+                                <li class="dropdown-submenu">
+                                    <a href="{{ route('admin.properties.index') }}">
+                                        <i class="fa fa-briefcase"></i> Manage </a>
+                                </li>
+                            @endcan
+                            @can('property_create')
+                                <li class="dropdown-submenu">
+                                    <a href="{{ route('admin.properties.create') }}">
+                                        <i class="fa fa-hospital-o"></i> Add New</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
 
                 <li class="classic-menu-dropdown mega-menu-dropdown">
                     <a href="#" class=" megamenu-dropdown" data-close-others="true"> <i

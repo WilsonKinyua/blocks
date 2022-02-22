@@ -39,6 +39,7 @@ class Property extends Model
         'manager_phone',
         'caretaker_name',
         'caretaker_phone',
+        'business_id',
         'updated_at',
         'deleted_at',
     ];
@@ -64,5 +65,9 @@ class Property extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function business(){
+        return $this->belongsTo(Business::class);
     }
 }

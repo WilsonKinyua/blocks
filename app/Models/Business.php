@@ -65,9 +65,8 @@ class Business extends Model implements HasMedia
         return $date->format('Y-m-d H:i:s');
     }
 
-    // user
-    public function user()
+    public function properties()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsToMany(Property::class);
     }
 }

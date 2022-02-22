@@ -11,6 +11,7 @@
             </div>
             <form action="{{ route('admin.business.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="created_by" value="{{ Auth::user()->id }}">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card-box">

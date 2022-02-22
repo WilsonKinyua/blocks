@@ -31,6 +31,7 @@
             </div>
             <form action="{{ route('admin.properties.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="business_id" value="{{ $business->id }}">
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="card-box">
@@ -72,7 +73,7 @@
                                             since: </label>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 p-t-20">
+                                {{-- <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="password" id="prop_agent" readonly>
@@ -89,7 +90,7 @@
                                             THIS
                                             TOO</label>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

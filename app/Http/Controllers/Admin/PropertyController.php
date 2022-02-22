@@ -15,7 +15,12 @@ class PropertyController extends Controller
     public function create()
     {
         abort_if(Gate::denies('property_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return view('admin.properties.create');
+        // check if user has business and if not redirect to create business page
+        $business = auth()->user()->business;
+        if (!$business) {
+            return redirect()->route('admin.business.profile')->with('danger', 'Please create a business profile first!');
+        }
+        return view('admin.properties.create', compact('business'));
     }
     public function index()
     {
@@ -25,5 +30,6 @@ class PropertyController extends Controller
     public function store(StorePropertyRequest $request)
     {
         Property::create($request->all());
+        return redirect()->back()->with('success', 'Property created successfully!');
     }
 }

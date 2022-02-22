@@ -19,23 +19,10 @@ class BusinessController extends Controller
 
     use MediaUploadingTrait;
 
-    public function index()
-    {
-        //
-    }
-
-
-    public function create()
-    {
-        //
-    }
-
-
     public function store(StoreBusinessRequest $request)
     {
         $business = Business::create($request->all());
         $business->slug = Str::slug($business->name, '-');
-        $business->created_by = Auth::id();
         $business->update();
         User::where('id', Auth::id())->update(['business_id' => $business->id]);
 
@@ -47,17 +34,6 @@ class BusinessController extends Controller
         }
 
         return redirect()->route('admin.business.profile', compact('business'))->with('success', 'Business created successfully!');
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
     }
 
     public function updateLogo(Request $request, Business $business)
@@ -76,11 +52,6 @@ class BusinessController extends Controller
     {
         $business->update($request->all());
         return redirect()->route('admin.business.profile', compact('business'))->with('success', 'Business updated successfully!');
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 
     // business profile

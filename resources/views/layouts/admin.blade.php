@@ -41,12 +41,14 @@
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/theme/full/theme-color.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('plugins/sweet-alert/sweetalert2.min.css') }}" rel="stylesheet">
-    	<!-- dropzone -->
-	<link href="{{ asset('plugins/dropzone/dropzone.css')}}" rel="stylesheet" media="screen">
-	<!--tagsinput-->
-	<link href="{{ asset('plugins/jquery-tags-input/jquery-tags-input.css')}}" rel="stylesheet">
+    <!-- dropzone -->
+    <link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet" media="screen">
+    <!--tagsinput-->
+    <link href="{{ asset('plugins/jquery-tags-input/jquery-tags-input.css') }}" rel="stylesheet">
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    <!-- Jquery Toast css -->
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
     @yield('css')
 </head>
 <!-- END HEAD -->
@@ -77,7 +79,7 @@
                     </ul>
                 </div>
             @endif
-            
+
             @yield('content')
 
             <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -100,20 +102,22 @@
     <!-- bootstrap -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
-    <script src="{{ asset('plugins/bootstrap-inputmask/bootstrap-inputmask.min.js')}}"></script>
+    <script src="{{ asset('plugins/bootstrap-inputmask/bootstrap-inputmask.min.js') }}"></script>
 
-    <script src="{{ asset('plugins/flatpicker/js/flatpicker.min.js')}}"></script>
-	<script src="{{ asset('js/pages/date-time/date-time.init.js')}}"></script>
-	<script src="{{ asset('plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js')}}" charset="UTF-8"></script>
-	<script src="{{ asset('plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker-init.js')}}" charset="UTF-8"></script>
+    <script src="{{ asset('plugins/flatpicker/js/flatpicker.min.js') }}"></script>
+    <script src="{{ asset('js/pages/date-time/date-time.init.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}" charset="UTF-8">
+    </script>
+    <script src="{{ asset('plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker-init.js') }}" charset="UTF-8">
+    </script>
 
     <!-- data tables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('js/pages/table/table_data.js')}}"></script>
+    <script src="{{ asset('js/pages/table/table_data.js') }}"></script>
 
     <!-- notifications -->
-	<script src="{{ asset('plugins/jquery-toast/dist/jquery.toast.min.js')}}"></script>
+    <script src="{{ asset('plugins/jquery-toast/dist/jquery.toast.min.js') }}"></script>
 
     <!-- counterup -->
     <script src="{{ asset('plugins/counterup/jquery.waypoints.min.js') }}"></script>
@@ -127,10 +131,38 @@
     <script src="{{ asset('plugins/sweet-alert/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('plugins/sweet-alert/sweetalert2.min.js') }}"></script>
     <!-- dropzone -->
-	<script src="{{ asset('plugins/dropzone/dropzone.js')}}"></script>
+    <script src="{{ asset('plugins/dropzone/dropzone.js') }}"></script>
     <!--tags input-->
-	<script src="{{ asset('plugins/jquery-tags-input/jquery-tags-input.js')}}"></script>
-	<script src="{{ asset('plugins/jquery-tags-input/jquery-tags-input-init.js')}}"></script>
+    <script src="{{ asset('plugins/jquery-tags-input/jquery-tags-input.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-tags-input/jquery-tags-input-init.js') }}"></script>
+
+    <!-- notifications -->
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
+
+    <script>
+        // Get the Toast button
+        var toastButton = document.getElementById("toast-btn");
+        // Get the Toast element
+        var toastElement = document.getElementsByClassName("toast")[0];
+
+        toastButton.onclick = function() {
+            $('.toast').toast('show');
+        }
+    </script>
+    <script>
+        // toast message
+        @if (session()->has('success'))
+            toastr.success("{{ session()->get('success') }}");
+        @endif
+
+        @if (session()->has('danger'))
+            toastr.warning("{{ session()->get('danger') }}");
+        @endif
+
+        @if (session()->has('error'))
+            toastr.error("{{ session()->get('error') }}");
+        @endif
+    </script>
     @yield('js')
 </body>
 
