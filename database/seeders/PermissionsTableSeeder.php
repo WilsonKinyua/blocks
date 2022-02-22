@@ -118,6 +118,46 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 27,
                 'title' => 'property_access',
             ],
+            [
+                'id'    => 28,
+                'title' => 'business_create',
+            ],
+            [
+                'id'    => 29,
+                'title' => 'business_edit',
+            ],
+            [
+                'id'    => 30,
+                'title' => 'business_show',
+            ],
+            [
+                'id'    => 31,
+                'title' => 'business_delete',
+            ],
+            [
+                'id'    => 32,
+                'title' => 'business_access',
+            ],
+            [
+                'id'    => 33,
+                'title' => 'tenant_create',
+            ],
+            [
+                'id'    => 34,
+                'title' => 'tenant_edit',
+            ],
+            [
+                'id'    => 35,
+                'title' => 'tenant_show',
+            ],
+            [
+                'id'    => 36,
+                'title' => 'tenant_delete',
+            ],
+            [
+                'id'    => 37,
+                'title' => 'tenant_access',
+            ],
         ];
 
         Permission::insert($permissions);

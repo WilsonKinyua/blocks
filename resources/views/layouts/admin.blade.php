@@ -77,7 +77,12 @@
                     </ul>
                 </div>
             @endif
+            
             @yield('content')
+
+            <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
 
         </div>
         <!-- end page container -->

@@ -48,6 +48,7 @@ class User extends Authenticatable implements HasMedia
         'location',
         'no_of_properties',
         'email_verified_at',
+        'business_id',
         'password',
         'remember_token',
         'created_at',

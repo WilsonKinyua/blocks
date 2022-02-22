@@ -54,7 +54,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
                         <li>
-                            <a href="">
+                            <a href="{{ route('admin.business.profile') }}">
                                 <i class="icon-user"></i> Profile </a>
                         </li>
                         <li>
@@ -64,12 +64,12 @@
                         </li>
                         <li class="divider"> </li>
                         <li>
-                            <a href="#lock_screen">
+                            <a href="#lock_screen" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                                 <i class="icon-lock"></i> Lock
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                                 <i class="icon-logout"></i> Log Out </a>
                         </li>
                     </ul>
