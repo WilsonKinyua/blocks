@@ -15,12 +15,13 @@ class CreateBusinessesTable extends Migration
     {
         Schema::create('businesses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->longText('slug')->nullable();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('phone');
             $table->string('email');
             $table->string('location');
+            $table->longText('description')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
+            $table->longText('slug')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

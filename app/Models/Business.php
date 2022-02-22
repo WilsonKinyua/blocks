@@ -35,6 +35,7 @@ class Business extends Model implements HasMedia
         'email',
         'location',
         'created_by',
+        'description',
         'created_at',
         'updated_at',
         'deleted_at',

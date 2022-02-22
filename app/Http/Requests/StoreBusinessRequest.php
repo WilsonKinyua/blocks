@@ -23,7 +23,6 @@ class StoreBusinessRequest extends FormRequest
             'name' => [
                 'string',
                 'max:255',
-                'unique:businesses',
                 'required',
             ],
             'phone' => [
