@@ -60,8 +60,7 @@ class BusinessController extends Controller
         //
     }
 
-
-    public function update(Request $request, Business $business)
+    public function updateLogo(Request $request, Business $business)
     {
         if ($business->logo) {
             $business->logo->delete();
@@ -69,6 +68,13 @@ class BusinessController extends Controller
         if ($request->input('logo', false)) {
             $business->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
         }
+        return redirect()->route('admin.business.profile', compact('business'))->with('success', 'Business updated successfully!');
+    }
+
+
+    public function update(Request $request, Business $business)
+    {
+        $business->update($request->all());
         return redirect()->route('admin.business.profile', compact('business'))->with('success', 'Business updated successfully!');
     }
 

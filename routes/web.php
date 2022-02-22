@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('business/media', 'BusinessController@storeMedia')->name('business.storeMedia');
     Route::post('business/ckmedia', 'BusinessController@storeCKEditorImages')->name('business.storeCKEditorImages');
     Route::resource('business', 'BusinessController');
+    Route::put('business/{business}/logo', 'BusinessController@updateLogo')->name('business.updateLogo');
 
     // business profile
     Route::get('account/profile', 'BusinessController@profile')->name('business.profile');
