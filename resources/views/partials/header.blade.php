@@ -2,7 +2,7 @@
     <div class="page-header-inner ">
         <!-- logo start -->
         <div class="page-logo">
-            <a href="{{ route('admin.home')}}">
+            <a href="{{ route('admin.home') }}">
                 <span class="logo-icon material-icons fa-rotate-45">school</span>
                 <span class="logo-default" style="font-family: cambria; font-weight:bolder;">Blocks</span> </a>
         </div>
@@ -48,8 +48,8 @@
                 <!-- end message dropdown -->
                 <li class="dropdown dropdown-user">
                     <a class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        {{-- <img alt="" class="img-circle pull-right" src="assets/img/files/<?= $user->avatar ?>" />
-                        <span class="username username-hide-on-mobile"> <?= $user->name ?> </span> --}}
+                        <img alt="" class="img-circle pull-right" src="{{ asset('img/avatar.jpeg') }}" />
+                        <span class="username username-hide-on-mobile"> {{ Auth::user()->name }} </span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
@@ -89,7 +89,8 @@
         <div class="hor-menu hidden-sm hidden-xs">
             <ul class="nav navbar-nav">
                 <li class="mega-menu-dropdown active open">
-                    <a href="{{ route('admin.home')}}" class="dropdown-toggle"> <i class="material-icons">dashboard</i> Dashboard
+                    <a href="{{ route('admin.home') }}" class="dropdown-toggle"> <i
+                            class="material-icons">dashboard</i> Dashboard
                         <span class="selected"></span>
                     </a>
                 </li>

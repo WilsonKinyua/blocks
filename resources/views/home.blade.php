@@ -203,7 +203,7 @@
                                 </div>
                                 <div class="card-body ">
                                     <div class="table-responsive">
-                                        <table class="table table-striped custom-table table-hover">
+                                        <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                             <thead>
                                                 <tr class="text-uppercase">
                                                     <th> #</th>
@@ -242,6 +242,7 @@
 
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

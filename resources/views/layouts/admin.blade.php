@@ -105,6 +105,7 @@
     <!-- data tables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/pages/table/table_data.js')}}"></script>
 
     <!-- notifications -->
 	<script src="{{ asset('plugins/jquery-toast/dist/jquery.toast.min.js')}}"></script>
