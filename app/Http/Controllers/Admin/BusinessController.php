@@ -61,9 +61,15 @@ class BusinessController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Business $business)
     {
-        //
+        if ($business->logo) {
+            $business->logo->delete();
+        }
+        if ($request->input('logo', false)) {
+            $business->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
+        }
+        return redirect()->route('admin.business.profile', compact('business'))->with('success', 'Business updated successfully!');
     }
 
     public function destroy($id)

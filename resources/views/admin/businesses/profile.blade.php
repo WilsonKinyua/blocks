@@ -23,7 +23,7 @@
                                     <div class="profile-userpic">
                                         @if ($business->logo)
                                             <img src="{{ $business->logo->getUrl() }}" id="bs-logo" class="img-responsive"
-                                                alt="">
+                                                alt="" style="height: 130px">
                                         @else
                                             <img src="http://localhost:8000/img/avatar.jpeg" id="bs-logo"
                                                 class="img-responsive" alt="">
@@ -81,14 +81,14 @@
                                                             <div class="card-head"><small class="text-uppercase"> <i
                                                                         class="fa fa-image"></i> &nbsp; &nbsp;Update
                                                                     &nbsp; Business &nbsp; Logo</small></div>
-                                                            <form class="row business_form" method="POST">
+                                                            <form class="row business_form"
+                                                                action="{{ route('admin.business.update', [$business->id]) }}"
+                                                                method="POST" enctype="multipart/form-data">
+                                                                @method('PUT')
+                                                                @csrf
                                                                 <div class="col-lg-12 p-t-20">
-                                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width is-dirty is-upgraded"
-                                                                        data-upgraded=",MaterialTextfield">
-                                                                        <input class="mdl-textfield__input" type="text"
-                                                                            name="">
-                                                                        <label class="mdl-textfield__label"><i
-                                                                                class="fa fa-briefcase"></i> Logo:</label>
+                                                                    <div class="needsclick dropzone {{ $errors->has('logo') ? 'is-invalid' : '' }}"
+                                                                        id="logo-dropzone">
                                                                     </div>
                                                                 </div>
                                                                 <div class="swal2-actions"><button type="submit"
@@ -473,4 +473,58 @@
     <script src="{{ asset('plugins/apexcharts/apexcharts.min.js') }}"></script>
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/pages/chart/apex/apexcharts.data.js') }}"></script>
+    <script>
+        Dropzone.options.logoDropzone = {
+            url: '{{ route('admin.business.storeMedia') }}',
+            maxFilesize: 2, // MB
+            acceptedFiles: '.jpeg,.jpg,.png,.gif',
+            maxFiles: 1,
+            addRemoveLinks: true,
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            params: {
+                size: 2,
+                width: 4096,
+                height: 4096
+            },
+            success: function(file, response) {
+                $('form').find('input[name="logo"]').remove()
+                $('form').append('<input type="hidden" name="logo" value="' + response.name + '">')
+            },
+            removedfile: function(file) {
+                file.previewElement.remove()
+                if (file.status !== 'error') {
+                    $('form').find('input[name="logo"]').remove()
+                    this.options.maxFiles = this.options.maxFiles + 1
+                }
+            },
+            init: function() {
+                @if (isset($showroomLogo) && $showroomLogo->logo)
+                    var file = {!! json_encode($showroomLogo->logo) !!}
+                    this.options.addedfile.call(this, file)
+                    this.options.thumbnail.call(this, file, file.preview)
+                    file.previewElement.classList.add('dz-complete')
+                    $('form').append('<input type="hidden" name="logo" value="' + file.file_name + '">')
+                    this.options.maxFiles = this.options.maxFiles - 1
+                @endif
+            },
+            error: function(file, response) {
+                if ($.type(response) === 'string') {
+                    var message = response //dropzone sends it's own error messages in string
+                } else {
+                    var message = response.errors.file
+                }
+                file.previewElement.classList.add('dz-error')
+                _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+                _results = []
+                for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                    node = _ref[_i]
+                    _results.push(node.textContent = message)
+                }
+
+                return _results
+            }
+        }
+    </script>
 @endsection
