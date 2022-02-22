@@ -38,7 +38,15 @@ class BusinessController extends Controller
         $business->created_by = Auth::id();
         $business->update();
         User::where('id', Auth::id())->update(['business_id' => $business->id]);
-        return view('admin.businesses.profile', compact('business'))->with('success', 'Business created successfully.');
+
+        if ($request->input('logo', false)) {
+            $business->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
+        }
+        if ($media = $request->input('ck-media', false)) {
+            Media::whereIn('id', $media)->update(['model_id' => $business->id]);
+        }
+
+        return redirect()->route('admin.business.profile', compact('business'))->with('success', 'Business created successfully!');
     }
 
     public function show($id)
@@ -68,7 +76,7 @@ class BusinessController extends Controller
     {
         abort_if(Gate::denies('business_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         if (auth()->user()->business_id) {
-            $business = Business::where('id', Auth::user()->business_id)->first();
+            $business = Business::where('id', Auth::user()->business_id)->with('media')->first();
             if (!empty($business)) {
                 return view('admin.businesses.profile', compact('business'));
             } else {
@@ -79,5 +87,17 @@ class BusinessController extends Controller
             abort_if(Gate::denies('business_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
             return view('admin.businesses.create')->with('danger', 'Please create a business profile first');
         }
+    }
+
+    public function storeCKEditorImages(Request $request)
+    {
+        abort_if(Gate::denies('business_create') && Gate::denies('business_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $model         = new Business();
+        $model->id     = $request->input('crud_id', 0);
+        $model->exists = true;
+        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+
+        return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
 }

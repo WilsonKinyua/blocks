@@ -33,6 +33,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('users', 'UsersController');
 
     // Business
+    Route::post('business/media', 'BusinessController@storeMedia')->name('business.storeMedia');
+    Route::post('business/ckmedia', 'BusinessController@storeCKEditorImages')->name('business.storeCKEditorImages');
     Route::resource('business', 'BusinessController');
 
     // business profile
