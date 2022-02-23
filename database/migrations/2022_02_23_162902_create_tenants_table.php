@@ -30,6 +30,7 @@ class CreateTenantsTable extends Migration
             $table->string('emergency_contact_name');
             $table->string('emergency_contact_phone');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
