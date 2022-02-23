@@ -43,7 +43,8 @@ class PropertyController extends Controller
         foreach ($units as $unit) {
             Unit::create([
                 'name' => $unit,
-                'property_id' => $property->id
+                'property_id' => $property->id,
+                'business_id' => $request->business_id
             ]);
         }
         return redirect()->route('admin.properties.index')->with('success', 'Property created successfully!');

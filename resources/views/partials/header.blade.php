@@ -96,23 +96,26 @@
                         <span class="selected"></span>
                     </a>
                 </li>
-
-                <li class="mega-menu-dropdown mega-menu-dropdown">
-                    <a href="#" class="dropdown-toggle"> <i class="material-icons">dvr</i>Manage Tenants
-                        <i class="fa fa-angle-down"></i>
-                        <span class="arrow "></span>
-                    </a>
-                    <ul class="dropdown-menu pull-left">
-                        <li class="dropdown-submenu">
-                            <a href="">
-                                <i class="fa fa-briefcase"></i> Manage Tenants</a>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a href="">
-                                <i class="fa fa-user-plus"></i> Add Tenant</a>
-                        </li>
-                    </ul>
-                </li>
+                @can('tenant_access')
+                    <li class="mega-menu-dropdown mega-menu-dropdown">
+                        <a href="#" class="dropdown-toggle"> <i class="material-icons">dvr</i>Manage Tenants
+                            <i class="fa fa-angle-down"></i>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                            <li class="dropdown-submenu">
+                                <a href="">
+                                    <i class="fa fa-briefcase"></i> Manage Tenants</a>
+                            </li>
+                            @can('tenant_create')
+                                <li class="dropdown-submenu">
+                                    <a href="{{ route('admin.tenants.create') }}">
+                                        <i class="fa fa-user-plus"></i> Add Tenant</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
                 @can('property_access')
                     <li class="mega-menu-dropdown mega-menu-dropdown">
                         <a href="#" class="dropdown-toggle"> <i class="material-icons">business</i> Properties

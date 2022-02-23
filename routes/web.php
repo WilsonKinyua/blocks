@@ -50,6 +50,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // properties
     Route::get('property/{id}/delete', 'PropertyController@deleteProperty')->name('property.delete');
     Route::resource('properties', 'PropertyController');
+
+    // tenants
+    Route::resource('tenants', 'TenantController');
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

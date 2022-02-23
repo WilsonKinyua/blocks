@@ -20,7 +20,8 @@ class CreateBusinessesTable extends Migration
             $table->string('email');
             $table->string('location');
             $table->longText('description')->nullable();
-            $table->unsignedBigInteger('created_by')->nullable();
+            $table->bigInteger('created_by')->unsigned()->index();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->longText('slug')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -15,7 +15,8 @@ class CreatePropertiesTable extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('business_id');
+            $table->bigInteger('business_id')->unsigned()->index();
+            $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
             $table->string('name');
             $table->string('location');
             $table->integer('no_of_units');

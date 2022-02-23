@@ -23,6 +23,7 @@ class Unit extends Model
     protected $fillable = [
         'name',
         'property_id',
+        'business_id',
         'created_at',
         'updated_at',
         'deleted_at',
