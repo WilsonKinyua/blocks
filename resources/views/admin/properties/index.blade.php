@@ -71,7 +71,7 @@
                                                     {{ $loop->index + 1 }}
                                                 </td>
                                                 <td class="left">
-                                                    <a href="{{ route('admin.properties.show',$property->id) }}">
+                                                    <a href="{{ route('admin.properties.show', $property->id) }}">
                                                         {{ $property->name ?? '' }}
                                                     </a>
                                                 </td>
@@ -94,10 +94,12 @@
                                                     {{ $property->created_at->diffForHumans() ?? '' }}
                                                 </td>
                                                 <td>
-                                                    <a href="" class="btn btn-primary btn-xs">
+                                                    <a href="{{ route('admin.properties.edit', $property->id) }}"
+                                                        class="btn btn-primary btn-xs">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
-                                                    <a href="" class="btn btn-danger btn-xs">
+                                                    <a href="{{ route('admin.property.delete', $property->id) }}"
+                                                        class="btn btn-danger btn-xs">
                                                         <i class="fa fa-trash-o "></i>
                                                     </a>
                                                 </td>

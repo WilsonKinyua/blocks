@@ -48,6 +48,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('inventories', 'InventoryController');
 
     // properties
+    Route::get('property/{id}/delete', 'PropertyController@deleteProperty')->name('property.delete');
     Route::resource('properties', 'PropertyController');
 });
 
