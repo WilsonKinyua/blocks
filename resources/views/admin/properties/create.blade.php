@@ -168,7 +168,7 @@
                                             the box )</small>
                                     </label>
                                     <input type="text" class="tags tags-input prop_units text-uppercase" data-type="tags"
-                                        value="G-001,G-002,G-003" />
+                                        value="G-001,G-002,G-003,G-004" name="units" />
                                 </div>
                                 <div class="col-lg-12 p-t-20 text-center">
                                     <strong class="text-muted">Please check if you have completed all the necesary

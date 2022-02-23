@@ -7,6 +7,7 @@ use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use Gate;
 use App\Models\Property;
+use App\Models\Unit;
 use Symfony\Component\HttpFoundation\Response;
 
 class PropertyController extends Controller
@@ -15,7 +16,6 @@ class PropertyController extends Controller
     public function create()
     {
         abort_if(Gate::denies('property_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        // check if user has business and if not redirect to create business page
         $business = auth()->user()->business;
         if (!$business) {
             return redirect()->route('admin.business.profile')->with('danger', 'Please create a business profile first!');
@@ -36,7 +36,15 @@ class PropertyController extends Controller
     public function store(StorePropertyRequest $request)
     {
         abort_if(Gate::denies('property_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        Property::create($request->all());
-        return redirect()->back()->with('success', 'Property created successfully!');
+
+        $property = Property::create($request->all());
+        $units = explode(',', $request->units);
+        foreach ($units as $unit) {
+            Unit::create([
+                'name' => $unit,
+                'property_id' => $property->id
+            ]);
+        }
+        return redirect()->route('admin.properties.index')->with('success', 'Property created successfully!');
     }
 }

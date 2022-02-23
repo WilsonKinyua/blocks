@@ -67,7 +67,13 @@ class Property extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function business(){
+    public function business()
+    {
         return $this->belongsTo(Business::class);
+    }
+
+    public function units()
+    {
+        return $this->belongsToMany(Unit::class);
     }
 }
