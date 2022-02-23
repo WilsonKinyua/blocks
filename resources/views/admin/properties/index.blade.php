@@ -71,7 +71,7 @@
                                                     {{ $loop->index + 1 }}
                                                 </td>
                                                 <td class="left">
-                                                    <a href="">
+                                                    <a href="{{ route('admin.properties.show',$property->id) }}">
                                                         {{ $property->name ?? '' }}
                                                     </a>
                                                 </td>

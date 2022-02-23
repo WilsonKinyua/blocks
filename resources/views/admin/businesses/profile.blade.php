@@ -25,8 +25,8 @@
                                             <img src="{{ $business->logo->getUrl() }}" id="bs-logo" class="img-responsive"
                                                 alt="" style="height: 120px">
                                         @else
-                                            <img src="http://localhost:8000/img/avatar.jpeg" id="bs-logo"
-                                                class="img-responsive" alt="">
+                                            <img src="{{ asset('img/avatar.jpeg') }}" id="bs-logo" class="img-responsive"
+                                                alt="">
                                         @endif
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@
                             <div class="card-body no-padding height-9">
                                 <div class="row">
                                     <div class="profile-userpic">
-                                        <img src="http://localhost:8000/img/avatar.jpeg" id="bs-logo" class="img-responsive"
+                                        <img src="{{ asset('img/avatar.jpeg') }}" id="bs-logo" class="img-responsive"
                                             alt="">
                                     </div>
                                 </div>

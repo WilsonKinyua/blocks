@@ -47,4 +47,11 @@ class PropertyController extends Controller
         }
         return redirect()->route('admin.properties.index')->with('success', 'Property created successfully!');
     }
+
+    public function show(Property $property)
+    {
+        abort_if(Gate::denies('property_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return view('admin.properties.show', compact('property'));
+    }
 }
