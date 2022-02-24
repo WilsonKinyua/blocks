@@ -29,6 +29,7 @@ class CreateTenantsTable extends Migration
             $table->decimal('deposit', 60, 2);
             $table->string('emergency_contact_name');
             $table->string('emergency_contact_phone');
+            $table->boolean('status')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

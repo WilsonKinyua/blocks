@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('tenants/media', 'TenantController@storeMedia')->name('tenants.storeMedia');
     Route::post('tenants/ckmedia', 'TenantController@storeCKEditorImages')->name('tenants.storeCKEditorImages');
     Route::resource('tenants', 'TenantController');
+    Route::get('tenants/{id}/vacate', 'TenantController@vacate')->name('tenants.vacate');
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

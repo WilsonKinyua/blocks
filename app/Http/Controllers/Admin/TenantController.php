@@ -24,6 +24,8 @@ class TenantController extends Controller
         if (!$business) {
             return redirect()->route('admin.business.profile')->with('danger', 'Please create a business profile first!');
         }
+        $tenants = Tenant::where('business_id', $business->id)->get();
+        return view('admin.tenants.index', compact('tenants'));
     }
 
     public function create()
@@ -53,6 +55,56 @@ class TenantController extends Controller
         return redirect()->route('admin.tenants.index')->with('success', 'Tenant created successfully');
     }
 
+    public function edit(Tenant $tenant)
+    {
+        abort_if(Gate::denies('tenant_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $properties = Property::where('business_id', $tenant->business_id)->get();
+        $units = Unit::where('business_id', $tenant->business_id)->get();
+        return view('admin.tenants.edit', compact('tenant', 'properties', 'units'));
+    }
+
+    public function update(StoreTenantRequest $request, Tenant $tenant)
+    {
+        if ($tenant->business_id != auth()->user()->business_id) {
+            abort(403, 'Unauthorized action.');
+        }
+        $tenant->update($request->all());
+        if ($request->input('file', false)) {
+            if (!$tenant->file || $request->input('file') !== $tenant->file) {
+                if (count($tenant->file) > 0) {
+                    foreach ($tenant->file as $media) {
+                        if (!in_array($media->file_name, $request->input('file', []))) {
+                            $media->delete();
+                        }
+                    }
+                }
+                foreach ($request->input('file', []) as $file) {
+                    $tenant->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('file');
+                }
+            }
+        }
+        if ($media = $request->input('ck-media', false)) {
+            Media::whereIn('id', $media)->update(['model_id' => $tenant->id]);
+        }
+
+        return redirect()->route('admin.tenants.index')->with('success', 'Tenant updated successfully');
+    }
+
+    // vacate tenant
+    public function vacate($id)
+    {
+        abort_if(Gate::denies('tenant_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $tenant = Tenant::findOrFail($id);
+        if ($tenant->business_id != auth()->user()->business_id) {
+            abort(403, 'Unauthorized action.');
+        }
+        $tenant->status = !$tenant->status;
+        $tenant->update();
+        return redirect()->route('admin.tenants.index')->with('success', 'Tenant updated successfully');
+    }
+
     public function storeCKEditorImages(Request $request)
     {
         abort_if(Gate::denies('tenant_create') && Gate::denies('tenant_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -65,15 +117,3 @@ class TenantController extends Controller
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
 }
-
-
-// if ($request->input('file', false)) {
-//     if (!$tenant->file || $request->input('file') !== $tenant->file->file_name) {
-//         if ($tenant->file) {
-//             $tenant->file->delete();
-//         }
-//         $tenant->addMedia(storage_path('tmp/uploads/' . basename($request->input('file'))))->toMediaCollection('file');
-//     }
-// } elseif ($tenant->file) {
-//     $tenant->file->delete();
-// }

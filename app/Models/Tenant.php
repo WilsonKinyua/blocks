@@ -40,6 +40,7 @@ class Tenant extends Model implements HasMedia
         'deposit',
         'emergency_contact_name',
         'emergency_contact_phone',
+        'status',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -50,11 +51,6 @@ class Tenant extends Model implements HasMedia
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
-
-    // public function getFileAttribute()
-    // {
-    //     return $this->getMedia('file')->last();
-    // }
 
     public function getFileAttribute()
     {
@@ -71,5 +67,14 @@ class Tenant extends Model implements HasMedia
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function apartment()
+    {
+        return $this->belongsTo(Property::class, 'property_id');
+    }
+
+    public function house(){
+        return $this->belongsTo(Unit::class, 'unit_id');
     }
 }
