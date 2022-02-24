@@ -19,7 +19,7 @@ class Tenant extends Model implements HasMedia
     public $table = 'tenants';
 
     protected $appends = [
-        'documents',
+        'file',
     ];
 
     protected $dates = [
@@ -45,23 +45,28 @@ class Tenant extends Model implements HasMedia
         'deleted_at',
     ];
 
-    // public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
+        $this->addMediaConversion('preview')->fit('crop', 120, 120);
+    }
+
+    // public function getFileAttribute()
     // {
-    //     $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-    //     $this->addMediaConversion('preview')->fit('crop', 120, 120);
+    //     return $this->getMedia('file')->last();
     // }
 
-    // public function getPicturesAttribute()
-    // {
-    //     $files = $this->getMedia('pictures');
-    //     $files->each(function ($item) {
-    //         $item->url = $item->getUrl();
-    //         $item->thumbnail = $item->getUrl('thumb');
-    //         $item->preview = $item->getUrl('preview');
-    //     });
+    public function getFileAttribute()
+    {
+        $files = $this->getMedia('file');
+        $files->each(function ($item) {
+            $item->url = $item->getUrl();
+            $item->thumbnail = $item->getUrl('thumb');
+            $item->preview = $item->getUrl('preview');
+        });
 
-    //     return $files;
-    // }
+        return $files;
+    }
 
     protected function serializeDate(DateTimeInterface $date)
     {

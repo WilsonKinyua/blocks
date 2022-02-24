@@ -52,6 +52,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('properties', 'PropertyController');
 
     // tenants
+    Route::post('tenants/media', 'TenantController@storeMedia')->name('tenants.storeMedia');
+    Route::post('tenants/ckmedia', 'TenantController@storeCKEditorImages')->name('tenants.storeCKEditorImages');
     Route::resource('tenants', 'TenantController');
 });
 

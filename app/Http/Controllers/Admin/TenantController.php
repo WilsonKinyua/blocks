@@ -40,7 +40,40 @@ class TenantController extends Controller
 
     public function store(StoreTenantRequest $request)
     {
-        Tenant::create($request->all());
+        $tenant = Tenant::create($request->all());
+        if ($request->input('file', false)) {
+            foreach ($request->input('file', []) as $file) {
+                $tenant->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('file');
+            }
+        }
+        if ($media = $request->input('ck-media', false)) {
+            Media::whereIn('id', $media)->update(['model_id' => $tenant->id]);
+        }
+
         return redirect()->route('admin.tenants.index')->with('success', 'Tenant created successfully');
     }
+
+    public function storeCKEditorImages(Request $request)
+    {
+        abort_if(Gate::denies('tenant_create') && Gate::denies('tenant_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $model         = new Tenant();
+        $model->id     = $request->input('crud_id', 0);
+        $model->exists = true;
+        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+
+        return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
 }
+
+
+// if ($request->input('file', false)) {
+//     if (!$tenant->file || $request->input('file') !== $tenant->file->file_name) {
+//         if ($tenant->file) {
+//             $tenant->file->delete();
+//         }
+//         $tenant->addMedia(storage_path('tmp/uploads/' . basename($request->input('file'))))->toMediaCollection('file');
+//     }
+// } elseif ($tenant->file) {
+//     $tenant->file->delete();
+// }
