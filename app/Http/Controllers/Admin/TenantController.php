@@ -91,7 +91,6 @@ class TenantController extends Controller
         return redirect()->route('admin.tenants.index')->with('success', 'Tenant updated successfully');
     }
 
-    // vacate tenant
     public function vacate($id)
     {
         abort_if(Gate::denies('tenant_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -103,6 +102,19 @@ class TenantController extends Controller
         $tenant->status = !$tenant->status;
         $tenant->update();
         return redirect()->route('admin.tenants.index')->with('success', 'Tenant updated successfully');
+    }
+
+    public function show(Tenant $tenant)
+    {
+        abort_if(Gate::denies('tenant_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        if ($tenant->business_id != auth()->user()->business_id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $tenant->load('business', 'apartment', 'house');
+
+        return view('admin.tenants.show', compact('tenant'));
     }
 
     public function storeCKEditorImages(Request $request)

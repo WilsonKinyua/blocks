@@ -104,7 +104,7 @@
                         </a>
                         <ul class="dropdown-menu pull-left">
                             <li class="dropdown-submenu">
-                                <a href="">
+                                <a href="{{ route('admin.tenants.index') }}">
                                     <i class="fa fa-briefcase"></i> Manage Tenants</a>
                             </li>
                             @can('tenant_create')

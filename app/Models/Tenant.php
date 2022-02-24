@@ -69,12 +69,18 @@ class Tenant extends Model implements HasMedia
         return $date->format('Y-m-d H:i:s');
     }
 
+    public function business()
+    {
+        return $this->belongsTo(Business::class, 'business_id');
+    }
+
     public function apartment()
     {
         return $this->belongsTo(Property::class, 'property_id');
     }
 
-    public function house(){
+    public function house()
+    {
         return $this->belongsTo(Unit::class, 'unit_id');
     }
 }
