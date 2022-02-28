@@ -148,6 +148,18 @@ class TenantController extends Controller
         return redirect()->route('admin.tenants.index')->with('success', 'Reminder sent successfully');
     }
 
+    public function recordTenantPayment($id)
+    {
+        $tenant = Tenant::findOrFail($id);
+        if ($tenant->business_id != auth()->user()->business_id) {
+            abort(403, 'Unauthorized action.');
+        }
+        $business = auth()->user()->business;
+        $properties = Property::where('business_id', $business->id)->get();
+        $units = Unit::where('business_id', $business->id)->get();
+        return view('admin.tenants.record-payment', compact('tenant', 'properties', 'units'));
+    }
+
     public function storeCKEditorImages(Request $request)
     {
         abort_if(Gate::denies('tenant_create') && Gate::denies('tenant_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');

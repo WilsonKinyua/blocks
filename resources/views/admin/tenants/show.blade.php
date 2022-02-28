@@ -112,13 +112,14 @@
 
                                         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                                             data-mdl-for="invoice-action">
-                                            <li class="mdl-menu__item" onclick="window.location='record_payment.php?id=24'">
-                                                <i class="fa fa-bookmark"></i> Reord Payment
+                                            <li class="mdl-menu__item"
+                                                onclick="window.location='{{ route('admin.tenants.record.payment', $tenant->id) }}'">
+                                                <i class="fa fa-bookmark"></i> Record Payment
                                             </li>
-                                            <li class="mdl-menu__item"><i class="material-icons">print</i>Print Statement
+                                            {{-- <li class="mdl-menu__item"><i class="material-icons">print</i>Print Statement
                                             </li>
                                             <li class="mdl-menu__item"><i class="material-icons">mail</i> Send via email
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </div>
                                     <div class="card-body no-padding height-9">
@@ -174,8 +175,9 @@
                                                 {{-- <span class="badge badge-info">{{ $item->title }}</span> --}}
                                                 <li>
                                                     <a href="{{ $item->getUrl() }}" target="_blank">
-                                                        <i class="fa fa-circle-o" style="color:#F39C12;"></i> {{ $item->name }} <span
-                                                            class="pull-right"><i class="fa fa-file-pdf-o"></i></span>
+                                                        <i class="fa fa-circle-o" style="color:#F39C12;"></i>
+                                                        {{ $item->name }} <span class="pull-right"><i
+                                                                class="fa fa-file-pdf-o"></i></span>
                                                     </a>
                                                 </li>
                                             @endforeach
