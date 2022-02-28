@@ -40,8 +40,10 @@
                                 <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input" type="tel" id="phone" name="phone" required>
-                                        <label class="mdl-textfield__label"><i class="fa fa-phone"></i> Phone No.</label>
+                                        <input class="mdl-textfield__input" type="tel" id="phone" name="phone" value="254"
+                                            required>
+                                        <label class="mdl-textfield__label"><i class="fa fa-phone"></i> Phone No.
+                                            <small>(eg. 25717255460)</small></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 p-t-20">

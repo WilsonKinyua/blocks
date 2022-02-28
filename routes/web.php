@@ -56,6 +56,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('tenants/ckmedia', 'TenantController@storeCKEditorImages')->name('tenants.storeCKEditorImages');
     Route::resource('tenants', 'TenantController');
     Route::get('tenants/{id}/vacate', 'TenantController@vacate')->name('tenants.vacate');
+    Route::get('tenants/{id}/delete', 'TenantController@deleteTenant')->name('tenants.delete');
+    Route::post('send-reminder', 'TenantController@sendReminder')->name('tenants.sendReminder');
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

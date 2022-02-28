@@ -12,6 +12,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
+use AfricasTalking\SDK\AfricasTalking;
 
 class TenantController extends Controller
 {
@@ -115,6 +116,36 @@ class TenantController extends Controller
         $tenant->load('business', 'apartment', 'house');
 
         return view('admin.tenants.show', compact('tenant'));
+    }
+
+    public function deleteTenant($id)
+    {
+        $tenant = Tenant::findOrFail($id);
+        if ($tenant->business_id != auth()->user()->business_id) {
+            abort(403, 'Unauthorized action.');
+        }
+        $tenant->delete();
+        return redirect()->route('admin.tenants.index')->with('success', 'Tenant deleted successfully');
+    }
+
+    public function sendReminder(Request $request)
+    {
+        $tenant = Tenant::findOrFail($request->tenant_id);
+
+        if ($tenant->business_id != auth()->user()->business_id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $username = env('AFRICASTALK_USERNAME');
+        $apiKey   = env('AFRICASTALK_APIKEY');
+        $AT       = new AfricasTalking($username, $apiKey);
+        $sms      = $AT->sms();
+        $sms->send([
+            'to'      => "+" . $tenant->phone,
+            'message' => $request->message,
+        ]);
+
+        return redirect()->route('admin.tenants.index')->with('success', 'Reminder sent successfully');
     }
 
     public function storeCKEditorImages(Request $request)

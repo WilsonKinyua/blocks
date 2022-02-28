@@ -21,22 +21,23 @@
                                         <img src="{{ asset('img/avatar.jpeg') }}" class="img-responsive" alt="">
                                     </div>
                                 </div>
-                                <div class="profile-usertitle">
-                                    <div class="profile-usertitle-name">Wilson Ke</div>
-                                    <div class="profile-usertitle-job"> F103</div>
+                                <div class="profile-usertitle text-capitalize">
+                                    <div class="profile-usertitle-name">{{ $tenant->name ?? '' }}</div>
+                                    <div class="profile-usertitle-job"> {{ $tenant->house->name ?? '' }}</div>
                                 </div>
                                 <ul class="list-group list-group-unbordered">
                                     <li class="list-group-item">
-                                        <b>Id No:</b> <a class="pull-right">34251670</a>
+                                        <b>Id No:</b> <a class="pull-right">{{ $tenant->id_number ?? '' }}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Rent:</b> <a class="pull-right">Ksh. 12,000</a>
+                                        <b>Rent:</b> <a class="pull-right">Ksh.
+                                            {{ number_format($tenant->rent) ?? '' }}</a>
                                     </li>
                                     <li class="list-group-item">
                                         <b>Balance:</b> <a class="pull-right">Ksh. 2,000</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Tenant Since:</b> <a class="pull-right">2022-02-17</a>
+                                        <b>Tenant Since:</b> <a class="pull-right">{{ $tenant->created_at ?? '' }}</a>
                                     </li>
                                 </ul>
 
@@ -55,8 +56,16 @@
                                     </div>
                                 </div>
                                 <div class="profile-userbuttons">
-                                    <button type="button" class="btn btn-circle green btn-sm">Update</button>
-                                    <button type='button' class='btn btn-circle red btn-sm vacate' id='24'>Vacate</button>
+                                    <a href="{{ route('admin.tenants.edit', $tenant->id) }}"
+                                        class="btn btn-circle green btn-sm">Update</a>
+                                    <a href='{{ route('admin.tenants.vacate', $tenant->id) }}'
+                                        class='btn btn-circle red btn-sm vacate'>
+                                        @if ($tenant->status == 1)
+                                            Active
+                                        @else
+                                            Vacated
+                                        @endif
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -69,21 +78,21 @@
                                     <li>
                                         <a href="#">
                                             <i class="fa fa-circle-o" style="color:#F39C12;"></i> Name: <span
-                                                class="pull-right">Baba</span>
+                                                class="pull-right">{{ $tenant->emergency_contact_name ?? ' ' }}</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="fa fa-circle-o" style="color:#DD4B39;"></i> Relationship: <span
-                                                class="pull-right">---</span>
+                                            <i class="fa fa-circle-o" style="color:#DD4B39;"></i> Contact: <span
+                                                class="pull-right">{{ $tenant->emergency_contact_phone ?? ' ' }}</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <a href="#">
                                             <i class="fa fa-circle-o" style="color:#00A65A;"></i> Contact: <span
                                                 class="pull-right">072345679</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -161,7 +170,16 @@
                                     </div>
                                     <div class="card-body no-padding height-9">
                                         <ul class="performance-list">
-                                            <li>
+                                            @foreach ($tenant->file as $key => $item)
+                                                {{-- <span class="badge badge-info">{{ $item->title }}</span> --}}
+                                                <li>
+                                                    <a href="{{ $item->getUrl() }}" target="_blank">
+                                                        <i class="fa fa-circle-o" style="color:#F39C12;"></i> {{ $item->name }} <span
+                                                            class="pull-right"><i class="fa fa-file-pdf-o"></i></span>
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                            {{-- <li>
                                                 <a href="#">
                                                     <i class="fa fa-circle-o" style="color:#DD4B39;"></i> KRA: <span
                                                         class="pull-right"><i class="fa fa-file-pdf-o"></i></span>
@@ -178,7 +196,7 @@
                                                     <i class="fa fa-circle-o" style="color:#00A65A;"></i> Lease Agreement:
                                                     <span class="pull-right"><i class="fa fa-file-pdf-o"></i></span>
                                                 </a>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </div>
                                 </div>
