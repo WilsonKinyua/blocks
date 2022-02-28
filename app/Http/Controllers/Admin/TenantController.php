@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use AfricasTalking\SDK\AfricasTalking;
+use App\Models\TenantPayment;
 
 class TenantController extends Controller
 {
@@ -157,7 +158,8 @@ class TenantController extends Controller
         $business = auth()->user()->business;
         $properties = Property::where('business_id', $business->id)->get();
         $units = Unit::where('business_id', $business->id)->get();
-        return view('admin.tenants.record-payment', compact('tenant', 'properties', 'units'));
+        $payments = TenantPayment::where('tenant_id', $tenant->id)->get();
+        return view('admin.tenants.record-payment', compact('tenant', 'properties', 'units', 'payments','business'));
     }
 
     public function storeCKEditorImages(Request $request)

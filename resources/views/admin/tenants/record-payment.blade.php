@@ -15,8 +15,12 @@
                         <div class="card-head">
                             <header>Tenant Information</header>
                         </div>
-                        <form action="" method="post">
+                        <form action="{{ route('admin.tenant-payments.storePayment') }}" method="post">
                             @csrf
+                            <input type="hidden" name="tenant_id" value="{{ $tenant->id }}">
+                            <input type="hidden" name="property_id" value="{{ $tenant->property_id }}">
+                            <input type="hidden" name="business_id" value="{{ $tenant->business_id }}">
+                            <input type="hidden" name="unit_id" value="{{ $tenant->unit_id }}">
                             <div class="card-body row">
                                 <div class="col-lg-6 p-t-20">
                                     <div
@@ -30,8 +34,8 @@
                                 <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input" type="number" id="amount" name="amount"
-                                            value="{{ $tenant->rent ?? '00' }}">
+                                        <input class="mdl-textfield__input" type="number" id="amount" name="amount_paid"
+                                            value="{{ $tenant->rent ?? '00' }}" required>
                                         <label class="mdl-textfield__label"><i class="fa fa-dollar"></i> Amount
                                             Paid:</label>
                                     </div>
@@ -69,7 +73,8 @@
                                 <div class="col-lg-6 p-t-20 ">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input" type="text" id="date" name="payment_date">
+                                        <input class="mdl-textfield__input" type="text" id="date" name="payment_date"
+                                            required>
                                         <label class="mdl-textfield__label"> <i class="fa fa-calendar"></i> Payment Date:
                                         </label>
                                     </div>
@@ -96,30 +101,38 @@
                         </div>
                         <div class="card-body print_section" id="bar-parent">
                             <div class="white-box" style='margin-top:0; padding:0;'>
-                                <h3 class=''><b>RECEIPT </b> <span class="pull-right">#IN-</span></h3>
+                                <h3 class=''><b>RECEIPT </b> <span
+                                        class="pull-right text-capitalize">#IN-<?php echo rand(1, 10000); ?></span></h3>
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="pull-left">
                                             <address>
-                                                <img src="assets/img/files/8ae26d52be75a7f61869f46a932454f0.png" height=110
-                                                    alt="logo" class="logo-default" id='bs-logo'
-                                                    style="border-radius: 51%;" />
-                                                <p class="text-muted m-l-5">
-                                                    Next Block Africa Ltd,
-                                                    <br>Nyali, Mombasa -Kenya
-                                                    <br>hello@mail.com <br>Tel: 0789456123
+                                                @if ($business->logo)
+                                                    <img src="{{ $business->logo->getUrl() }}" height=110 alt="logo"
+                                                        class="logo-default" id='bs-logo' style="border-radius: 51%;">
+                                                @else
+                                                    <img src="{{ asset('img/avatar.jpeg') }}" height=110 alt="logo"
+                                                        class="logo-default" id='bs-logo' style="border-radius: 51%;">
+                                                @endif
+                                                <p class="text-muted m-l-5 text-capitalize">
+                                                    {{ $business->name ?? '' }},
+                                                    <br>{{ $business->location ?? '' }}
+                                                    <br>{{ $business->email ?? '' }} <br>Tel:
+                                                    {{ $business->phone ?? '' }}
                                                 </p>
                                             </address>
                                         </div>
-                                        <div class="pull-right text-right">
+                                        <div class="pull-right text-right text-capitalize">
                                             <address>
                                                 <p class="addr-font-h3">To,</p>
-                                                <p class="font-bold addr-font-h4 tenant_name">Wilson Ke</p>
-                                                <p class="text-muted m-l-30 apartment_info">
-                                                    Tenant F103, Keja Yetu </p>
+                                                <p class="font-bold addr-font-h4 tenant_name">{{ $tenant->name ?? '' }}
+                                                </p>
+                                                <p class="text-muted m-l-30 apartment_info ">
+                                                    {{ $tenant->house->name ?? '' }},
+                                                    {{ $tenant->apartment->name ?? '' }} </p>
                                                 <p class="m-t-30">
-                                                    <i class="fa fa-calendar"></i> &nbsp; February 28, 2022
+                                                    <i class="fa fa-calendar"></i> &nbsp; <?php echo date('Y-m-d'); ?>
                                                 </p>
                                             </address>
                                         </div>
@@ -137,21 +150,24 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="text-center">1</td>
-                                                        <td class="text-right">Cash payment</td>
-                                                        <td class="text-right">22-02-2022</td>
-                                                        <td class="text-right">#Ref:020029</td>
-                                                        <td class="text-right">Ksh. 1,000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">2</td>
-                                                        <td class="text-right">Cash payment</td>
-                                                        <td class="text-right">17-02-2022</td>
-                                                        <td class="text-right">#Ref:020025</td>
-                                                        <td class="text-right">Ksh. 9,000</td>
-                                                    </tr>
-
+                                                    @foreach ($payments as $payment)
+                                                        <tr class="text-capitalize">
+                                                            <td class="text-center">
+                                                                <?php echo $loop->iteration; ?>
+                                                            </td>
+                                                            <td class="text-right">{{ $payment->payment_method }}
+                                                                payment</td>
+                                                            <td class="text-right">
+                                                                <?php echo date('Y-m-d', strtotime($payment->payment_date)); ?>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                {{ $payment->payment_reference ?? '' }}
+                                                            </td>
+                                                            <td class="text-right">Ksh.
+                                                                <?php echo number_format($payment->amount_paid, 0); ?>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>

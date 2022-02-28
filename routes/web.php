@@ -59,6 +59,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('tenants/{id}/delete', 'TenantController@deleteTenant')->name('tenants.delete');
     Route::post('send-reminder', 'TenantController@sendReminder')->name('tenants.sendReminder');
     Route::get('tenant/{id}/record-payment', 'TenantController@recordTenantPayment')->name('tenants.record.payment');
+
+    // tenants payment
+    Route::post('tenant-payments', 'TenantPaymentController@storePayment')->name('tenant-payments.storePayment');
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
