@@ -181,8 +181,9 @@
                                         <div class="clearfix"></div>
                                         <hr>
                                         <div class="text-right pull-right">
-                                            <button id="mail_btn" class="btn btn-danger" type="submit"> <i
-                                                    class="fa fa-envelope-o"></i> Send Via Mail</button>
+                                            <a id="mail_btn" class="btn btn-danger"
+                                                href="{{ route('admin.tenants.send.invoice', $tenant->id) }}"> <i
+                                                    class="fa fa-envelope-o"></i> Send Via Mail</a>
                                             <a href="print_receipt.php?id=24" class="btn btn-default btn-outline"
                                                 type="button">
                                                 <span> <i class="fa fa-print"></i> Print Reciept</span>

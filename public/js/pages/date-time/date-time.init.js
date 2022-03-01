@@ -1,6 +1,6 @@
 $(document).ready(function () {
   flatpickr("#date", {
-    dateFormat: "d-m-Y",
+    dateFormat: "Y-m-d",
     allowInput: true,
     onOpen: function (selectedDates, dateStr, instance) {
       instance.setDate(instance.input.value, false);

@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "africastalking/africastalking": "^3.0",
+        "barryvdh/laravel-dompdf": "^1.0",
         "bugsnag/bugsnag-laravel": "^2.21",
         "doctrine/dbal": "^3.0",
         "fideloper/proxy": "^4.4",

@@ -13,7 +13,12 @@ use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use AfricasTalking\SDK\AfricasTalking;
+use App\Mail\SendInvoice;
 use App\Models\TenantPayment;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+// use \PDF;
+
 
 class TenantController extends Controller
 {
@@ -158,8 +163,36 @@ class TenantController extends Controller
         $business = auth()->user()->business;
         $properties = Property::where('business_id', $business->id)->get();
         $units = Unit::where('business_id', $business->id)->get();
-        $payments = TenantPayment::where('tenant_id', $tenant->id)->get();
-        return view('admin.tenants.record-payment', compact('tenant', 'properties', 'units', 'payments','business'));
+        $payments = TenantPayment::where('tenant_id', $tenant->id)->whereMonth('payment_date', '=', Carbon::now()->month)->get();
+
+        return view('admin.tenants.record-payment', compact('tenant', 'properties', 'units', 'payments', 'business'));
+    }
+
+    public function sendEmailInvoice($id)
+    {
+        $tenant = Tenant::findOrFail($id);
+        if ($tenant->business_id != auth()->user()->business_id) {
+            abort(403, 'Unauthorized action.');
+        }
+        $business = auth()->user()->business;
+        $properties = Property::where('business_id', $business->id)->get();
+        $units = Unit::where('business_id', $business->id)->get();
+        $payments = TenantPayment::where('tenant_id', $tenant->id)->whereMonth('payment_date', '=', Carbon::now()->month)->get();
+
+        $data = [
+            'to' => $tenant->email,
+            'business' => $business,
+            'payments' => $payments,
+            'tenant' => $tenant,
+            'properties' => $properties,
+            'units' => $units,
+        ];
+
+        Mail::to($tenant->email)->send(new SendInvoice($data));
+
+        return redirect()->back()->with('success', 'Invoice sent successfully');
+
+        // return view('emails.invoice', compact('tenant', 'properties', 'units', 'payments', 'business'));
     }
 
     public function storeCKEditorImages(Request $request)
