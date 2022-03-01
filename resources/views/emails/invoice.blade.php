@@ -10,17 +10,18 @@
     <meta name="author" content="" />
     <title>Invoice Tenant</title>
     <!-- google font -->
-    <link href="{{ asset('google-fonts/css6079.css?family=Poppins:300,400,500,600,700') }}" rel="stylesheet"
-        type="text/css" />
+    <link href="http://blocks.brancetech.com/google-fonts/css6079.css?family=Poppins:300,400,500,600,700" rel="stylesheet"
+    type="text/css" />
     <!-- icons -->
-    <link href="{{ asset('fonts/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="http://blocks.brancetech.com/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!--bootstrap -->
-    <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="http://blocks.brancetech.com/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Styles -->
-    <link href="{{ asset('css/theme/full/theme_style.css') }}" rel="stylesheet" id="rt_style_components"
+    <link href="http://blocks.brancetech.com/css/theme/full/theme_style.css" rel="stylesheet" id="rt_style_components"
         type="text/css" />
-    <link href="{{ asset('css/theme/full/style.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" type="text/css" />
+        <link href="http://blocks.brancetech.com/css/theme/full/style.css" rel="stylesheet" type="text/css" />
+        <link href="http://blocks.brancetech.com/css/responsive.css" rel="stylesheet" type="text/css" />
+
 
 
 </head>
