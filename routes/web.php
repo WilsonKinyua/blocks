@@ -60,6 +60,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('send-reminder', 'TenantController@sendReminder')->name('tenants.sendReminder');
     Route::get('tenant/{id}/record-payment', 'TenantController@recordTenantPayment')->name('tenants.record.payment');
     Route::get('send-invoice/{id}/tenant', 'TenantController@sendEmailInvoice')->name('tenants.send.invoice');
+    Route::get('tenant/{id}/print-invoice', 'TenantController@printInvoice')->name('tenants.print.invoice');
 
     // tenants payment
     Route::post('tenant-payments', 'TenantPaymentController@storePayment')->name('tenant-payments.storePayment');

@@ -184,10 +184,11 @@
                                             <a id="mail_btn" class="btn btn-danger"
                                                 href="{{ route('admin.tenants.send.invoice', $tenant->id) }}"> <i
                                                     class="fa fa-envelope-o"></i> Send Via Mail</a>
-                                            <a href="print_receipt.php?id=24" class="btn btn-default btn-outline"
+                                            <a href="{{ route('admin.tenants.print.invoice',$tenant->id)}}" class="btn btn-default btn-outline"
                                                 type="button">
                                                 <span> <i class="fa fa-print"></i> Print Reciept</span>
                                             </a>
+                                            {{-- onclick="window.print()" --}}
                                         </div>
                                     </div>
                                 </div>

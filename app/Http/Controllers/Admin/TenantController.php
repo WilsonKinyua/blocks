@@ -192,7 +192,18 @@ class TenantController extends Controller
 
         return redirect()->back()->with('success', 'Invoice sent successfully');
 
-        // return view('emails.invoice', compact('tenant', 'properties', 'units', 'payments', 'business'));
+    }
+
+    public function printInvoice($id){
+        $tenant = Tenant::findOrFail($id);
+        if ($tenant->business_id != auth()->user()->business_id) {
+            abort(403, 'Unauthorized action.');
+        }
+        $business = auth()->user()->business;
+        $properties = Property::where('business_id', $business->id)->get();
+        $units = Unit::where('business_id', $business->id)->get();
+        $payments = TenantPayment::where('tenant_id', $tenant->id)->whereMonth('payment_date', '=', Carbon::now()->month)->get();
+        return view('admin.tenants.print-receipt', compact('tenant', 'properties', 'units', 'payments', 'business'));
     }
 
     public function storeCKEditorImages(Request $request)
