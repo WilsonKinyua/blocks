@@ -120,8 +120,9 @@ class TenantController extends Controller
         }
 
         $tenant->load('business', 'apartment', 'house');
+        $payments = TenantPayment::where('tenant_id', $tenant->id)->get();
 
-        return view('admin.tenants.show', compact('tenant'));
+        return view('admin.tenants.show', compact('tenant', 'payments'));
     }
 
     public function deleteTenant($id)

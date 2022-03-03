@@ -136,22 +136,25 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="text-center">1</td>
-                                                        <td class="text-right">17-02-2022</td>
-                                                        <td class="text-right">Cash payment</td>
-                                                        <td class="text-right">Ref: 020025</td>
-                                                        <td class="text-right">Ksh. 9,000</td>
-                                                        <td class="text-right">Ksh. 3,000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">2</td>
-                                                        <td class="text-right">22-02-2022</td>
-                                                        <td class="text-right">Cash payment</td>
-                                                        <td class="text-right">Ref: 020029</td>
-                                                        <td class="text-right">Ksh. 1,000</td>
-                                                        <td class="text-right">Ksh. 2,000</td>
-                                                    </tr>
+                                                    @foreach ($payments as $payment)
+                                                        <tr class="text-capitalize">
+                                                            <td class="text-center">
+                                                                {{ $loop->iteration }}
+                                                            </td>
+                                                            <td class="text-right">
+                                                                {{ $payment->payment_date ?? '' }}
+                                                            </td>
+                                                            <td class="text-right">
+                                                                {{ $payment->payment_method ?? '' }} payment</td>
+                                                            <td class="text-right">
+                                                                {{ $payment->payment_reference ?? '' }}
+                                                            </td>
+                                                            <td class="text-right">Ksh.
+                                                                {{ number_format($payment->amount_paid, 0) }}</td>
+                                                            </td>
+                                                            <td class="text-right">Ksh. 3,000</td>
+                                                        </tr>
+                                                    @endforeach
 
                                                 </tbody>
                                             </table>
