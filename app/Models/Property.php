@@ -76,4 +76,5 @@ class Property extends Model
     {
         return $this->belongsToMany(Unit::class);
     }
+
 }

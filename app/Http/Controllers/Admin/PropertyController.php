@@ -7,7 +7,10 @@ use App\Http\Requests\StorePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use Gate;
 use App\Models\Property;
+use App\Models\Tenant;
+use App\Models\TenantPayment;
 use App\Models\Unit;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -54,7 +57,13 @@ class PropertyController extends Controller
     {
         abort_if(Gate::denies('property_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.properties.show', compact('property'));
+        $property_payments = TenantPayment::where('property_id', $property->id)
+            ->whereMonth('payment_date', '=', Carbon::now()->month)
+            ->get();
+
+        $tenants = Tenant::where('property_id', $property->id)->get();
+
+        return view('admin.properties.show', compact('property', 'property_payments', 'tenants'));
     }
 
     public function deleteProperty($id)
