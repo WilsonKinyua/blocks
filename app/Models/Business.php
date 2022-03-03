@@ -69,4 +69,9 @@ class Business extends Model implements HasMedia
     {
         return $this->belongsToMany(Property::class);
     }
+
+    public function tenants()
+    {
+        return $this->hasMany(Tenant::class);
+    }
 }

@@ -64,6 +64,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // tenants payment
     Route::post('tenant-payments', 'TenantPaymentController@storePayment')->name('tenant-payments.storePayment');
+
+    // accounts
+    Route::get('all-records', 'AccountController@allAccountsRecords')->name('accounts.allRecords');
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

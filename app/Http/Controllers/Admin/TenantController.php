@@ -43,6 +43,9 @@ class TenantController extends Controller
             return redirect()->route('admin.business.profile')->with('danger', 'Please create a business profile first!');
         }
         $properties = Property::where('business_id', $business->id)->get();
+        if ($properties->count() == 0) {
+            return redirect()->route('admin.properties.create')->with('danger', 'Please create a property first!');
+        }
         $units = Unit::where('business_id', $business->id)->get();
         return view('admin.tenants.create', compact('properties', 'units'));
     }

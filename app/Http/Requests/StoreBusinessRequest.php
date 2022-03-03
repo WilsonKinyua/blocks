@@ -10,7 +10,7 @@ class StoreBusinessRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('inventory_create');
+        return Gate::allows('business_create');
     }
 
     public function rules()

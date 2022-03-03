@@ -76,23 +76,23 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 17,
-                'title' => 'inventory_create',
+                'title' => 'account_create',
             ],
             [
                 'id'    => 18,
-                'title' => 'inventory_edit',
+                'title' => 'account_edit',
             ],
             [
                 'id'    => 19,
-                'title' => 'inventory_show',
+                'title' => 'account_show',
             ],
             [
                 'id'    => 20,
-                'title' => 'inventory_delete',
+                'title' => 'account_delete',
             ],
             [
                 'id'    => 21,
-                'title' => 'inventory_access',
+                'title' => 'account_access',
             ],
             [
                 'id'    => 22,
@@ -157,6 +157,22 @@ class PermissionsTableSeeder extends Seeder
             [
                 'id'    => 37,
                 'title' => 'tenant_access',
+            ],
+            [
+                'id'    => 38,
+                'title' => 'records_list',
+            ],
+            [
+                'id'    => 39,
+                'title' => 'record_payment',
+            ],
+            [
+                'id'    => 40,
+                'title' => 'overdue_payment',
+            ],
+            [
+                'id'    => 41,
+                'title' => 'record_management_access',
             ],
         ];
 

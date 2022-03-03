@@ -138,35 +138,45 @@
                         </ul>
                     </li>
                 @endcan
-
-                <li class="classic-menu-dropdown mega-menu-dropdown">
-                    <a href="#" class=" megamenu-dropdown" data-close-others="true"> <i
-                            class="material-icons">assignment</i> Accounting
-                        <i class="fa fa-angle-down"></i>
-                        <span class="arrow "></span>
-                    </a>
-                    <ul class="dropdown-menu pull-left">
-                        <li class="dropdown-submenu">
-                            <a href="" class="nav-link nav-toggle"> <i class="fa fa-list"></i>
-                                <span class="title">Overview</span> <span class="arrow"></span>
-                            </a>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a href="" class="nav-link nav-toggle"> <i class="fa fa-bookmark"></i>
-                                <span class="title">Record Payment</span> <span class="arrow"></span>
-                            </a>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a href="" class="nav-link nav-toggle"> <i class="fa fa-calendar"></i>
-                                <span class="title">Overdue Payment</span> <span class="arrow"></span>
-                            </a>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a href="">
-                                <i class="fa fa-briefcase"></i> Manage Records</a>
-                        </li>
-                    </ul>
-                </li>
+                @can('account_access')
+                    <li class="classic-menu-dropdown mega-menu-dropdown">
+                        <a href="#" class=" megamenu-dropdown" data-close-others="true"> <i
+                                class="material-icons">assignment</i> Accounting
+                            <i class="fa fa-angle-down"></i>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                            @can('records_list')
+                                <li class="dropdown-submenu">
+                                    <a href="{{ route('admin.accounts.allRecords') }}" class="nav-link nav-toggle"> <i
+                                            class="fa fa-list"></i>
+                                        <span class="title">Overview</span> </span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('record_payment')
+                                <li class="dropdown-submenu">
+                                    <a href="" class="nav-link nav-toggle"> <i class="fa fa-bookmark"></i>
+                                        <span class="title">Record Payment</span> </span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('overdue_payment')
+                                <li class="dropdown-submenu">
+                                    <a href="" class="nav-link nav-toggle"> <i class="fa fa-calendar"></i>
+                                        <span class="title">Overdue Payment</span> </span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('record_management_access')
+                                <li class="dropdown-submenu">
+                                    <a href="">
+                                        <i class="fa fa-briefcase"></i> Manage Records</a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
                 <li class="mega-menu-dropdown ">
                     <a href="" class="dropdown-toggle"> <i class="material-icons">group</i> Landlords
                     </a>
