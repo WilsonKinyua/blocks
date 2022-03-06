@@ -150,33 +150,41 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($payments as $payment)
-                                                        <tr class="text-capitalize">
-                                                            <td class="text-center">
-                                                                <?php echo $loop->iteration; ?>
-                                                            </td>
-                                                            <td class="text-right">{{ $payment->payment_method }}
-                                                                payment</td>
-                                                            <td class="text-right">
-                                                                <?php echo date('Y-m-d', strtotime($payment->payment_date)); ?>
-                                                            </td>
-                                                            <td class="text-right">
-                                                                {{ $payment->payment_reference ?? '' }}
-                                                            </td>
-                                                            <td class="text-right">Ksh.
-                                                                <?php echo number_format($payment->amount_paid, 0); ?>
-                                                            </td>
+                                                    @if (count($payments) > 0)
+                                                        @foreach ($payments as $payment)
+                                                            <tr class="text-capitalize">
+                                                                <td class="text-center">
+                                                                    <?php echo $loop->iteration; ?>
+                                                                </td>
+                                                                <td class="text-right">{{ $payment->payment_method }}
+                                                                    payment</td>
+                                                                <td class="text-right">
+                                                                    <?php echo date('Y-m-d', strtotime($payment->payment_date)); ?>
+                                                                </td>
+                                                                <td class="text-right">
+                                                                    {{ $payment->payment_reference ?? '' }}
+                                                                </td>
+                                                                <td class="text-right">Ksh.
+                                                                    <?php echo number_format($payment->amount_paid, 0); ?>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @else
+                                                        <tr class="text-capitalize text-center">
+                                                            <td colspan="5">Current Month records not available</td>
                                                         </tr>
-                                                    @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="pull-right text-right">
-                                            <p>Rent Balance &nbsp;&nbsp; : Ksh. 2,000 </p>
+                                            <p>Rent Balance: Ksh.
+                                                {{ number_format($tenant->rent - $payments->sum('amount_paid')) }} </p>
                                             <hr>
-                                            <h4><b>Total Paid :</b> Ksh. 10,000</h4>
+                                            <h4><b>Total Paid :</b> Ksh.
+                                                {{ number_format($payments->sum('amount_paid')) }}</h4>
                                         </div>
                                         <div class="clearfix"></div>
                                         <hr>
@@ -184,8 +192,8 @@
                                             <a id="mail_btn" class="btn btn-danger"
                                                 href="{{ route('admin.tenants.send.invoice', $tenant->id) }}"> <i
                                                     class="fa fa-envelope-o"></i> Send Via Mail</a>
-                                            <a href="{{ route('admin.tenants.print.invoice',$tenant->id)}}" class="btn btn-default btn-outline"
-                                                type="button">
+                                            <a href="{{ route('admin.tenants.print.invoice', $tenant->id) }}"
+                                                class="btn btn-default btn-outline" type="button">
                                                 <span> <i class="fa fa-print"></i> Print Reciept</span>
                                             </a>
                                             {{-- onclick="window.print()" --}}

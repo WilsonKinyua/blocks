@@ -10,17 +10,19 @@
     <meta name="author" content="" />
     <title>Invoice Tenant</title>
     <!-- google font -->
-    <link href="http://blocks.brancetech.com/google-fonts/css6079.css?family=Poppins:300,400,500,600,700" rel="stylesheet"
-    type="text/css" />
+    <link href="http://blocks.brancetech.com/google-fonts/css6079.css?family=Poppins:300,400,500,600,700"
+        rel="stylesheet" type="text/css" />
     <!-- icons -->
-    <link href="http://blocks.brancetech.com/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://blocks.brancetech.com/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css" />
     <!--bootstrap -->
-    <link href="http://blocks.brancetech.com/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://blocks.brancetech.com/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+        type="text/css" />
     <!-- Styles -->
     <link href="http://blocks.brancetech.com/css/theme/full/theme_style.css" rel="stylesheet" id="rt_style_components"
         type="text/css" />
-        <link href="http://blocks.brancetech.com/css/theme/full/style.css" rel="stylesheet" type="text/css" />
-        <link href="http://blocks.brancetech.com/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="http://blocks.brancetech.com/css/theme/full/style.css" rel="stylesheet" type="text/css" />
+    <link href="http://blocks.brancetech.com/css/responsive.css" rel="stylesheet" type="text/css" />
 
 
 
@@ -52,11 +54,13 @@
                                                     <address>
                                                         @if ($business->logo)
                                                             <img src="{{ $business->logo->getUrl() }}" height=110
-                                                                alt="{{ $business->name ?? '' }}" class="logo-default" id='bs-logo'
+                                                                alt="{{ $business->name ?? '' }}"
+                                                                class="logo-default" id='bs-logo'
                                                                 style="border-radius: 51%;">
                                                         @else
                                                             <img src="{{ asset('img/avatar.jpeg') }}" height=110
-                                                                alt="{{ $business->name ?? '' }}" class="logo-default" id='bs-logo'
+                                                                alt="{{ $business->name ?? '' }}"
+                                                                class="logo-default" id='bs-logo'
                                                                 style="border-radius: 51%;">
                                                         @endif
                                                         <p class="text-muted m-l-5 text-capitalize">
@@ -120,9 +124,12 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="pull-right text-right">
-                                                    <p>Rent Balance &nbsp;&nbsp; : Ksh. 2,000 </p>
+                                                    <p>Rent Balance: Ksh.
+                                                        {{ number_format($tenant->rent - $payments->sum('amount_paid')) }}
+                                                    </p>
                                                     <hr>
-                                                    <h4><b>Total Paid :</b> Ksh. 10,000</h4>
+                                                    <h4><b>Total Paid :</b> Ksh.
+                                                        {{ number_format($payments->sum('amount_paid')) }}</h4>
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <hr>

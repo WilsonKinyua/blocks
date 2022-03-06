@@ -125,9 +125,12 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="pull-right text-right">
-                                                    <p>Rent Balance &nbsp;&nbsp; : Ksh. 2,000 </p>
+                                                    <p>Rent Balance: Ksh.
+                                                        {{ number_format($tenant->rent - $payments->sum('amount_paid')) }}
+                                                    </p>
                                                     <hr>
-                                                    <h4><b>Total Paid :</b> Ksh. 10,000</h4>
+                                                    <h4><b>Total Paid :</b> Ksh.
+                                                        {{ number_format($payments->sum('amount_paid')) }}</h4>
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <hr>
