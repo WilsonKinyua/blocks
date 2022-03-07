@@ -76,7 +76,9 @@
                                                                     </td>
                                                                     <td>Ksh. {{ number_format($tenant->rent) ?? '00' }}
                                                                     </td>
-                                                                    <td>Ksh. 3000</td>
+                                                                    <td>Ksh.
+                                                                        {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                                    </td>
                                                                     <td><a href="tel:{{ $tenant->phone ?? '' }}">{{ $tenant->phone ?? '' }}
                                                                     </td>
                                                                     <td>
@@ -118,7 +120,8 @@
                                                                                         method="post">
                                                                                         @csrf
                                                                                         <input type="hidden"
-                                                                                            name="tenant_id" value="{{ $tenant->id }}">
+                                                                                            name="tenant_id"
+                                                                                            value="{{ $tenant->id }}">
                                                                                         <div class="modal-body">
                                                                                             <div aria-labelledby="swal2-title"
                                                                                                 aria-describedby="swal2-content"

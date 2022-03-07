@@ -83,4 +83,9 @@ class Tenant extends Model implements HasMedia
     {
         return $this->belongsTo(Unit::class, 'unit_id');
     }
+
+    public function payments()
+    {
+        return $this->hasMany(TenantPayment::class, 'tenant_id');
+    }
 }
