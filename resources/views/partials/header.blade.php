@@ -156,21 +156,23 @@
                             @endcan
                             @can('record_payment')
                                 <li class="dropdown-submenu">
-                                    <a href="{{ route('admin.tenant-payments.create')}}" class="nav-link nav-toggle"> <i class="fa fa-bookmark"></i>
+                                    <a href="{{ route('admin.tenant-payments.create') }}" class="nav-link nav-toggle"> <i
+                                            class="fa fa-bookmark"></i>
                                         <span class="title">Record Payment</span> </span>
                                     </a>
                                 </li>
                             @endcan
                             @can('overdue_payment')
                                 <li class="dropdown-submenu">
-                                    <a href="" class="nav-link nav-toggle"> <i class="fa fa-calendar"></i>
+                                    <a href="{{ route('admin.tenant-payments.overdue') }}" class="nav-link nav-toggle"> <i
+                                            class="fa fa-calendar"></i>
                                         <span class="title">Overdue Payment</span> </span>
                                     </a>
                                 </li>
                             @endcan
                             @can('record_management_access')
                                 <li class="dropdown-submenu">
-                                    <a href="">
+                                    <a href="{{ route('admin.tenant-payments.transactions') }}">
                                         <i class="fa fa-briefcase"></i> Manage Records</a>
                                 </li>
                             @endcan

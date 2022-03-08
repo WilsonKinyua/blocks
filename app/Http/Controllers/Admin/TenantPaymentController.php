@@ -26,10 +26,33 @@ class TenantPaymentController extends Controller
         return redirect()->back()->with('success', 'Payment recorded successfully');
     }
 
-    // record payment
     public function createPayment()
     {
         abort_if(Gate::denies('record_payment'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $business = auth()->user()->business;
+        if (!$business) {
+            return redirect()->route('admin.business.profile')->with('danger', 'Please create a business profile first!');
+        }
         return view('admin.tenants.create-payment');
+    }
+
+    public function overduePayments()
+    {
+
+        abort_if(Gate::denies('overdue_payment'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $business = auth()->user()->business;
+        if (!$business) {
+            return redirect()->route('admin.business.profile')->with('danger', 'Please create a business profile first!');
+        }
+        return view('admin.tenants.overdue-payments');
+    }
+
+    public function transactions(){
+        abort_if(Gate::denies('record_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $business = auth()->user()->business;
+        if (!$business) {
+            return redirect()->route('admin.business.profile')->with('danger', 'Please create a business profile first!');
+        }
+        return view('admin.tenants.transactions');
     }
 }
