@@ -156,7 +156,7 @@
                             @endcan
                             @can('record_payment')
                                 <li class="dropdown-submenu">
-                                    <a href="" class="nav-link nav-toggle"> <i class="fa fa-bookmark"></i>
+                                    <a href="{{ route('admin.tenant-payments.create')}}" class="nav-link nav-toggle"> <i class="fa fa-bookmark"></i>
                                         <span class="title">Record Payment</span> </span>
                                     </a>
                                 </li>

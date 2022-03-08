@@ -195,10 +195,10 @@ class TenantController extends Controller
         Mail::to($tenant->email)->send(new SendInvoice($data));
 
         return redirect()->back()->with('success', 'Invoice sent successfully');
-
     }
 
-    public function printInvoice($id){
+    public function printInvoice($id)
+    {
         $tenant = Tenant::findOrFail($id);
         if ($tenant->business_id != auth()->user()->business_id) {
             abort(403, 'Unauthorized action.');
@@ -208,6 +208,28 @@ class TenantController extends Controller
         $units = Unit::where('business_id', $business->id)->get();
         $payments = TenantPayment::where('tenant_id', $tenant->id)->whereMonth('payment_date', '=', Carbon::now()->month)->get();
         return view('admin.tenants.print-receipt', compact('tenant', 'properties', 'units', 'payments', 'business'));
+    }
+
+    // search tenants
+    public function searchTenants(Request $request)
+    {
+        if ($request->term == '') {
+            return redirect()->back()->with('danger', 'Please enter a search term');
+        }
+        return redirect()->route('admin.tenants.search.query', ['query' => $request->term]);
+    }
+
+    public function displaySearchTenants($query)
+    {
+        if ($query == '') {
+            return redirect()->back()->with('danger', 'Please enter a search term');
+        }
+        $tenants = Tenant::where('business_id', auth()->user()->business_id)
+            ->where('name', 'like', '%' . $query . '%')
+            ->orWhere('id_number', 'like', '%' . $query . '%')
+            ->orWhere('phone', 'like', '%' . $query . '%')
+            ->get();
+        return view('admin.tenants.search-tenants', compact('tenants', 'query'));
     }
 
     public function storeCKEditorImages(Request $request)

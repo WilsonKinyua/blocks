@@ -25,4 +25,11 @@ class TenantPaymentController extends Controller
         $payment->update();
         return redirect()->back()->with('success', 'Payment recorded successfully');
     }
+
+    // record payment
+    public function createPayment()
+    {
+        abort_if(Gate::denies('record_payment'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        return view('admin.tenants.create-payment');
+    }
 }
