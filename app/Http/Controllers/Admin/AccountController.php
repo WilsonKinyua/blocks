@@ -20,6 +20,7 @@ class AccountController extends Controller
         }
         $tenants = $business->tenants;
         $payments = TenantPayment::whereMonth('payment_date', '=', Carbon::now()->month)
+            ->where('business_id', $business->id)
             ->get();
         return view('admin.accounting.all-records', compact('tenants', 'payments'));
     }

@@ -74,4 +74,9 @@ class Business extends Model implements HasMedia
     {
         return $this->hasMany(Tenant::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(TenantPayment::class, 'business_id');
+    }
 }

@@ -53,6 +53,7 @@ class TenantPaymentController extends Controller
         if (!$business) {
             return redirect()->route('admin.business.profile')->with('danger', 'Please create a business profile first!');
         }
-        return view('admin.tenants.transactions');
+        $transactions = $business->transactions;
+        return view('admin.tenants.transactions', compact('transactions'));
     }
 }

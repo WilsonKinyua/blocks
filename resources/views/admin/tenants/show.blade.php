@@ -136,26 +136,33 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($payments as $payment)
-                                                        <tr class="text-capitalize">
-                                                            <td class="text-center">
-                                                                {{ $loop->iteration }}
+                                                    @if (count($payments) > 0)
+                                                        @foreach ($payments as $payment)
+                                                            <tr class="text-capitalize">
+                                                                <td class="text-center">
+                                                                    {{ $loop->iteration }}
+                                                                </td>
+                                                                <td class="text-right">
+                                                                    {{ $payment->payment_date ?? '' }}
+                                                                </td>
+                                                                <td class="text-right">
+                                                                    {{ $payment->payment_method ?? '' }} payment</td>
+                                                                <td class="text-right">
+                                                                    {{ $payment->payment_reference ?? '' }}
+                                                                </td>
+                                                                <td class="text-right">Ksh.
+                                                                    {{ number_format($payment->amount_paid, 0) }}</td>
+                                                                </td>
+                                                                <td class="text-right">Ksh. 3,000</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @else
+                                                        <tr>
+                                                            <td colspan="6" class="text-center">
+                                                                <h4>No payment history</h4>
                                                             </td>
-                                                            <td class="text-right">
-                                                                {{ $payment->payment_date ?? '' }}
-                                                            </td>
-                                                            <td class="text-right">
-                                                                {{ $payment->payment_method ?? '' }} payment</td>
-                                                            <td class="text-right">
-                                                                {{ $payment->payment_reference ?? '' }}
-                                                            </td>
-                                                            <td class="text-right">Ksh.
-                                                                {{ number_format($payment->amount_paid, 0) }}</td>
-                                                            </td>
-                                                            <td class="text-right">Ksh. 3,000</td>
                                                         </tr>
-                                                    @endforeach
-
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>

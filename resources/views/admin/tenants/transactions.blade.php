@@ -5,32 +5,10 @@
             <div class="page-bar">
                 <div class="page-title-breadcrumb">
                     <div class=" pull-left">
-                        <div class="page-title"><i class="material-icons">assignment</i> Transcation History</div>
+                        <div class="page-title"><i class="material-icons">assignment</i> Transactions History</div>
                     </div>
-                    <form class="search-form-opened pull-right" action="#" method="GET">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..." name="query">
-                            <span class="input-group-btn">
-                                <a href="javascript:;" class="btn submit">
-                                    <i class="icon-magnifier"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </form>
-                    <ol class="breadcrumb page-breadcrumb pull-right d-none">
-                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="./">Home</a>&nbsp;<i
-                                class="fa fa-angle-right"></i>
-                        </li>
-                        <li><a class="parent-item" href="#">Tenants</a>&nbsp;<i class="fa fa-angle-right"></i>
-                        </li>
-                        <li class="active"> List</li>
-                    </ol>
                 </div>
             </div>
-
-
-            <!-- start widget -->
-
             <div class="state-overview d-none">
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
@@ -79,8 +57,6 @@
                     </div>
                 </div>
             </div>
-            <!-- end widget -->
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="tabbable-line">
@@ -90,7 +66,7 @@
                                     <div class="col-md-12">
                                         <div class="card card-box">
                                             <div class="card-head">
-                                                <header>All Transcations</header>
+                                                <header>All Transactions</header>
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-scrollable">
@@ -110,151 +86,34 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr class="odd gradeX">
-                                                                <td class="">1</td>
-                                                                <td class="">06-02-2022</td>
-                                                                <td class="left">
-                                                                    <a href="view_tenant.php?id=1">Patrick</a>
-                                                                </td>
-                                                                <td class="left">White House</td>
-                                                                <td class="left">G-003</td>
-                                                                <td class=''>Ksh. 10,500</td>
-                                                                <td>Ksh. Cash payment</td>
-                                                                <td>
-                                                                    <span class='label label-danger label-mini'>
-                                                                        Reversed</span>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr class="odd gradeX">
-                                                                <td class="">2</td>
-                                                                <td class="">06-02-2022</td>
-                                                                <td class="left">
-                                                                    <a href="view_tenant.php?id=1">Patrick</a>
-                                                                </td>
-                                                                <td class="left">White House</td>
-                                                                <td class="left">G-003</td>
-                                                                <td class=''>Ksh. 2,000</td>
-                                                                <td>Ksh. Cash payment</td>
-                                                                <td>
-                                                                    <span class='label label-danger label-mini'>
-                                                                        Reversed</span>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr class="odd gradeX">
-                                                                <td class="">3</td>
-                                                                <td class="">08-02-2022</td>
-                                                                <td class="left">
-                                                                    <a href="view_tenant.php?id=2">Collins Becky </a>
-                                                                </td>
-                                                                <td class="left">White House</td>
-                                                                <td class="left">G-003</td>
-                                                                <td class=''>Ksh. 3,000</td>
-                                                                <td>Ksh. Cash payment</td>
-                                                                <td>
-                                                                    <a class='label btn-primary label-mini reverse'
-                                                                        id='9'>Delete</a>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr class="odd gradeX">
-                                                                <td class="">4</td>
-                                                                <td class="">11-02-2022</td>
-                                                                <td class="left">
-                                                                    <a href="view_tenant.php?id=14">Tevin Jack</a>
-                                                                </td>
-                                                                <td class="left">White House</td>
-                                                                <td class="left">G3</td>
-                                                                <td class=''>Ksh. 9,000</td>
-                                                                <td>Ksh. Cash payment</td>
-                                                                <td>
-                                                                    <a class='label btn-primary label-mini reverse'
-                                                                        id='11'>Delete</a>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr class="odd gradeX">
-                                                                <td class="">5</td>
-                                                                <td class="">11-02-2022</td>
-                                                                <td class="left">
-                                                                    <a href="view_tenant.php?id=14">Tevin Jack</a>
-                                                                </td>
-                                                                <td class="left">White House</td>
-                                                                <td class="left">G3</td>
-                                                                <td class=''>Ksh. 1,000</td>
-                                                                <td>Ksh. Cash payment</td>
-                                                                <td>
-                                                                    <a class='label btn-primary label-mini reverse'
-                                                                        id='12'>Delete</a>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr class="odd gradeX">
-                                                                <td class="">6</td>
-                                                                <td class="">17-02-2022</td>
-                                                                <td class="left">
-                                                                    <a href="view_tenant.php?id=24">Wilson Ke</a>
-                                                                </td>
-                                                                <td class="left">White House</td>
-                                                                <td class="left">F103</td>
-                                                                <td class=''>Ksh. 9,000</td>
-                                                                <td>Ksh. Cash payment</td>
-                                                                <td>
-                                                                    <a class='label btn-primary label-mini reverse'
-                                                                        id='25'>Delete</a>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr class="odd gradeX">
-                                                                <td class="">7</td>
-                                                                <td class="">20-02-2022</td>
-                                                                <td class="left">
-                                                                    <a href="view_tenant.php?id=14">Tevin Jack</a>
-                                                                </td>
-                                                                <td class="left">White House</td>
-                                                                <td class="left">G3</td>
-                                                                <td class=''>Ksh. 500</td>
-                                                                <td>Ksh. M-Pesa payment</td>
-                                                                <td>
-                                                                    <a class='label btn-primary label-mini reverse'
-                                                                        id='26'>Delete</a>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr class="odd gradeX">
-                                                                <td class="">8</td>
-                                                                <td class="">22-02-2022</td>
-                                                                <td class="left">
-                                                                    <a href="view_tenant.php?id=24">Wilson Ke</a>
-                                                                </td>
-                                                                <td class="left">White House</td>
-                                                                <td class="left">F103</td>
-                                                                <td class=''>Ksh. 1,000</td>
-                                                                <td>Ksh. Cash payment</td>
-                                                                <td>
-                                                                    <a class='label btn-primary label-mini reverse'
-                                                                        id='29'>Delete</a>
-                                                                </td>
-                                                            </tr>
-
-                                                            <tr class="odd gradeX">
-                                                                <td class="">9</td>
-                                                                <td class="">07-03-2022</td>
-                                                                <td class="left">
-                                                                    <a href="view_tenant.php?id=24">Wilson Ke</a>
-                                                                </td>
-                                                                <td class="left">White House</td>
-                                                                <td class="left">F103</td>
-                                                                <td class=''>Ksh. 4,000</td>
-                                                                <td>Ksh. Cash payment</td>
-                                                                <td>
-                                                                    <a class='label btn-primary label-mini reverse'
-                                                                        id='39'>Delete</a>
-                                                                </td>
-                                                            </tr>
-
-
+                                                            @foreach ($transactions as $transaction)
+                                                                <tr class="odd gradeX text-capitalize">
+                                                                    <td class="">
+                                                                        {{ $loop->iteration }}
+                                                                    </td>
+                                                                    <td class="">
+                                                                        {{ $transaction->payment_date }}
+                                                                    </td>
+                                                                    <td class="left">
+                                                                        <a
+                                                                            href="{{ route('admin.tenants.show', $transaction->tenant_id) }}">{{ $transaction->tenant->name ?? '' }}</a>
+                                                                    </td>
+                                                                    <td class="left">
+                                                                        {{ $transaction->apartment->name ?? '' }}
+                                                                    </td>
+                                                                    <td class="left">
+                                                                        {{ $transaction->tenant->house->name ?? '' }}
+                                                                    </td>
+                                                                    <td class=''>Ksh.
+                                                                        {{ $transaction->amount_paid }}
+                                                                    </td>
+                                                                    <td>{{ $transaction->payment_method }} payment</td>
+                                                                    <td>
+                                                                        <span class='label label-danger label-mini'>
+                                                                            Reversed</span>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                 </div>

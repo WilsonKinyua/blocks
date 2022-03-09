@@ -66,7 +66,7 @@
 
                                     <tbody>
                                         @foreach ($properties as $property)
-                                            <tr class="odd gradeX">
+                                            <tr class="odd gradeX text-capitalize">
                                                 <td class="patient-img">
                                                     {{ $loop->index + 1 }}
                                                 </td>

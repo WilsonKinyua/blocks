@@ -8,23 +8,6 @@
                     <div class=" pull-left">
                         <div class="page-title">ALL FINANCIALS</div>
                     </div>
-
-                    <form class="search-form-opened pull-right" action="#" method="GET">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..." name="query">
-                            <span class="input-group-btn">
-                                <a href="javascript:;" class="btn submit">
-                                    <i class="icon-magnifier"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </form>
-                    <ol class="breadcrumb page-breadcrumb pull-right d-none">
-                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index.html">Home</a>&nbsp;<i
-                                class="fa fa-angle-right"></i>
-                        </li>
-                        <li class="active">Accounting</li>
-                    </ol>
                 </div>
             </div>
             <!-- start widget -->
@@ -128,7 +111,7 @@
                                                         </td>
                                                         <td>Ksh. {{ number_format($tenant->rent) ?? '00' }}
                                                         </td>
-                                                        <td>Ksh. 3000</td>
+                                                        <td>Ksh. {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}</td>
                                                         <td>
                                                             <a href="{{ route('admin.tenants.vacate', $tenant->id) }}">
                                                                 @if ($tenant->status == 1)
