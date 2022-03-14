@@ -1,4 +1,10 @@
 @extends('layouts.admin')
+<style>
+    .text-dark a {
+        color: rgb(0, 0, 0);
+    }
+
+</style>
 @section('content')
     <div class="page-content-wrapper">
         <div class="page-content">
@@ -7,29 +13,13 @@
                     <div class=" pull-left">
                         <div class="page-title">Dashboard</div>
                     </div>
-                    <form class="search-form-opened pull-right" action="#" method="GET">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..." name="query">
-                            <span class="input-group-btn">
-                                <a href="javascript:;" class="btn submit">
-                                    <i class="icon-magnifier"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </form>
-                    <ol class="breadcrumb page-breadcrumb pull-right d-none">
-                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-                                href="{{ route('admin.home') }}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
-                        </li>
-                        <li class="active">Dashboard</li>
-                    </ol>
                 </div>
             </div>
             <!-- start widget -->
             <div class="row">
                 <div class="col-xl-5">
                     <div class="w-100">
-                        <div class="row">
+                        <div class="row text-dark">
                             <div class="col-sm-6">
                                 <a href="{{ route('admin.properties.index') }}">
                                     <div class="card">
@@ -222,24 +212,28 @@
                                                             {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('admin.tenants.vacate', $tenant->id) }}">
-                                                                @if ($tenant->status == 1)
-                                                                    <span class='label label-info label-mini'>Current</span>
-                                                                @else
-                                                                    <span
-                                                                        class='label label-danger label-mini'>VACATED</span>
-                                                                @endif
-                                                            </a>
+                                                            @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
+                                                                <span class="label label-sm label-success">
+                                                                    fully paid
+                                                                </span>
+                                                            @elseif ($tenant->payments->sum('amount_paid') === 0)
+                                                                <span class="label label-sm label-danger">NOW
+                                                                    OVERDUE</span>
+                                                            @elseif($tenant->payments->sum('amount_paid') < $tenant->rent)
+                                                                <span class="label label-sm label-warning">
+                                                                    PARTIALLY paid
+                                                                </span>
+                                                            @endif
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('admin.tenants.record.payment', $tenant->id) }}"
                                                                 class="btn btn-default btn-xs">
-                                                                <i class="fa fa-bookmark-o"></i>
+                                                                <i class="fa fa-bookmark-o"></i>Record Payment
                                                             </a>
                                                             <a data-bs-toggle="modal"
                                                                 data-bs-target="#sendReminderNotification{{ $tenant->id }}"
                                                                 class="btn btn-primary btn-xs reminder-btn">
-                                                                <i class="fa fa-bell "></i>
+                                                                <i class="fa fa-bell "></i> Send Reminder
                                                             </a>
                                                             {{-- send tenant notification --}}
                                                             <div class="modal fade"
