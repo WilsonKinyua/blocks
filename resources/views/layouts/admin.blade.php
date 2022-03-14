@@ -50,6 +50,15 @@
     <!-- Jquery Toast css -->
     <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
     @yield('css')
+    <style>
+        select.mdl-textfield__input:active,
+        select.mdl-textfield__input:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            -webkit-appearance: none;
+        }
+
+    </style>
 </head>
 <!-- END HEAD -->
 
@@ -139,7 +148,7 @@
     <!-- notifications -->
     <script src="{{ asset('js/toastr.min.js') }}"></script>
 
-    <script>
+    {{-- <script>
         // Get the Toast button
         var toastButton = document.getElementById("toast-btn");
         // Get the Toast element
@@ -148,19 +157,38 @@
         toastButton.onclick = function() {
             $('.toast').toast('show');
         }
-    </script>
+    </script> --}}
     <script>
         // toast message
+
         @if (session()->has('success'))
-            toastr.success("{{ session()->get('success') }}");
+        // success message
+            // toastr.success("{{ session()->get('success') }}");
+
+            // $.toast().reset("all");
+            // $.toast({
+            // heading: "System Notification!",
+            // text: "{{ session()->get('success') }}",
+            // showHideTransition: "fade",
+            // position: "mid-center",
+            // stack: false,
+            // icon: "info",
+            // });
+
+            Swal.fire("Success!", "{{ session()->get('success') }}", "success");
+
         @endif
 
+
+
         @if (session()->has('danger'))
-            toastr.warning("{{ session()->get('danger') }}");
+            // toastr.warning("{{ session()->get('danger') }}");
+            Swal.fire("Ooops!", "{{ session()->get('danger') }}", "danger");
         @endif
 
         @if (session()->has('error'))
-            toastr.error("{{ session()->get('error') }}");
+            // toastr.error("{{ session()->get('error') }}");
+            Swal.fire("Ooops!", "{{ session()->get('error') }}", "error");
         @endif
     </script>
     @yield('js')

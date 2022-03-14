@@ -208,8 +208,16 @@
                                                         </td>
                                                         <td>Ksh. {{ $tenant->payments->sum('amount_paid') }}
                                                         </td>
-                                                        <td>Ksh.
-                                                            {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                        <td>
+                                                            @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
+                                                                <span class="text-success" style="font-weight: 900">
+                                                                    Ksh.
+                                                                ({{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }})
+                                                                </span>
+                                                            @else
+                                                                Ksh.
+                                                                {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                            @endif
                                                         </td>
                                                         <td>
                                                             @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)

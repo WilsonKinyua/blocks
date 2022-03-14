@@ -22,7 +22,8 @@
                                 <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input" type="text" id="name" name="name" value="{{ old('name', $tenant->name) }}" required>
+                                        <input class="mdl-textfield__input" type="text" id="name" name="name"
+                                            value="{{ old('name', $tenant->name) }}" required>
                                         <label class="mdl-textfield__label"><i class="fa fa-user"></i> Tenat
                                             Name:</label>
                                     </div>
@@ -31,7 +32,7 @@
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="number" id="id_number" name="id_number"
-                                        value="{{ old('id_number', $tenant->id_number) }}" required>
+                                            value="{{ old('id_number', $tenant->id_number) }}" required maxlength="9">
                                         <label class="mdl-textfield__label"><i class="fa fa-id-card"></i> Identification
                                             No.
                                             (ID):</label>
@@ -40,14 +41,16 @@
                                 <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input" type="tel" id="phone" name="phone" value="{{ old('phone', $tenant->phone) }}" required>
+                                        <input class="mdl-textfield__input" type="tel" id="phone" name="phone"
+                                            value="{{ old('phone', $tenant->phone) }}" required>
                                         <label class="mdl-textfield__label"><i class="fa fa-phone"></i> Phone No.</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input" type="email" id="email" name="email" value="{{ old('email', $tenant->email) }}" required>
+                                        <input class="mdl-textfield__input" type="email" id="email" name="email"
+                                            value="{{ old('email', $tenant->email) }}" required>
                                         <label class="mdl-textfield__label"><i class="fa fa-envelope"></i> Email
                                             Address:</label>
                                         <span class="mdl-textfield__error">Enter Valid Email Address!</span>
@@ -58,10 +61,16 @@
                                         <label>Property <span class="text-danger">*</span></label>
                                         <select class="mdl-textfield__input text-capitalize" name="property_id"
                                             id="property_id" required>
-                                            <option>Select Property</option>
+                                            <option disabled>Select Property</option>
                                             @foreach ($properties as $property)
-                                                <option value="{{ $property->id }}">{{ $property->name }}</option>
+                                                @if ($tenant->property_id = $property->id)
+                                                    <option value="{{ $property->id }}" selected>{{ $property->name }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $property->id }}">{{ $property->name }}</option>
+                                                @endif
                                             @endforeach
+
                                         </select>
                                     </div>
                                 </div>
@@ -71,7 +80,12 @@
                                         <select class="mdl-textfield__input" name="unit_id" id="unit_id" required>
                                             <option>Select Room No</option>
                                             @foreach ($units as $unit)
-                                                <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                                @if ($tenant->unit_id = $unit->id)
+                                                    <option value="{{ $unit->id }}" selected>{{ $unit->name }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
@@ -79,25 +93,27 @@
                                 <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input" type="number" id="rent" name="rent" value="{{ old('rent', $tenant->rent) }}">
+                                        <input class="mdl-textfield__input" type="number" id="rent" name="rent"
+                                            value="{{ old('rent', $tenant->rent) }}">
                                         <label class="mdl-textfield__label"><i class="fa fa-dollar"></i> Monthly
-                                            Rent:</label>
+                                            Rent(Ksh):</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="number" id="deposit" name="deposit"
-                                        value="{{ old('deposit', $tenant->deposit) }}">
+                                            value="{{ old('deposit', $tenant->deposit) }}">
                                         <label class="mdl-textfield__label"><i class="fa fa-dollar"></i> Rent
-                                            Deposit:</label>
+                                            Deposit(Ksh):</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="text" id="next_kin" value="N/A"
-                                            name="emergency_contact_name" value="{{ old('emergency_contact_name', $tenant->emergency_contact_name) }}">
+                                            name="emergency_contact_name"
+                                            value="{{ old('emergency_contact_name', $tenant->emergency_contact_name) }}">
                                         <label class="mdl-textfield__label"><i class="fa fa-user-plus"></i> Emergency
                                             Contact:</label>
                                     </div>
@@ -106,7 +122,8 @@
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="tel" id="next_contact" value="N/A"
-                                            name="emergency_contact_phone" value="{{ old('emergency_contact_phone', $tenant->emergency_contact_phone) }}">
+                                            name="emergency_contact_phone"
+                                            value="{{ old('emergency_contact_phone', $tenant->emergency_contact_phone) }}">
                                         <label class="mdl-textfield__label"><i class="fa fa-phone"></i> Contact</label>
                                     </div>
                                 </div>

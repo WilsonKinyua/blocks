@@ -34,14 +34,25 @@
                                             {{ number_format($tenant->rent) ?? '' }}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Balance:</b> <a class="pull-right">Ksh. 2,000</a>
+                                        <b>Balance:</b>
+                                        @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
+                                            <span class="text-success pull-right" style="font-weight: 900">
+                                                Ksh.
+                                                ({{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }})
+                                            </span>
+                                        @else
+                                        <a class="pull-right">
+                                            Ksh.
+                                            {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                        </a>
+                                        @endif
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Tenant Since:</b> <a class="pull-right">{{ $tenant->created_at ?? '' }}</a>
+                                        <b>Tenant Since:</b> <a class="pull-right">{{ $tenant->created_at->diffForHumans() ?? '' }}</a>
                                     </li>
                                 </ul>
 
-                                <div class="row list-separated profile-stat">
+                                {{-- <div class="row list-separated profile-stat">
                                     <div class="col-md-4 col-sm-4 col-6">
                                         <div class="uppercase profile-stat-title"> 1 </div>
                                         <div class="uppercase profile-stat-text"> Months </div>
@@ -54,7 +65,7 @@
                                         <div class="uppercase profile-stat-title"> 0 </div>
                                         <div class="uppercase profile-stat-text"> Late </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="profile-userbuttons">
                                     <a href="{{ route('admin.tenants.edit', $tenant->id) }}"
                                         class="btn btn-circle green btn-sm">Update</a>
@@ -116,10 +127,14 @@
                                                 onclick="window.location='{{ route('admin.tenants.record.payment', $tenant->id) }}'">
                                                 <i class="fa fa-bookmark"></i> Record Payment
                                             </li>
-                                            {{-- <li class="mdl-menu__item"><i class="material-icons">print</i>Print Statement
+                                            <li class="mdl-menu__item"
+                                                onclick="window.location='{{ route('admin.tenants.print.invoice', $tenant->id) }}'">
+                                                <i class="material-icons">print</i>Print Statement
                                             </li>
-                                            <li class="mdl-menu__item"><i class="material-icons">mail</i> Send via email
-                                            </li> --}}
+                                            <li class="mdl-menu__item"
+                                                onclick="window.location='{{ route('admin.tenants.send.invoice', $tenant->id) }}'">
+                                                <i class="material-icons">mail</i> Send via email
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="card-body no-padding height-9">
@@ -132,7 +147,7 @@
                                                         <th class="text-right">Description</th>
                                                         <th class="text-right">Reference No.</th>
                                                         <th class="text-right">Amount</th>
-                                                        <th class="text-right">Balance</th>
+                                                        {{-- <th class="text-right">Balance</th> --}}
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -153,12 +168,12 @@
                                                                 <td class="text-right">Ksh.
                                                                     {{ number_format($payment->amount_paid, 0) }}</td>
                                                                 </td>
-                                                                <td class="text-right">Ksh. 3,000</td>
+                                                                {{-- <td class="text-right">Ksh. 3,000</td> --}}
                                                             </tr>
                                                         @endforeach
                                                     @else
                                                         <tr>
-                                                            <td colspan="6" class="text-center">
+                                                            <td colspan="5" class="text-center">
                                                                 <h4>No payment history</h4>
                                                             </td>
                                                         </tr>

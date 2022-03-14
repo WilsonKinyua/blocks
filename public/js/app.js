@@ -842,61 +842,61 @@ var App = (function () {
 jQuery(document).ready(function () {
     App.init(); // init core componets
 
-    $("#add_prop_btn").on("click", function () {
-        $.ajax({
-            url: "/api/",
-            data: {
-                add_property: blockId(),
-                name: $("#prop_name").val(),
-                units: $(".prop_units").val(),
-                location: $("#prop_location").val(),
-                property_date: $(".prop_date").val(),
-                landlord: $("#prop_owner").val(),
-                manager: $("#prop_manager").val(),
-                caretaker: $("#prop_caretaker").val(),
-                landlord_contact: $("#owner_contact").val(),
-                manager_contact: $("#manager_contact").val(),
-                caretaker_contact: $("#caretaker_contact").val(),
-            },
-            type: "POST",
-            success: function (data) {
-                console.log(data);
+    // $("#add_prop_btn").on("click", function () {
+    //     $.ajax({
+    //         url: "/api/",
+    //         data: {
+    //             add_property: blockId(),
+    //             name: $("#prop_name").val(),
+    //             units: $(".prop_units").val(),
+    //             location: $("#prop_location").val(),
+    //             property_date: $(".prop_date").val(),
+    //             landlord: $("#prop_owner").val(),
+    //             manager: $("#prop_manager").val(),
+    //             caretaker: $("#prop_caretaker").val(),
+    //             landlord_contact: $("#owner_contact").val(),
+    //             manager_contact: $("#manager_contact").val(),
+    //             caretaker_contact: $("#caretaker_contact").val(),
+    //         },
+    //         type: "POST",
+    //         success: function (data) {
+    //             console.log(data);
 
-                //$.toast().reset('all');
-                $.toast({
-                    heading: "System Notification!",
-                    text: data.msg,
-                    showHideTransition: "fade",
-                    position: "mid-center",
-                    stack: false,
-                    icon: "info",
-                });
-                window.location = "./properties.php";
-            },
-            error: function (data) {
-                console.log(data);
-                $.toast().reset("all");
-                $.toast({
-                    heading: "System Alert!",
-                    text: data.statusText,
-                    showHideTransition: "fade",
-                    position: "mid-center",
-                    stack: false,
-                    icon: "error",
-                });
-            },
-        });
+    //             //$.toast().reset('all');
+    //             $.toast({
+    //                 heading: "System Notification!",
+    //                 text: data.msg,
+    //                 showHideTransition: "fade",
+    //                 position: "mid-center",
+    //                 stack: false,
+    //                 icon: "info",
+    //             });
+    //             window.location = "./properties.php";
+    //         },
+    //         error: function (data) {
+    //             console.log(data);
+    //             $.toast().reset("all");
+    //             $.toast({
+    //                 heading: "System Alert!",
+    //                 text: data.statusText,
+    //                 showHideTransition: "fade",
+    //                 position: "mid-center",
+    //                 stack: false,
+    //                 icon: "error",
+    //             });
+    //         },
+    //     });
 
-        $.toast().reset("all");
-        $.toast({
-            heading: "Error while adding property!",
-            text: "Please complete all the ncecessary fields!",
-            showHideTransition: "fade",
-            position: "mid-center",
-            stack: false,
-            icon: "info",
-        });
-    });
+    //     $.toast().reset("all");
+    //     $.toast({
+    //         heading: "Error while adding property!",
+    //         text: "Please complete all the ncecessary fields!",
+    //         showHideTransition: "fade",
+    //         position: "mid-center",
+    //         stack: false,
+    //         icon: "info",
+    //     });
+    // });
 
     function blockId() {
         const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
@@ -944,99 +944,99 @@ jQuery(document).ready(function () {
         componentHandler.upgradeAllRegistered();
     });
 
-    $("#add_tenant").on("click", function () {
-        $.ajax({
-            url: "/api/",
-            data: {
-                add_tenant: blockId(),
-                name: $("#name").val(),
-                unit: $("#unit").val(),
-                rent: $("#rent").val(),
-                phone: $("#phone").val(),
-                email: $("#email").val(),
-                id_number: $("#id").val(),
-                deposit: $("#deposit").val(),
-                next_kin: $("#next_kin").val(),
-                prop_id: $("#prop").attr("data-val"),
-                next_contact: $("#next_contact").val(),
-            },
-            type: "POST",
-            success: function (data) {
-                console.log(data);
+    // $("#add_tenant").on("click", function () {
+    //     $.ajax({
+    //         url: "/api/",
+    //         data: {
+    //             add_tenant: blockId(),
+    //             name: $("#name").val(),
+    //             unit: $("#unit").val(),
+    //             rent: $("#rent").val(),
+    //             phone: $("#phone").val(),
+    //             email: $("#email").val(),
+    //             id_number: $("#id").val(),
+    //             deposit: $("#deposit").val(),
+    //             next_kin: $("#next_kin").val(),
+    //             prop_id: $("#prop").attr("data-val"),
+    //             next_contact: $("#next_contact").val(),
+    //         },
+    //         type: "POST",
+    //         success: function (data) {
+    //             console.log(data);
 
-                $.toast().reset("all");
-                $.toast({
-                    heading: "System Notification!",
-                    text: data.msg,
-                    showHideTransition: "fade",
-                    position: "mid-center",
-                    stack: false,
-                    icon: "info",
-                });
-                window.location = "./tenants.php";
-            },
-            error: function (data) {
-                console.log(data);
-                $.toast().reset("all");
-                $.toast({
-                    heading: "System Alert!",
-                    text: data.statusText,
-                    showHideTransition: "fade",
-                    position: "mid-center",
-                    stack: false,
-                    icon: "error",
-                });
-            },
-        });
+    //             $.toast().reset("all");
+    //             $.toast({
+    //                 heading: "System Notification!",
+    //                 text: data.msg,
+    //                 showHideTransition: "fade",
+    //                 position: "mid-center",
+    //                 stack: false,
+    //                 icon: "info",
+    //             });
+    //             window.location = "./tenants.php";
+    //         },
+    //         error: function (data) {
+    //             console.log(data);
+    //             $.toast().reset("all");
+    //             $.toast({
+    //                 heading: "System Alert!",
+    //                 text: data.statusText,
+    //                 showHideTransition: "fade",
+    //                 position: "mid-center",
+    //                 stack: false,
+    //                 icon: "error",
+    //             });
+    //         },
+    //     });
 
-        $.toast().reset("all");
-        $.toast({
-            heading: "Error while adding property!",
-            text: "Please complete all the ncecessary fields!",
-            showHideTransition: "fade",
-            position: "mid-center",
-            stack: false,
-            icon: "info",
-        });
-    });
+    //     $.toast().reset("all");
+    //     $.toast({
+    //         heading: "Error while adding property!",
+    //         text: "Please complete all the ncecessary fields!",
+    //         showHideTransition: "fade",
+    //         position: "mid-center",
+    //         stack: false,
+    //         icon: "info",
+    //     });
+    // });
 
-    $("#record_pay").on("click", function () {
-        console.log("record_pay");
-        $.ajax({
-            url: "/api/",
-            data: {
-                record: blockId(),
-                unit: $("#unit").val(),
-                amount: $("#amount").val(),
-                pay_date: $("#date").val(),
-                prop: $(".prop").attr("id"),
-                method: $("#payment").val(),
-                tenant: $(".tenant").attr("id"),
-            },
-            type: "POST",
-            success: function (data) {
-                console.log(data);
-                Swal.fire(
-                    "Success!",
-                    "Payment has been recorded",
-                    "success"
-                ).then(() => {
-                    window.location.reload();
-                });
-            },
-            error: function (data) {
-                console.log(data);
+    // $("#record_pay").on("click", function () {
+    //     console.log("record_pay");
+    //     $.ajax({
+    //         url: "/api/",
+    //         data: {
+    //             record: blockId(),
+    //             unit: $("#unit").val(),
+    //             amount: $("#amount").val(),
+    //             pay_date: $("#date").val(),
+    //             prop: $(".prop").attr("id"),
+    //             method: $("#payment").val(),
+    //             tenant: $(".tenant").attr("id"),
+    //         },
+    //         type: "POST",
+    //         success: function (data) {
+    //             console.log(data);
+    //             Swal.fire(
+    //                 "Success!",
+    //                 "Payment has been recorded",
+    //                 "success"
+    //             ).then(() => {
+    //                 window.location.reload();
+    //             });
+    //         },
+    //         error: function (data) {
+    //             console.log(data);
 
-                Swal.fire(
-                    "Ooops!",
-                    "Something went wring, please try again.",
-                    "error"
-                );
-            },
-        });
+    //             Swal.fire(
+    //                 "Ooops!",
+    //                 "Something went wring, please try again.",
+    //                 "error"
+    //             );
+    //         },
+    //     });
 
-        Swal.fire("Ooops!", "Something went wring, please try again.", "error");
-    });
+    //     Swal.fire("Ooops!", "Something went wring, please try again.", "error");
+    // });
 
     $(".vacate").on("click", function () {
         console.log("vacate");

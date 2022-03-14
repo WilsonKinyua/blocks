@@ -43,11 +43,9 @@ class StoreTenantRequest extends FormRequest
                 'required',
             ],
             'rent' => [
-                'integer',
                 'required',
             ],
             'deposit' => [
-                'integer',
                 'required',
             ],
             'emergency_contact_name' => [
