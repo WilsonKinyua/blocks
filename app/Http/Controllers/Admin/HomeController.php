@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Inventory;
 use App\Models\Property;
 use App\Models\Tenant;
+use App\Models\Unit;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class HomeController
@@ -18,7 +19,10 @@ class HomeController
 
         $properties = Property::where('business_id', $business->id)->count();
         $tenants = Tenant::where('business_id', $business->id)->get();
-        
-        return view('home', compact('properties', 'tenants'));
+        $units = Unit::where('business_id', $business->id)
+            ->where('is_active', false)
+            ->count();
+
+        return view('home', compact('properties', 'tenants', 'units'));
     }
 }

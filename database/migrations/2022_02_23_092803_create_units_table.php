@@ -20,6 +20,7 @@ class CreateUnitsTable extends Migration
             $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
             $table->bigInteger('business_id')->unsigned()->index();
             $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

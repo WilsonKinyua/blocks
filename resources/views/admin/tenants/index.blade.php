@@ -94,10 +94,17 @@
                                                                         </a>
                                                                     </td>
                                                                     <td>
-                                                                        <a href="{{ route('admin.tenants.delete', $tenant->id) }}"
+                                                                        <a onclick="confirmDelete()"
                                                                             class="btn btn-danger btn-xs">
                                                                             <i class="fa fa-trash-o "></i>
                                                                         </a>
+                                                                        <script>
+                                                                            function confirmDelete() {
+                                                                                if (confirm('Are you sure you want to delete this tenant?')) {
+                                                                                    window.location.href = "{{ route('admin.tenants.delete', $tenant->id) }}";
+                                                                                }
+                                                                            }
+                                                                        </script>
                                                                         <a href="{{ route('admin.tenants.edit', $tenant->id) }}"
                                                                             class="btn btn-primary btn-xs">
                                                                             <i class="fa fa-pencil"></i>

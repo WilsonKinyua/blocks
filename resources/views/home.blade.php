@@ -54,7 +54,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <h1 class="mt-1 mb-3 info-box-title">29</h1>
+                                            <h1 class="mt-1 mb-3 info-box-title">{{ $units}}</h1>
                                             <div class="mb-0">
                                                 <span class="text-muted">Nothing here yet!</span>
                                             </div>
@@ -212,11 +212,13 @@
                                                             @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
                                                                 <span class="text-success" style="font-weight: 900">
                                                                     Ksh.
-                                                                ({{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }})
+                                                                {{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }}
                                                                 </span>
                                                             @else
-                                                                Ksh.
+                                                                <span class="text-danger">
+                                                                    Ksh.
                                                                 {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                                </span>
                                                             @endif
                                                         </td>
                                                         <td>

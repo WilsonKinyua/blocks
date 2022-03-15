@@ -46,7 +46,9 @@ class TenantController extends Controller
         if ($properties->count() == 0) {
             return redirect()->route('admin.properties.create')->with('danger', 'Please create a property first!');
         }
-        $units = Unit::where('business_id', $business->id)->get();
+        $units = Unit::where('business_id', $business->id)
+            ->where('is_active', false)
+            ->get();
         return view('admin.tenants.create', compact('properties', 'units'));
     }
 
@@ -62,6 +64,8 @@ class TenantController extends Controller
             Media::whereIn('id', $media)->update(['model_id' => $tenant->id]);
         }
 
+        Unit::find($tenant->unit_id)->update(['is_active' => true]);
+
         return redirect()->route('admin.tenants.index')->with('success', 'Tenant created successfully');
     }
 
@@ -70,7 +74,7 @@ class TenantController extends Controller
         abort_if(Gate::denies('tenant_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $properties = Property::where('business_id', $tenant->business_id)->get();
-        $units = Unit::where('business_id', $tenant->business_id)->get();
+        $units = Unit::where('business_id', $tenant->business_id)->where('is_active', false)->get();
         return view('admin.tenants.edit', compact('tenant', 'properties', 'units'));
     }
 
@@ -79,6 +83,7 @@ class TenantController extends Controller
         if ($tenant->business_id != auth()->user()->business_id) {
             abort(403, 'Unauthorized action.');
         }
+        Unit::find($request->unit_id)->update(['is_active' => false]);
         $tenant->update($request->all());
         if ($request->input('file', false)) {
             if (!$tenant->file || $request->input('file') !== $tenant->file) {
@@ -98,6 +103,8 @@ class TenantController extends Controller
             Media::whereIn('id', $media)->update(['model_id' => $tenant->id]);
         }
 
+        Unit::find($request->unit_id)->update(['is_active' => true]);
+
         return redirect()->route('admin.tenants.index')->with('success', 'Tenant updated successfully');
     }
 
@@ -111,6 +118,7 @@ class TenantController extends Controller
         }
         $tenant->status = !$tenant->status;
         $tenant->update();
+        Unit::find($tenant->unit_id)->update(['is_active' => false]);
         return redirect()->route('admin.tenants.index')->with('success', 'Tenant updated successfully');
     }
 
@@ -131,6 +139,7 @@ class TenantController extends Controller
     public function deleteTenant($id)
     {
         $tenant = Tenant::findOrFail($id);
+        Unit::find($tenant->unit_id)->update(['is_active' => false]);
         if ($tenant->business_id != auth()->user()->business_id) {
             abort(403, 'Unauthorized action.');
         }

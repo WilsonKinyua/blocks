@@ -24,6 +24,7 @@ class Unit extends Model
         'name',
         'property_id',
         'business_id',
+        'is_active',
         'created_at',
         'updated_at',
         'deleted_at',
