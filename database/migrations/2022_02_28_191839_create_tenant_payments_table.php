@@ -26,6 +26,7 @@ class CreateTenantPaymentsTable extends Migration
             $table->string('payment_reference')->nullable();
             $table->decimal('amount_paid', 60, 2);
             $table->string('payment_method');
+            $table->string('payment_code')->nullable();
             $table->string('payment_date');
             $table->timestamps();
             $table->softDeletes();

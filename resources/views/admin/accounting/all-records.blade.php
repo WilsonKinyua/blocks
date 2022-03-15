@@ -32,7 +32,7 @@
                                 <i class="fa fa-times-circle-o"></i>
                             </div>
                             <div class="value white">
-                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="10">0</p>
+                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="{{ $units }}">0</p>
                                 <p>PENDING <small>(UNITS)</small></p>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                             <thead>
                                                 <tr class="text-uppercase">
                                                     <th> #</th>
-                                                    <th> TENANT</th>
+                                                    <th>TENANT</th>
                                                     <th>PLOT.</th>
                                                     <th>HOUSE NO.</th>
                                                     <th>Rent </th>
@@ -104,14 +104,26 @@
                                                                 href="{{ route('admin.tenants.show', $tenant->id) }}">{{ $tenant->name ?? '' }}</a>
                                                         </td>
                                                         <td class="left">
-                                                            {{ $tenant->apartment->name ?? '' }}
+                                                            {{ $tenant->apartment->name ?? 'None' }}
                                                         </td>
                                                         <td class="left">
-                                                            {{ $tenant->house->name ?? '' }}
+                                                            {{ $tenant->house->name ?? 'None' }}
                                                         </td>
                                                         <td>Ksh. {{ number_format($tenant->rent) ?? '00' }}
                                                         </td>
-                                                        <td>Ksh. {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}</td>
+                                                        <td>
+                                                            @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
+                                                                <span class="text-success" style="font-weight: 900">
+                                                                    Ksh.
+                                                                {{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }}
+                                                                </span>
+                                                            @else
+                                                                <span class="text-danger">
+                                                                    Ksh.
+                                                                {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                                </span>
+                                                            @endif
+                                                        </td>
                                                         <td>
                                                             <a href="{{ route('admin.tenants.vacate', $tenant->id) }}">
                                                                 @if ($tenant->status == 1)
@@ -125,12 +137,12 @@
                                                         <td>
                                                             <a href="{{ route('admin.tenants.record.payment', $tenant->id) }}"
                                                                 class="btn btn-default btn-xs">
-                                                                <i class="fa fa-bookmark-o"></i>
+                                                                <i class="fa fa-bookmark-o"></i>Record Payment
                                                             </a>
                                                             <a data-bs-toggle="modal"
                                                                 data-bs-target="#sendReminderNotification{{ $tenant->id }}"
                                                                 class="btn btn-primary btn-xs reminder-btn">
-                                                                <i class="fa fa-bell "></i>
+                                                                <i class="fa fa-bell "></i> Send Reminder
                                                             </a>
                                                             {{-- send tenant notification --}}
                                                             <div class="modal fade"

@@ -162,14 +162,14 @@
                                     </a>
                                 </li>
                             @endcan
-                            @can('overdue_payment')
+                            {{-- @can('overdue_payment')
                                 <li class="dropdown-submenu">
                                     <a href="{{ route('admin.tenant-payments.overdue') }}" class="nav-link nav-toggle"> <i
                                             class="fa fa-calendar"></i>
                                         <span class="title">Overdue Payment</span> </span>
                                     </a>
                                 </li>
-                            @endcan
+                            @endcan --}}
                             @can('record_management_access')
                                 <li class="dropdown-submenu">
                                     <a href="{{ route('admin.tenant-payments.transactions') }}">

@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 p-t-20">
+                                <div class="col-lg-4 p-t-20">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <input class="mdl-textfield__input prop" type="text" id="13" name="property"
                                             value="{{ $tenant->apartment->name ?? '' }}" readonly>
@@ -49,7 +49,7 @@
                                             (Plot)</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 p-t-20">
+                                <div class="col-lg-4 p-t-20">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <input class="mdl-textfield__input" type="text" id="unit" name="unit"
                                             value="{{ $tenant->house->name }}" readonly>
@@ -58,19 +58,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 p-t-20">
-                                    <div class="form-group">
-                                        <label>Payment Method: <span class="text-danger">*</span></label>
-                                        <select class="mdl-textfield__input" name="payment_method" id="payment_method"
-                                            required>
-                                            <option value="cash">Cash</option>
-                                            <option value="mpesa">Mpesa</option>
-                                            <option value="bank">Bank</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 p-t-20 ">
+                                <div class="col-lg-4 p-t-20 ">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="text" id="date" name="payment_date"
@@ -80,12 +68,51 @@
                                     </div>
                                 </div>
 
+                                <div class="col-lg-6 p-t-20">
+                                    <div class="form-group">
+                                        <label>Payment Method: <span class="text-danger">*</span></label>
+                                        <select class="mdl-textfield__input" name="payment_method" id="payment_method"
+                                            required>
+                                            <option value="cash" id="cash">Cash</option>
+                                            <option value="mpesa" id="mpesa">Mpesa</option>
+                                            <option value="bank" id="bank">Bank</option>
+                                            <option value="other" id="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <style>
+                                    #mpesa_div,
+                                    #cheque_div {
+                                        display: none
+                                    }
+
+                                </style>
+
+                                <div class="col-lg-6 p-t-20">
+                                    <div id="mpesa_div"
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                        <input class="mdl-textfield__input tenant" type="text" id="payment_code"
+                                            name="payment_code">
+                                        <label class="mdl-textfield__label"><i class="fa fa-pencil"></i> Mpesa
+                                            Code:</label>
+                                    </div>
+                                    <div id="cheque_div"
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                        <input class="mdl-textfield__input tenant" type="text" id="payment_code"
+                                            name="payment_code">
+                                        <label class="mdl-textfield__label"><i class="fa fa-pencil"></i> Cheque
+                                            Number:</label>
+                                    </div>
+                                </div>
+
                                 <div class="col-lg-12 p-t-20 text-center pull-right" style='margin-top:100px;'>
                                     <a href='{{ route('admin.tenants.index') }}' type="button"
                                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default btn-block">Cancel</a>
 
                                     <button type="submit"
-                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary">Record Payment
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-primary">Record
+                                        Payment
                                     </button>
                                 </div>
                             </div>
@@ -179,8 +206,21 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="pull-right text-right">
-                                            <p>Rent Balance: Ksh.
-                                                {{ number_format($tenant->rent - $payments->sum('amount_paid')) }} </p>
+                                            <p>
+                                                @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
+                                                Overpaid:
+                                                    <span class="text-success" style="font-weight: 900">
+                                                        Ksh.
+                                                        {{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }}
+                                                    </span>
+                                                @else
+                                                Rent Balance:
+                                                    <span class="text-danger">
+                                                        Ksh.
+                                                        {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                    </span>
+                                                @endif
+                                            </p>
                                             <hr>
                                             <h4><b>Total Paid :</b> Ksh.
                                                 {{ number_format($payments->sum('amount_paid')) }}</h4>
@@ -195,7 +235,6 @@
                                                 class="btn btn-default btn-outline" type="button">
                                                 <span> <i class="fa fa-print"></i> Print Reciept</span>
                                             </a>
-                                            {{-- onclick="window.print()" --}}
                                         </div>
                                     </div>
                                 </div>
@@ -207,4 +246,23 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#payment_method').on('change', function() {
+                var method = $(this).val();
+                if (method == 'mpesa') {
+                    $('#mpesa_div').show();
+                    $('#cheque_div').hide();
+                } else if (method == 'bank') {
+                    $('#mpesa_div').hide();
+                    $('#cheque_div').show();
+                } else {
+                    $('#mpesa_div').hide();
+                    $('#cheque_div').hide();
+                }
+            });
+        });
+    </script>
 @endsection

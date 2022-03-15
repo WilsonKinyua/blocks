@@ -29,6 +29,7 @@ class TenantPayment extends Model
         'payment_reference',
         'amount_paid',
         'payment_method',
+        'payment_code',
         'payment_date',
         'created_at',
         'updated_at',
