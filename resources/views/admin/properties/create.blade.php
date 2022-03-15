@@ -68,7 +68,7 @@
                                 <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input prop_date" type="text" name="management_since">
+                                        <input class="mdl-textfield__input prop_date" type="text" id="date" name="management_since">
                                         <label class="mdl-textfield__label"> <i class="fa fa-calendar"></i> Under management
                                             since: </label>
                                     </div>

@@ -72,6 +72,8 @@ class PropertyController extends Controller
 
         Property::where('id', $id)->delete();
         Unit::where('property_id', $id)->delete();
+        Tenant::where('property_id', $id)->delete();
+        TenantPayment::where('property_id', $id)->delete();
         return redirect()->route('admin.properties.index');
     }
 

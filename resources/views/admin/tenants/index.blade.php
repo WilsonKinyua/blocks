@@ -76,8 +76,18 @@
                                                                     </td>
                                                                     <td>Ksh. {{ number_format($tenant->rent) ?? '00' }}
                                                                     </td>
-                                                                    <td>Ksh.
-                                                                        {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                                    <td>
+                                                                        @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
+                                                                            <span class="text-success" style="font-weight: 900">
+                                                                                Ksh.
+                                                                            {{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }}
+                                                                            </span>
+                                                                        @else
+                                                                            <span class="text-danger">
+                                                                                Ksh.
+                                                                            {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                                            </span>
+                                                                        @endif
                                                                     </td>
                                                                     <td><a href="tel:{{ $tenant->phone ?? '' }}">{{ $tenant->phone ?? '' }}
                                                                     </td>

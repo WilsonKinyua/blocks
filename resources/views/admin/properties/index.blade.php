@@ -98,10 +98,16 @@
                                                         class="btn btn-primary btn-xs">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.property.delete', $property->id) }}"
-                                                        class="btn btn-danger btn-xs">
+                                                    <a onclick="confirmDelete()" class="btn btn-danger btn-xs">
                                                         <i class="fa fa-trash-o "></i>
                                                     </a>
+                                                    <script>
+                                                        function confirmDelete() {
+                                                            if (confirm('Are you sure you want to delete this tenant?')) {
+                                                                window.location.href = "{{ route('admin.property.delete', $property->id) }}";
+                                                            }
+                                                        }
+                                                    </script>
                                                 </td>
                                             </tr>
                                         @endforeach
