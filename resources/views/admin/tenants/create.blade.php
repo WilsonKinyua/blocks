@@ -70,7 +70,7 @@
                                 <div class="col-lg-6 p-t-20">
                                     <div class="form-group">
                                         <label>Unit No. (Room No.) <span class="text-danger">*</span></label>
-                                        <select class="mdl-textfield__input" name="unit_id" id="unit_id" required>
+                                        <select class="mdl-textfield__input text-uppercase" name="unit_id" id="unit_id" required>
                                             <option>Select Room No</option>
                                             @foreach ($units as $unit)
                                                 <option value="{{ $unit->id }}">{{ $unit->name }}</option>

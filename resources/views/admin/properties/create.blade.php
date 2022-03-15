@@ -60,7 +60,7 @@
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="number" id="prop_units" name="no_of_units"
-                                            required>
+                                            >
                                         <label class="mdl-textfield__label"><i class="fa fa-building-o"></i> Number of
                                             units:</label>
                                     </div>

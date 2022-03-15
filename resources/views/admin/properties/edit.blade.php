@@ -33,7 +33,7 @@
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="text" id="prop_location" name="location"
-                                            value="{{ old('location', $property->name) }}" required>
+                                            value="{{ old('location', $property->location) }}" required>
                                         <label class="mdl-textfield__label"><i class="fa fa-map-marker"></i>
                                             Location:</label>
                                     </div>
@@ -42,7 +42,7 @@
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="number" id="prop_units" name="no_of_units"
-                                            value="{{ old('no_of_units', $property->no_of_units) }}" required>
+                                            value="{{ old('no_of_units', $property->no_of_units) }}">
                                         <label class="mdl-textfield__label"><i class="fa fa-building-o"></i> Number of
                                             units:</label>
                                     </div>
@@ -50,7 +50,9 @@
                                 <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input prop_date" type="text" name="management_since" value="{{ old('management_since', $property->management_since) }}">
+                                        <input class="mdl-textfield__input prop_date" type="text" id="date"
+                                            name="management_since"
+                                            value="{{ old('management_since', $property->management_since) }}">
                                         <label class="mdl-textfield__label"> <i class="fa fa-calendar"></i> Under management
                                             since: </label>
                                     </div>
@@ -86,8 +88,8 @@
                                 <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input" type="text" id="prop_owner"
-                                            name="landlord_name" value="{{ old('landlord_name', $property->landlord_name) }}">
+                                        <input class="mdl-textfield__input" type="text" id="prop_owner" name="landlord_name"
+                                            value="{{ old('landlord_name', $property->landlord_name) }}">
                                         <label class="mdl-textfield__label"><i class="fa fa-user-plus"></i> Landlord
                                             Name:</label>
                                     </div>
@@ -96,7 +98,8 @@
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="tel" id="owner_contact"
-                                            name="landlord_phone" value="{{ old('landlord_phone', $property->landlord_phone) }}">
+                                            name="landlord_phone"
+                                            value="{{ old('landlord_phone', $property->landlord_phone) }}">
                                         <label class="mdl-textfield__label"><i class="fa fa-phone"></i> Contact</label>
                                     </div>
                                 </div>
@@ -104,7 +107,8 @@
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="text" id="prop_manager"
-                                            name="manager_name" value="{{ old('manager_name', $property->manager_name) }}">
+                                            name="manager_name"
+                                            value="{{ old('manager_name', $property->manager_name) }}">
                                         <label class="mdl-textfield__label"><i class="fa fa-user-plus"></i> Manager
                                             Name:</label>
                                     </div>
@@ -113,7 +117,8 @@
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="tel" id="manager_contact"
-                                            name="manager_phone" value="{{ old('manager_phone', $property->manager_phone) }}">
+                                            name="manager_phone"
+                                            value="{{ old('manager_phone', $property->manager_phone) }}">
                                         <label class="mdl-textfield__label"><i class="fa fa-phone"></i> Contact</label>
                                     </div>
                                 </div>
@@ -121,7 +126,8 @@
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="text" id="prop_caretaker"
-                                            name="caretaker_name" value="{{ old('caretaker_name', $property->caretaker_name) }}">
+                                            name="caretaker_name"
+                                            value="{{ old('caretaker_name', $property->caretaker_name) }}">
                                         <label class="mdl-textfield__label"><i class="fa fa-user-plus"></i> Caretaker
                                             Name:</label>
                                     </div>
@@ -130,7 +136,8 @@
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="tel" id="caretaker_contact"
-                                            name="caretaker_phone" value="{{ old('caretaker_phone', $property->caretaker_phone) }}">
+                                            name="caretaker_phone"
+                                            value="{{ old('caretaker_phone', $property->caretaker_phone) }}">
                                         <label class="mdl-textfield__label"><i class="fa fa-phone"></i> Contact</label>
                                     </div>
                                 </div>
@@ -140,23 +147,16 @@
                     <div class="col-md-12">
                         <div class="card card-box">
                             <div class="card-head">
-                                <header>Add Property Units</header>
+                                <header>Edit Property Units</header>
                             </div>
                             <div class="card-body " id="bar-parent1">
-                                <div class="form-group">
-                                    <label class="control-label">Add units below:
-                                        <small class="text-muted" style="font-weight:bold">( first remove the examples
-                                            in
-                                            the box )</small>
-                                    </label>
+                                <div class="form-group text-uppercase">
                                     <input type="text" class="tags tags-input prop_units text-uppercase" data-type="tags"
-                                        value="G-001,G-002,G-003,G-004" name="units" />
+                                        value="<?php foreach ($units as $unit) {
+                                            echo $unit->name . ',';
+                                        } ?>" name="units" />
                                 </div>
                                 <div class="col-lg-12 p-t-20 text-center">
-                                    <strong class="text-muted">Please check if you have completed all the necesary
-                                        fields
-                                        before updating property!(optional)</strong>
-                                    <br><br>
                                     <button
                                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-warning"
                                         onclick="window.location='./'">Cancel</button>

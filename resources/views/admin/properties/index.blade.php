@@ -79,7 +79,9 @@
                                                     {{ $property->location ?? '' }}
                                                 </td>
                                                 <td class="left">
-                                                    {{ $property->no_of_units ?? '0' }}
+                                                    <span class="badge badge-info">
+                                                        {{ \App\Models\Unit::where('property_id', $property->id)->count() }}
+                                                    </span>
                                                 </td>
                                                 <td>
                                                     {{ $property->manager_name ?? '' }}
@@ -91,7 +93,7 @@
                                                     {{ $property->landlord_name ?? '' }}
                                                 </td>
                                                 <td class="left">
-                                                    {{ $property->created_at->diffForHumans() ?? '' }}
+                                                    {{ $property->created_at ?? '' }}
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('admin.properties.edit', $property->id) }}"

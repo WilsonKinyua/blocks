@@ -80,8 +80,8 @@ class PropertyController extends Controller
     public function edit(Property $property)
     {
         abort_if(Gate::denies('property_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return view('admin.properties.edit', compact('property'));
+        $units = Unit::where('property_id', $property->id)->get();
+        return view('admin.properties.edit', compact('property', 'units'));
     }
 
     public function update(Request $request, Property $property)
@@ -89,12 +89,13 @@ class PropertyController extends Controller
         abort_if(Gate::denies('property_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $property->update($request->all());
-        Unit::where('property_id', $property->id)->delete();
+        // Unit::where('property_id', $property->id)->delete();
         $units = explode(',', $request->units);
         foreach ($units as $unit) {
             Unit::create([
                 'name' => $unit,
-                'property_id' => $property->id
+                'property_id' => $property->id,
+                'business_id' => $property->business_id
             ]);
         }
         return redirect()->route('admin.properties.index')->with('success', 'Property updated successfully!');

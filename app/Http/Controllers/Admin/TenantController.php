@@ -143,6 +143,7 @@ class TenantController extends Controller
         if ($tenant->business_id != auth()->user()->business_id) {
             abort(403, 'Unauthorized action.');
         }
+        TenantPayment::where('tenant_id', $tenant->id)->delete();
         $tenant->delete();
         return redirect()->route('admin.tenants.index')->with('success', 'Tenant deleted successfully');
     }

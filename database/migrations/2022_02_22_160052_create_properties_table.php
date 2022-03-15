@@ -19,7 +19,7 @@ class CreatePropertiesTable extends Migration
             $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
             $table->string('name');
             $table->string('location');
-            $table->integer('no_of_units');
+            $table->integer('no_of_units')->nullable();
             $table->string('management_since')->nullable();
             $table->string('landlord_name')->nullable();
             $table->string('landlord_phone')->nullable();

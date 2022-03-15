@@ -21,7 +21,8 @@
                             </div>
                             <div class="value white">
                                 <p class="sbold addr-font-h1" data-counter="counterup"
-                                    data-value="{{ $property->no_of_units ?? '' }}">0</p>
+                                    data-value="{{ \App\Models\Unit::where('property_id', $property->id)->count() }}">0
+                                </p>
                                 <p>UNITS ON PROPERTY</p>
                             </div>
                         </div>
@@ -32,7 +33,9 @@
                                 <i class="fa fa-times-circle-o"></i>
                             </div>
                             <div class="value white">
-                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="6">0</p>
+                                <p class="sbold addr-font-h1" data-counter="counterup"
+                                    data-value="{{ \App\Models\Unit::where('property_id', $property->id)->where('is_active', false)->count() }}">
+                                    0</p>
                                 <p>VACANT UNITS</p>
                             </div>
                         </div>
@@ -207,7 +210,9 @@
                                                                     </td>
                                                                     <td>Ksh. {{ number_format($tenant->rent) ?? '00' }}
                                                                     </td>
-                                                                    <td>Ksh. {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}</td>
+                                                                    <td>Ksh.
+                                                                        {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                                    </td>
                                                                     <td><a href="tel:{{ $tenant->phone ?? '' }}">{{ $tenant->phone ?? '' }}
                                                                     </td>
                                                                     <td>
@@ -223,10 +228,17 @@
                                                                         </a>
                                                                     </td>
                                                                     <td>
-                                                                        <a href="{{ route('admin.tenants.delete', $tenant->id) }}"
+                                                                        <a onclick="confirmDelete()"
                                                                             class="btn btn-danger btn-xs">
                                                                             <i class="fa fa-trash-o "></i>
                                                                         </a>
+                                                                        <script>
+                                                                            function confirmDelete() {
+                                                                                if (confirm('Are you sure you want to delete this tenant?')) {
+                                                                                    window.location.href = "{{ route('admin.tenants.delete', $tenant->id) }}";
+                                                                                }
+                                                                            }
+                                                                        </script>
                                                                         <a href="{{ route('admin.tenants.edit', $tenant->id) }}"
                                                                             class="btn btn-primary btn-xs">
                                                                             <i class="fa fa-pencil"></i>

@@ -74,7 +74,7 @@ class Property extends Model
 
     public function units()
     {
-        return $this->belongsToMany(Unit::class);
+        return $this->belongsToMany(Unit::class,'property_id');
     }
 
 }
