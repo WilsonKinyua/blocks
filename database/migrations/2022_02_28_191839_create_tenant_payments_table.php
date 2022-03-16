@@ -23,10 +23,12 @@ class CreateTenantPaymentsTable extends Migration
             $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
             $table->bigInteger('unit_id')->unsigned()->index()->nullable();
             $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
-            $table->string('payment_reference')->nullable();
             $table->decimal('amount_paid', 60, 2);
             $table->string('payment_method');
-            $table->string('payment_code')->nullable();
+            $table->text('cash_receipt_number')->nullable();
+            $table->text('mpesa_code')->nullable();
+            $table->text('bank_receipt_number')->nullable();
+            $table->longText('other_payment_description')->nullable();
             $table->string('payment_date');
             $table->timestamps();
             $table->softDeletes();

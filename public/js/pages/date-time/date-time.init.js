@@ -2,6 +2,7 @@ $(document).ready(function () {
   flatpickr("#date", {
     dateFormat: "Y-m-d",
     allowInput: true,
+    maxDate: "today",
     onOpen: function (selectedDates, dateStr, instance) {
       instance.setDate(instance.input.value, false);
     },

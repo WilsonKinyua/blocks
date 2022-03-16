@@ -177,9 +177,12 @@ class TenantController extends Controller
         $business = auth()->user()->business;
         $properties = Property::where('business_id', $business->id)->get();
         $units = Unit::where('business_id', $business->id)->get();
-        $payments = TenantPayment::where('tenant_id', $tenant->id)->whereMonth('payment_date', '=', Carbon::now()->month)->get();
+        $payments = TenantPayment::where('tenant_id', $tenant->id)
+            // ->whereYear('payment_date', '=', date('Y'))
+            ->orderBy('payment_date', 'asc')->get();
+        $amount_paid_this_month = TenantPayment::where('tenant_id', $tenant->id)->whereMonth('payment_date', date('m'))->sum('amount_paid');
 
-        return view('admin.tenants.record-payment', compact('tenant', 'properties', 'units', 'payments', 'business'));
+        return view('admin.tenants.record-payment', compact('tenant', 'properties', 'units', 'payments', 'business','amount_paid_this_month'));
     }
 
     public function sendEmailInvoice($id)

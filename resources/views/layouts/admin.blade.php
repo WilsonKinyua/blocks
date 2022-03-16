@@ -145,49 +145,14 @@
     <script src="{{ asset('plugins/jquery-tags-input/jquery-tags-input.js') }}"></script>
     <script src="{{ asset('plugins/jquery-tags-input/jquery-tags-input-init.js') }}"></script>
 
-    <!-- notifications -->
-    <script src="{{ asset('js/toastr.min.js') }}"></script>
-
-    {{-- <script>
-        // Get the Toast button
-        var toastButton = document.getElementById("toast-btn");
-        // Get the Toast element
-        var toastElement = document.getElementsByClassName("toast")[0];
-
-        toastButton.onclick = function() {
-            $('.toast').toast('show');
-        }
-    </script> --}}
     <script>
-        // toast message
-
         @if (session()->has('success'))
-        // success message
-            // toastr.success("{{ session()->get('success') }}");
-
-            // $.toast().reset("all");
-            // $.toast({
-            // heading: "System Notification!",
-            // text: "{{ session()->get('success') }}",
-            // showHideTransition: "fade",
-            // position: "mid-center",
-            // stack: false,
-            // icon: "info",
-            // });
-
             Swal.fire("Success!", "{{ session()->get('success') }}", "success");
-
         @endif
-
-
-
         @if (session()->has('danger'))
-            // toastr.warning("{{ session()->get('danger') }}");
             Swal.fire("Ooops!", "{{ session()->get('danger') }}", "danger");
         @endif
-
         @if (session()->has('error'))
-            // toastr.error("{{ session()->get('error') }}");
             Swal.fire("Ooops!", "{{ session()->get('error') }}", "error");
         @endif
     </script>

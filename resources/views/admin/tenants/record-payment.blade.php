@@ -92,15 +92,15 @@
                                 <div class="col-lg-6 p-t-20">
                                     <div id="mpesa_div"
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input tenant" type="text" id="payment_code"
-                                            name="payment_code">
+                                        <input class="mdl-textfield__input tenant" type="text" id="mpesa_code"
+                                            name="mpesa_code">
                                         <label class="mdl-textfield__label"><i class="fa fa-pencil"></i> Mpesa
                                             Code:</label>
                                     </div>
                                     <div id="cheque_div"
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input tenant" type="text" id="payment_code"
-                                            name="payment_code">
+                                        <input class="mdl-textfield__input tenant" type="text" id="bank_receipt_number"
+                                            name="bank_receipt_number">
                                         <label class="mdl-textfield__label"><i class="fa fa-pencil"></i> Cheque
                                             Number:</label>
                                     </div>
@@ -170,9 +170,9 @@
                                                     <tr>
                                                         <th class="text-center">#</th>
                                                         <th class="text-right">Description</th>
-                                                        <th class="text-right">Date</th>
-                                                        <th class="text-right">Reference No.</th>
-                                                        <th class="text-right">Amount</th>
+                                                        <th class="text-right">Reference No</th>
+                                                        <th class="text-right">Payment Date</th>
+                                                        <th class="text-right">Amount Paid</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -182,13 +182,28 @@
                                                                 <td class="text-center">
                                                                     <?php echo $loop->iteration; ?>
                                                                 </td>
-                                                                <td class="text-right">{{ $payment->payment_method }}
-                                                                    payment</td>
                                                                 <td class="text-right">
-                                                                    <?php echo date('Y-m-d', strtotime($payment->payment_date)); ?>
+                                                                    {{ date('F', mktime(0, 0, 0, date('m', strtotime($payment->payment_date)), 10)) }}
+                                                                    {{ date('Y', strtotime($payment->payment_date)) }}
+                                                                    Rent Payment
+                                                                </td>
+                                                                <td class="text-right text-uppercase">
+                                                                    @if ($payment->payment_method == 'cash')
+                                                                        <span>{{ $payment->cash_receipt_number ?? '' }}
+                                                                            <sup class="badge badge-info">Cash</sup></span>
+                                                                    @elseif ($payment->payment_method == 'mpesa')
+                                                                        <span>{{ $payment->mpesa_code ?? '' }} <sup
+                                                                                class="badge badge-info">Mpesa</sup></span>
+                                                                    @elseif ($payment->payment_method == 'bank')
+                                                                        <span>{{ $payment->bank_receipt_number ?? '' }}
+                                                                            <sup class="badge badge-info">Bank</sup></span>
+                                                                    @else
+                                                                        <span>{{ $payment->other_payment_description ?? '' }}
+                                                                            <sup class="badge badge-info">Other</sup></span>
+                                                                    @endif
                                                                 </td>
                                                                 <td class="text-right">
-                                                                    {{ $payment->payment_reference ?? '' }}
+                                                                    <?php echo date('Y-m-d', strtotime($payment->payment_date)); ?>
                                                                 </td>
                                                                 <td class="text-right">Ksh.
                                                                     <?php echo number_format($payment->amount_paid, 0); ?>
@@ -197,7 +212,7 @@
                                                         @endforeach
                                                     @else
                                                         <tr class="text-capitalize text-center">
-                                                            <td colspan="5">Current Month records not available</td>
+                                                            <td colspan="5">Current Year records not available</td>
                                                         </tr>
                                                     @endif
                                                 </tbody>
@@ -207,17 +222,24 @@
                                     <div class="col-md-12">
                                         <div class="pull-right text-right">
                                             <p>
-                                                @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
-                                                Overpaid:
+                                                {{-- @if ($amount_paid_this_month >= $tenant->rent)
+                                                    Prepaid:
                                                     <span class="text-success" style="font-weight: 900">
                                                         Ksh.
-                                                        {{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }}
+                                                        {{ number_format($amount_paid_this_month - $tenant->rent) }}
                                                     </span>
                                                 @else
-                                                Rent Balance:
+                                                    Rent Balance:
                                                     <span class="text-danger">
                                                         Ksh.
-                                                        {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                        {{ number_format($tenant->rent - $amount_paid_this_month) }}
+                                                    </span>
+                                                @endif --}}
+                                                @if ($tenant->rent - $amount_paid_this_month > 0)
+                                                    Rent Balance<small>(This Month):</small>
+                                                    <span class="text-danger">
+                                                        Ksh.
+                                                        {{ number_format($tenant->rent - $amount_paid_this_month) }}
                                                     </span>
                                                 @endif
                                             </p>
