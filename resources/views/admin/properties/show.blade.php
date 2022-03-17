@@ -46,7 +46,9 @@
                                 <i class="fa fa-money"></i>
                             </div>
                             <div class="value white">
-                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="2,000">0</p>
+                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="
+                                    {{ $tenants->sum('rent') - $property_payments->sum('amount_paid') }}
+                                    ">0</p>
                                 <p>PENDING PAYMENTS</p>
                             </div>
                         </div>
@@ -324,14 +326,8 @@
                                                                                                                 class="col-lg-12 p-t-20">
                                                                                                                 <div class="mdl-textfield mdl-js-textfield txt-full-width is-upgraded is-dirty"
                                                                                                                     data-upgraded="MaterialTextfield">
-                                                                                                                    <textarea
-                                                                                                                        name="message"
-                                                                                                                        class="mdl-textfield__input"
-                                                                                                                        rows="4"
-                                                                                                                        id="msg-input"
-                                                                                                                        style="outline: none !important;"
-                                                                                                                        placeholder="Compose Message:"
-                                                                                                                        spellcheck="false">Hi {{ $tenant->name }}, your rent is now overdue, please make payments to avoid being disconnected.  </textarea>
+                                                                                                                    <blade
+                                                                                                                        ___html_tags_0___ />
                                                                                                                     <label
                                                                                                                         class="mdl-textfield__label text-info"
                                                                                                                         for="msg-input">Compose
@@ -369,9 +365,9 @@
                                                                                                         class="swal2-checkbox"
                                                                                                         style="display: none;"><input
                                                                                                             type="checkbox"><span
-                                                                                                            class="swal2-label"></span></label><textarea
-                                                                                                        class="swal2-textarea"
-                                                                                                        style="display: none;"></textarea>
+                                                                                                            class="swal2-label"></span></label>
+                                                                                                    <blade
+                                                                                                        ___html_tags_1___ />
                                                                                                     <div class="swal2-validation-message"
                                                                                                         id="swal2-validation-message">
                                                                                                     </div>

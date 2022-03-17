@@ -43,7 +43,7 @@
                                 <i class="fa fa-money"></i>
                             </div>
                             <div class="value white">
-                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="500">0</p>
+                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="{{ $mpesa }}">0</p>
                                 <p>PAYBILL <small>(KSH)</small></p>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                                 <i class="fa fa-money"></i>
                             </div>
                             <div class="value white">
-                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="35,500">0</p>
+                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="{{ $others }}">0</p>
                                 <p>CASH & OTHERS <small>(KSH)</small></p>
                             </div>
                         </div>
@@ -77,17 +77,17 @@
                                     </div>
                                 </div>
                                 <div class="card-body ">
-                                    <div class="table-scrollable">
+                                    <div class="table-responsive">
                                         <table
                                             class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"
                                             id="example4">
                                             <thead>
                                                 <tr class="text-uppercase">
                                                     <th> #</th>
-                                                    <th>TENANT</th>
-                                                    <th>PLOT.</th>
+                                                    <th> TENANT</th>
+                                                    <th>PLOT NAME.</th>
                                                     <th>HOUSE NO.</th>
-                                                    <th>Rent </th>
+                                                    <th>Paid </th>
                                                     <th>Balance </th>
                                                     <th>Status</th>
                                                     <th>Action</th>
@@ -104,12 +104,12 @@
                                                                 href="{{ route('admin.tenants.show', $tenant->id) }}">{{ $tenant->name ?? '' }}</a>
                                                         </td>
                                                         <td class="left">
-                                                            {{ $tenant->apartment->name ?? 'None' }}
+                                                            {{ $tenant->apartment->name ?? '' }}
                                                         </td>
                                                         <td class="left">
-                                                            {{ $tenant->house->name ?? 'None' }}
+                                                            {{ $tenant->house->name ?? '' }}
                                                         </td>
-                                                        <td>Ksh. {{ number_format($tenant->rent) ?? '00' }}
+                                                        <td>Ksh. {{ $tenant->payments->sum('amount_paid') }}
                                                         </td>
                                                         <td>
                                                             @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
@@ -125,14 +125,18 @@
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route('admin.tenants.vacate', $tenant->id) }}">
-                                                                @if ($tenant->status == 1)
-                                                                    <span class='label label-info label-mini'>Current</span>
-                                                                @else
-                                                                    <span
-                                                                        class='label label-danger label-mini'>VACATED</span>
-                                                                @endif
-                                                            </a>
+                                                            @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
+                                                                <span class="label label-sm label-success">
+                                                                    fully paid
+                                                                </span>
+                                                            @elseif ($tenant->payments->sum('amount_paid') === 0)
+                                                                <span class="label label-sm label-danger">NOW
+                                                                    OVERDUE</span>
+                                                            @elseif($tenant->payments->sum('amount_paid') < $tenant->rent)
+                                                                <span class="label label-sm label-warning">
+                                                                    PARTIALLY paid
+                                                                </span>
+                                                            @endif
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('admin.tenants.record.payment', $tenant->id) }}"
@@ -244,7 +248,8 @@
                                                                                             style="display: none;">
                                                                                             <input
                                                                                                 type="range"><output></output>
-                                                                                        </div><select class="swal2-select"
+                                                                                        </div><select
+                                                                                            class="swal2-select"
                                                                                             style="display: none;"></select>
                                                                                         <div class="swal2-radio"
                                                                                             style="display: none;">
@@ -294,6 +299,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
+
                                     </div>
                                 </div>
                             </div>

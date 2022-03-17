@@ -162,9 +162,21 @@
                                                                 </td>
                                                                 <td class="text-right">
                                                                     {{ $payment->payment_method ?? '' }} payment</td>
-                                                                <td class="text-right">
-                                                                    {{ $payment->payment_reference ?? '' }}
-                                                                </td>
+                                                                    <td class="text-right text-uppercase">
+                                                                        @if ($payment->payment_method == 'cash')
+                                                                            <span>{{ $payment->cash_receipt_number ?? '' }}
+                                                                                <sup class="badge badge-info">Cash</sup></span>
+                                                                        @elseif ($payment->payment_method == 'mpesa')
+                                                                            <span>{{ $payment->mpesa_code ?? '' }} <sup
+                                                                                    class="badge badge-info">Mpesa</sup></span>
+                                                                        @elseif ($payment->payment_method == 'bank')
+                                                                            <span>{{ $payment->bank_receipt_number ?? '' }}
+                                                                                <sup class="badge badge-info">Bank</sup></span>
+                                                                        @else
+                                                                            <span>{{ $payment->other_payment_description ?? '' }}
+                                                                                <sup class="badge badge-info">Other</sup></span>
+                                                                        @endif
+                                                                    </td>
                                                                 <td class="text-right">Ksh.
                                                                     {{ number_format($payment->amount_paid, 0) }}</td>
                                                                 </td>

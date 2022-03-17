@@ -63,6 +63,9 @@ class PropertyController extends Controller
 
         $tenants = Tenant::where('property_id', $property->id)->get();
 
+        
+
+
         return view('admin.properties.show', compact('property', 'property_payments', 'tenants'));
     }
 

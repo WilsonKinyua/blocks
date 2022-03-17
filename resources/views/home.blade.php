@@ -54,10 +54,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <h1 class="mt-1 mb-3 info-box-title">{{ $units}}</h1>
-                                            <div class="mb-0">
-                                                <span class="text-muted">Nothing here yet!</span>
-                                            </div>
+                                            <h1 class="mt-1 mb-3 info-box-title">{{ $units }}</h1>
                                         </div>
                                     </div>
                                 </a>
@@ -93,14 +90,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <h1 class="mt-1 mb-3 info-box-title">0</h1>
-                                            <div class="mb-0">
-                                                <span class="text-danger m-r-10"><i
-                                                        class="material-icons col-red align-middle">trending_down</i>
-                                                    0
-                                                </span>
-                                                <span class="text-muted">Overdue payments</span>
-                                            </div>
+                                            <h1 class="mt-1 mb-3 info-box-title">Ksh
+                                                {{ number_format($tenants->sum('rent') - $tenants_payments->sum('amount_paid')) }}
+                                            </h1>
                                         </div>
                                     </div>
                                 </a>
@@ -212,12 +204,12 @@
                                                             @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
                                                                 <span class="text-success" style="font-weight: 900">
                                                                     Ksh.
-                                                                {{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }}
+                                                                    {{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }}
                                                                 </span>
                                                             @else
                                                                 <span class="text-danger">
                                                                     Ksh.
-                                                                {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                                    {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
                                                                 </span>
                                                             @endif
                                                         </td>
@@ -311,14 +303,8 @@
                                                                                                     class="col-lg-12 p-t-20">
                                                                                                     <div class="mdl-textfield mdl-js-textfield txt-full-width is-upgraded is-dirty"
                                                                                                         data-upgraded="MaterialTextfield">
-                                                                                                        <textarea
-                                                                                                            name="message"
-                                                                                                            class="mdl-textfield__input"
-                                                                                                            rows="4"
-                                                                                                            id="msg-input"
-                                                                                                            style="outline: none !important;"
-                                                                                                            placeholder="Compose Message:"
-                                                                                                            spellcheck="false">Hi {{ $tenant->name }}, your rent is now overdue, please make payments to avoid being disconnected.  </textarea>
+                                                                                                        <blade
+                                                                                                            ___html_tags_0___ />
                                                                                                         <label
                                                                                                             class="mdl-textfield__label text-info"
                                                                                                             for="msg-input">Compose
@@ -354,9 +340,8 @@
                                                                                             class="swal2-checkbox"
                                                                                             style="display: none;"><input
                                                                                                 type="checkbox"><span
-                                                                                                class="swal2-label"></span></label><textarea
-                                                                                            class="swal2-textarea"
-                                                                                            style="display: none;"></textarea>
+                                                                                                class="swal2-label"></span></label>
+                                                                                        <textarea class="swal2-textarea" style="display: none;"></textarea>
                                                                                         <div class="swal2-validation-message"
                                                                                             id="swal2-validation-message">
                                                                                         </div>
