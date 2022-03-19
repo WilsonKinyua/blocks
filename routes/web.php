@@ -16,8 +16,6 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
-Auth::routes(['register' => true]);
-
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
@@ -76,6 +74,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('tenant/create-payment', 'TenantPaymentController@createPayment')->name('tenant-payments.create');
     Route::get('tenant/overdue-payments', 'TenantPaymentController@overduePayments')->name('tenant-payments.overdue');
     Route::get('tenant/transactions', 'TenantPaymentController@transactions')->name('tenant-payments.transactions');
+
+    // Daraja Credentials
+    Route::get('darajas', 'DarajaController@index')->name('darajas.index');
+
+    Route::get('darajas/create', 'DarajaController@create')->name('darajas.create');
+    Route::post('darajas/store', 'DarajaController@store')->name('darajas.store');
+
+    Route::put('darajas/edit/{daraja}', 'DarajaController@edit')->name('darajas.edit');
+    Route::put('darajas/update/{daraja}', 'DarajaController@update')->name('darajas.update');
+
+    Route::delete('darajas/{daraja}', 'DarajaController@destroy')->name('darajas.destroy');
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
