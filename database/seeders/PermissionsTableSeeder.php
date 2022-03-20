@@ -174,6 +174,22 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 41,
                 'title' => 'record_management_access',
             ],
+            [
+                'id'    => 42,
+                'title' => 'daraja_access',
+            ],
+            [
+                'id'    => 43,
+                'title' => 'daraja_create',
+            ],
+            [
+                'id'    => 44,
+                'title' => 'daraja_edit',
+            ],
+            [
+                'id'    => 45,
+                'title' => 'daraja_delete',
+            ],
         ];
 
         Permission::insert($permissions);
