@@ -41,12 +41,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // business profile
     Route::get('account/profile', 'BusinessController@profile')->name('business.profile');
 
-    // Inventory
-    Route::delete('inventories/destroy', 'InventoryController@massDestroy')->name('inventories.massDestroy');
-    Route::post('inventories/media', 'InventoryController@storeMedia')->name('inventories.storeMedia');
-    Route::post('inventories/ckmedia', 'InventoryController@storeCKEditorImages')->name('inventories.storeCKEditorImages');
-    Route::resource('inventories', 'InventoryController');
-
     // properties
     Route::get('property/{id}/delete', 'PropertyController@deleteProperty')->name('property.delete');
     Route::resource('properties', 'PropertyController');
