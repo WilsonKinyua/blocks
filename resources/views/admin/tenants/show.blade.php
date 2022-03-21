@@ -48,7 +48,7 @@
                                         @endif
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Tenant Since:</b> <a class="pull-right">{{ $tenant->created_at->diffForHumans() ?? '' }}</a>
+                                        <b>Tenant Since:</b> <a class="pull-right">{{ $tenant->created_at ?? '' }}</a>
                                     </li>
                                 </ul>
 
