@@ -38,6 +38,7 @@ class Property extends Model
         'manager_name',
         'manager_phone',
         'caretaker_name',
+        'due_date',
         'caretaker_phone',
         'business_id',
         'updated_at',

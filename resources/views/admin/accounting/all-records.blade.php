@@ -43,7 +43,7 @@
                                 <i class="fa fa-money"></i>
                             </div>
                             <div class="value white">
-                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="{{ $mpesa }}">0</p>
+                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="{{ number_format($mpesa) }}">0</p>
                                 <p>PAYBILL <small>(KSH)</small></p>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                                 <i class="fa fa-money"></i>
                             </div>
                             <div class="value white">
-                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="{{ $others }}">0</p>
+                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="{{ number_format($others) }}">0</p>
                                 <p>CASH & OTHERS <small>(KSH)</small></p>
                             </div>
                         </div>
@@ -115,12 +115,12 @@
                                                             @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
                                                                 <span class="text-success" style="font-weight: 900">
                                                                     Ksh.
-                                                                {{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }}
+                                                                    {{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }}
                                                                 </span>
                                                             @else
                                                                 <span class="text-danger">
                                                                     Ksh.
-                                                                {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                                    {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
                                                                 </span>
                                                             @endif
                                                         </td>
@@ -130,8 +130,19 @@
                                                                     fully paid
                                                                 </span>
                                                             @elseif ($tenant->payments->sum('amount_paid') === 0)
-                                                                <span class="label label-sm label-danger">NOW
-                                                                    OVERDUE</span>
+                                                                @if ($tenant->due_date != null)
+                                                                    @if (now()->day > $tenant->due_date)
+                                                                        <span class="label label-sm label-danger">
+                                                                            NOW OVERDUE
+                                                                        </span>
+                                                                    @endif
+                                                                @elseif ($tenant->apartment->due_date != null)
+                                                                    @if (now()->day > $tenant->apartment->due_date)
+                                                                        <span class="label label-sm label-danger">
+                                                                            NOW OVERDUE
+                                                                        </span>
+                                                                    @endif
+                                                                @endif
                                                             @elseif($tenant->payments->sum('amount_paid') < $tenant->rent)
                                                                 <span class="label label-sm label-warning">
                                                                     PARTIALLY paid

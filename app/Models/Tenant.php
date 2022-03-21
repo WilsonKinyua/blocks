@@ -38,6 +38,7 @@ class Tenant extends Model implements HasMedia
         'unit_id',
         'rent',
         'deposit',
+        'due_date',
         'emergency_contact_name',
         'emergency_contact_phone',
         'status',

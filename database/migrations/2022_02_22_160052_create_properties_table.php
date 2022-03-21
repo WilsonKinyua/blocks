@@ -27,6 +27,7 @@ class CreatePropertiesTable extends Migration
             $table->string('manager_phone')->nullable();
             $table->string('caretaker_name')->nullable();
             $table->string('caretaker_phone')->nullable();
+            $table->integer('due_date')->default('5');
             $table->timestamps();
             $table->softDeletes();
         });

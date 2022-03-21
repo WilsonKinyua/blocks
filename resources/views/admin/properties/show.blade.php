@@ -47,8 +47,8 @@
                             </div>
                             <div class="value white">
                                 <p class="sbold addr-font-h1" data-counter="counterup" data-value="
-                                    {{ $tenants->sum('rent') - $property_payments->sum('amount_paid') }}
-                                    ">0</p>
+                                            {{ number_format($tenants->sum('rent') - $property_payments->sum('amount_paid')) }}
+                                            ">0</p>
                                 <p>PENDING PAYMENTS</p>
                             </div>
                         </div>
@@ -212,8 +212,19 @@
                                                                     </td>
                                                                     <td>Ksh. {{ number_format($tenant->rent) ?? '00' }}
                                                                     </td>
-                                                                    <td>Ksh.
-                                                                        {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                                    <td>
+                                                                        @if ($tenant->payments->sum('amount_paid') >= $tenant->rent)
+                                                                            <span class="text-success"
+                                                                                style="font-weight: 900">
+                                                                                Ksh.
+                                                                                {{ number_format($tenant->payments->sum('amount_paid') - $tenant->rent) }}
+                                                                            </span>
+                                                                        @else
+                                                                            <span class="text-danger">
+                                                                                Ksh.
+                                                                                {{ number_format($tenant->rent - $tenant->payments->sum('amount_paid')) }}
+                                                                            </span>
+                                                                        @endif
                                                                     </td>
                                                                     <td><a href="tel:{{ $tenant->phone ?? '' }}">{{ $tenant->phone ?? '' }}
                                                                     </td>
@@ -326,8 +337,14 @@
                                                                                                                 class="col-lg-12 p-t-20">
                                                                                                                 <div class="mdl-textfield mdl-js-textfield txt-full-width is-upgraded is-dirty"
                                                                                                                     data-upgraded="MaterialTextfield">
-                                                                                                                    <blade
-                                                                                                                        ___html_tags_0___ />
+                                                                                                                    <textarea
+                                                                                                                    name="message"
+                                                                                                                    class="mdl-textfield__input"
+                                                                                                                    rows="4"
+                                                                                                                    id="msg-input"
+                                                                                                                    style="outline: none !important;"
+                                                                                                                    placeholder="Compose Message:"
+                                                                                                                    spellcheck="false">Hi {{ $tenant->name }}, your rent is now overdue, please make payments to avoid being disconnected.  </textarea>
                                                                                                                     <label
                                                                                                                         class="mdl-textfield__label text-info"
                                                                                                                         for="msg-input">Compose

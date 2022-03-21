@@ -56,7 +56,7 @@ class MpesePaymentController extends Controller
 
     public function __invoke(Request $request, string $daraja, string $action)
     {
-        // validation 
+        // validation
         $valid = false;
         $is_valid_daraja = is_numeric($daraja);
         $is_valid_action = in_array($action, ['validation', 'confirmation']);
@@ -111,7 +111,7 @@ class MpesePaymentController extends Controller
                     $payment->tenant_id = $request->post('tenant_id');
                     $payment->business_id = $request->post('business_id');
                     $payment->property_id = $request->post('property_id');
-                    
+
                     $payment->mpesa_code = $request->post('TransID');
                     $payment->amount_paid = $request->post('TransAmount');
                     $payment->received_at = $request->post('TransTime');
