@@ -21,36 +21,6 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
-Route::get('user/business/update', function () {
-
-    $business_id = rand(1,8);
-    $user = rand(17,40);
-    $rand_prop = rand(1,41);
-    $rand_tenant = rand(1,131);
-    $rand_unit = rand(1,6);
-
-
-    $user = User::find($user);
-    $user->business_id = $business_id;
-    $user->update();
-
-
-    $property = Property::find($rand_prop);
-    $property->business_id = $business_id;
-    $property->update();
-
-    $tenant = Tenant::find($rand_tenant);
-    $tenant->property_id = $rand_prop;
-    $tenant->business_id = $business_id;
-    $tenant->unit_id = $rand_unit;
-    $tenant->update();
-
-    $unit = Unit::find($rand_unit);
-    $unit->property_id = $rand_prop;
-    $unit->business_id = $business_id;
-    $unit->update();
-
-});
 
 Auth::routes(['register' => true]);
 
