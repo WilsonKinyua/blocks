@@ -7,16 +7,6 @@
                 <span class="logo-default" style="font-family: cambria; font-weight:bolder;">Blocks</span> </a>
         </div>
 
-        <form class="search-form-opened d-none" action="#" method="GET">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search..." name="query">
-                <span class="input-group-btn">
-                    <a href="javascript:;" class="btn submit">
-                        <i class="icon-magnifier"></i>
-                    </a>
-                </span>
-            </div>
-        </form>
         <!-- start mobile menu -->
         <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
             data-target=".navbar-collapse">
@@ -159,6 +149,14 @@
                                     <a href="{{ route('admin.tenant-payments.create') }}" class="nav-link nav-toggle"> <i
                                             class="fa fa-bookmark"></i>
                                         <span class="title">Record Payment</span> </span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('penalty_access')
+                                <li class="dropdown-submenu">
+                                    <a href="{{ route('admin.penalties.create') }}" class="nav-link nav-toggle"> <i
+                                            class="fa fa-bookmark"></i>
+                                        <span class="title">Record Penalty</span> </span>
                                     </a>
                                 </li>
                             @endcan

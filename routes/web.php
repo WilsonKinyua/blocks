@@ -77,6 +77,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('tenant/overdue-payments', 'TenantPaymentController@overduePayments')->name('tenant-payments.overdue');
     Route::get('tenant/transactions', 'TenantPaymentController@transactions')->name('tenant-payments.transactions');
 
+    // tenant penalties
+    Route::resource('penalties', 'PenaltyController');
+
     // Daraja Credentials
     Route::get('darajas', 'DarajaController@index')->name('darajas.index');
 

@@ -1,14 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
-use App\Models\Inventory;
-use App\Models\Property;
 use App\Models\Tenant;
-use App\Models\TenantPayment;
-use App\Models\Unit;
-use LaravelDaily\LaravelCharts\Classes\LaravelChart;
-
 class HomeController
 {
     public function index()

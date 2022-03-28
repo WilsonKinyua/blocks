@@ -89,4 +89,9 @@ class Tenant extends Model implements HasMedia
     {
         return $this->hasMany(TenantPayment::class, 'tenant_id');
     }
+
+    public function penalties()
+    {
+        return $this->hasMany(Penalty::class, 'tenant_id');
+    }
 }

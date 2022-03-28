@@ -190,6 +190,26 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 45,
                 'title' => 'daraja_delete',
             ],
+            [
+                'id'    => 46,
+                'title' => 'penalty_create',
+            ],
+            [
+                'id'    => 47,
+                'title' => 'penalty_edit',
+            ],
+            [
+                'id'    => 48,
+                'title' => 'penalty_show',
+            ],
+            [
+                'id'    => 49,
+                'title' => 'penalty_delete',
+            ],
+            [
+                'id'    => 50,
+                'title' => 'penalty_access',
+            ],
         ];
 
         Permission::insert($permissions);
