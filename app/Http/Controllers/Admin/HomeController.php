@@ -18,13 +18,8 @@ class HomeController
             return redirect()->route('admin.business.profile')->with('danger', 'Please create a business profile first!');
         }
 
-        $properties = Property::where('business_id', $business->id)->count();
         $tenants = Tenant::where('business_id', $business->id)->get();
-        $units = Unit::where('business_id', $business->id)
-            ->where('is_active', false)
-            ->count();
-        $tenants_payments = TenantPayment::where('business_id', $business->id)->get();
 
-        return view('home', compact('properties', 'tenants', 'units', 'tenants_payments'));
+        return view('home', compact('tenants'));
     }
 }
