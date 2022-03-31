@@ -63,7 +63,7 @@ class PropertyController extends Controller
 
         $tenants = Tenant::where('property_id', $property->id)->get();
 
-        
+
 
 
         return view('admin.properties.show', compact('property', 'property_payments', 'tenants'));
@@ -77,7 +77,7 @@ class PropertyController extends Controller
         Unit::where('property_id', $id)->delete();
         Tenant::where('property_id', $id)->delete();
         TenantPayment::where('property_id', $id)->delete();
-        return redirect()->route('admin.properties.index');
+        return redirect()->route('admin.properties.index')->with('success','Property removed successfully!');
     }
 
     public function edit(Property $property)

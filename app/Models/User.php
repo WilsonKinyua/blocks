@@ -56,9 +56,19 @@ class User extends Authenticatable implements HasMedia
         'deleted_at',
     ];
 
-    public function getIsAdminAttribute()
+    public function getIsSuperAdminAttribute()
     {
         return $this->roles()->where('id', 1)->exists();
+    }
+
+    public function getIsAdminAttribute() // this is the business owner
+    {
+        return $this->roles()->where('id', 2)->exists();
+    }
+
+    public function getIsTenantAttribute()
+    {
+        return $this->roles()->where('id', 3)->exists();
     }
 
     public function getAvatarAttribute()

@@ -56,33 +56,32 @@
                                             Location:</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 p-t-20">
+                                <div class="col-lg-3 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input" type="number" id="prop_units" name="no_of_units"
-                                            >
+                                        <input class="mdl-textfield__input" type="number" id="prop_units"
+                                            name="no_of_units">
                                         <label class="mdl-textfield__label"><i class="fa fa-building-o"></i> Number of
                                             units:</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 p-t-20">
+                                <div class="col-lg-4 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input prop_date" type="text" id="date" name="management_since">
+                                        <input class="mdl-textfield__input prop_date" type="text" id="date"
+                                            name="management_since">
                                         <label class="mdl-textfield__label"> <i class="fa fa-calendar"></i> Under management
                                             since: </label>
                                     </div>
                                 </div>
-                                {{-- <div class="col-lg-6 p-t-20">
+                                <div class="col-lg-5 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input" type="password" id="prop_agent" readonly>
-                                        <label class="mdl-textfield__label"><i class="fa fa-user-plus"></i> Agent Name:
-                                            *SKIP
-                                            THIS</label>
+                                        <input class="mdl-textfield__input" type="number" name="due_date" value="5" required>
+                                        <label class="mdl-textfield__label"><i class="fa fa-calendar"></i> Rent Due Date <small>(default set to 5th of every month)</small>:</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 p-t-20">
+                                {{-- <div class="col-lg-6 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="tel" id="agent_contact" readonly>
