@@ -23,7 +23,7 @@
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="text" id="name" name="name" required>
-                                        <label class="mdl-textfield__label"><i class="fa fa-user"></i> Tenat
+                                        <label class="mdl-textfield__label"><i class="fa fa-user"></i> Tenant
                                             Name:</label>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
                                         <label>Property <span class="text-danger">*</span></label>
                                         <select class="mdl-textfield__input text-capitalize" name="property_id"
                                             id="property_id" required>
-                                            <option>Select Property</option>
+                                            <option selected disabled>--Select Property--</option>
                                             @foreach ($properties as $property)
                                                 <option value="{{ $property->id }}">{{ $property->name }}</option>
                                             @endforeach
@@ -70,29 +70,39 @@
                                 <div class="col-lg-6 p-t-20">
                                     <div class="form-group">
                                         <label>Unit No. (Room No.) <span class="text-danger">*</span></label>
-                                        <select class="mdl-textfield__input text-uppercase" name="unit_id" id="unit_id" required>
-                                            <option>Select Room No</option>
+                                        <select class="mdl-textfield__input text-uppercase" name="unit_id" id="unit_id"
+                                            required>
+                                            <option selected disabled>--Select Room No--</option>
                                             @foreach ($units as $unit)
                                                 <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 p-t-20">
+                                <div class="col-lg-4 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                        <input class="mdl-textfield__input" type="number" id="rent" name="rent" value="">
+                                        <input class="mdl-textfield__input" type="number" id="rent" name="rent" value=""
+                                            required>
                                         <label class="mdl-textfield__label"><i class="fa fa-dollar"></i> Monthly
                                             Rent:</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 p-t-20">
+                                <div class="col-lg-4 p-t-20">
                                     <div
                                         class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         <input class="mdl-textfield__input" type="number" id="deposit" name="deposit"
                                             value="">
                                         <label class="mdl-textfield__label"><i class="fa fa-dollar"></i> Rent
                                             Deposit:</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 p-t-20">
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                        <input class="mdl-textfield__input" type="number" name="due_date">
+                                        <label class="mdl-textfield__label"><i class="fa fa-calendar"></i> Rent Due Date
+                                            <small>(leave blank if none)</small>:</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 p-t-20">
@@ -123,7 +133,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-6">
                         <div class="card box">
                             <div class="card-head">
@@ -135,15 +144,11 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
-
                 </div>
             </form>
 
         </div>
-        <!-- end page content -->
     </div>
 @endsection
 

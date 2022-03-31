@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use AfricasTalking\SDK\AfricasTalking;
 use App\Mail\SendInvoice;
 use App\Models\TenantPayment;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 // use \PDF;
@@ -65,6 +66,7 @@ class TenantController extends Controller
         }
 
         Unit::find($tenant->unit_id)->update(['is_active' => true]);
+        User::create(['name' => $request->name, "email" => $request->email])->roles()->sync(3);
 
         return redirect()->route('admin.tenants.index')->with('success', 'Tenant created successfully');
     }
@@ -182,7 +184,7 @@ class TenantController extends Controller
             ->orderBy('payment_date', 'asc')->get();
         $amount_paid_this_month = TenantPayment::where('tenant_id', $tenant->id)->whereMonth('payment_date', date('m'))->sum('amount_paid');
 
-        return view('admin.tenants.record-payment', compact('tenant', 'properties', 'units', 'payments', 'business','amount_paid_this_month'));
+        return view('admin.tenants.record-payment', compact('tenant', 'properties', 'units', 'payments', 'business', 'amount_paid_this_month'));
     }
 
     public function sendEmailInvoice($id)

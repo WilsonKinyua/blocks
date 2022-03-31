@@ -93,7 +93,7 @@
                                                     {{ $property->landlord_name ?? '' }}
                                                 </td>
                                                 <td class="left">
-                                                    {{ $property->created_at ?? '' }}
+                                                    {{ $property->created_at->diffForHumans() ?? '' }}
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('admin.properties.edit', $property->id) }}"
