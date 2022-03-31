@@ -27,7 +27,8 @@ class CreateTenantsTable extends Migration
             $table->string('phone');
             $table->decimal('rent', 60, 2);
             $table->decimal('deposit', 60, 2);
-            // $table->decimal('')
+            $table->decimal('rent_due')->default(0)->nullable();
+            $table->decimal('penalty_due')->default(0)->nullable();
             $table->string('due_date')->nullable();
             $table->string('emergency_contact_name');
             $table->string('emergency_contact_phone');

@@ -60,12 +60,7 @@ class PropertyController extends Controller
         $property_payments = TenantPayment::where('property_id', $property->id)
             ->whereMonth('payment_date', '=', Carbon::now()->month)
             ->get();
-
         $tenants = Tenant::where('property_id', $property->id)->get();
-
-
-
-
         return view('admin.properties.show', compact('property', 'property_payments', 'tenants'));
     }
 

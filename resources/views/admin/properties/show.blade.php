@@ -9,9 +9,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- start widget -->
-
             <div class="state-overview">
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
@@ -47,8 +44,8 @@
                             </div>
                             <div class="value white">
                                 <p class="sbold addr-font-h1" data-counter="counterup" data-value="
-                                            {{ number_format($tenants->sum('rent') - $property_payments->sum('amount_paid')) }}
-                                            ">0</p>
+                                                    {{ number_format($tenants->sum('rent') - $property_payments->sum('amount_paid')) }}
+                                                    ">0</p>
                                 <p>PENDING PAYMENTS</p>
                             </div>
                         </div>
@@ -60,7 +57,7 @@
                             </div>
                             <div class="value white">
                                 <p class="sbold addr-font-h1" data-counter="counterup"
-                                    data-value="{{ number_format($property_payments->sum('amount_paid'), 0) ?? '00' }}">0
+                                    data-value="{{ number_format($property_payments->sum('amount_paid')) }}">0
                                 </p>
                                 <p>THIS MONTH'S PAYMENTS</p>
                             </div>
@@ -68,20 +65,63 @@
                     </div>
                 </div>
             </div>
-            <!-- end widget -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="tabbable-line">
-                        <ul class="nav customtab nav-tabs d-none" role="tablist">
-                            <li class="nav-item"><a href="#tab1" class="nav-link active" data-toggle="tab">List
-                                    View</a></li>
-                            <li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">Grid
-                                    View</a></li>
-                        </ul>
                         <div class="tab-content">
                             <div class="tab-pane  active fontawesome-demo" id="tab2">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
+                                        <div class="card card-topline-aqua">
+                                            <div class="card-head ">
+                                                <header>Property Details</header>
+                                            </div>
+                                            <div class="card-body no-padding height-9">
+                                                <ul class="performance-list">
+                                                    <li>
+                                                        <a href="#" class="text-capitalize">
+                                                            <i class="fa fa-briefcase" style="color:#F39C12;"></i> Name:
+                                                            <span
+                                                                class="pull-right">{{ $property->name ?? '' }}</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="text-capitalize">
+                                                            <i class="fa fa-map-marker" style="color:#DD4B39;"></i> Location
+                                                            : <span
+                                                                class="pull-right">{{ $property->location ?? '' }}</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="text-capitalize">
+                                                            <i class="fa fa-list" style="color:#a6001c;"></i> No of
+                                                            Units: <span
+                                                                class="pull-right">{{ \App\Models\Unit::where('property_id', $property->id)->count() }}</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="text-capitalize">
+                                                            <i class="fa fa-calendar" style="color:#0003a6;"></i> Management
+                                                            Since: <span
+                                                                class="pull-right">{{ $property->management_since ?? '' }}</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="text-capitalize">
+                                                            <i class="fa fa-calendar" style="color:#630707;"></i> Rent Due
+                                                            Date: <span
+                                                                class="pull-right">{{ $property->due_date ?? '' }} of every month</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="profile-userbuttons">
+                                                    <a href="{{ route('admin.properties.edit', $property->id) }}"
+                                                        class="btn btn-circle blue btn-sm">Update &nbsp; Property</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
                                         <div class="card card-box">
                                             <div class="card-body no-padding ">
                                                 <div class="doctor-profile">
@@ -105,7 +145,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="card card-box">
                                             <div class="card-body no-padding ">
                                                 <div class="doctor-profile">
@@ -129,7 +169,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="card card-box">
                                             <div class="card-body no-padding ">
                                                 <div class="doctor-profile">
@@ -153,7 +193,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="tab-pane active fontawesome-demo" id="tab1">
@@ -161,7 +200,7 @@
                                     <div class="col-md-12">
                                         <div class="card card-box">
                                             <div class="card-head">
-                                                <header>{{ $property->name ?? '' }} Tenants</header>
+                                                <header>Tenants List</header>
                                             </div>
                                             <div class="card-body ">
                                                 <div class="row">
@@ -169,7 +208,7 @@
                                                         <div class="btn-group">
                                                             <a href="{{ route('admin.tenants.create') }}" id="addRow"
                                                                 class="btn btn-info">
-                                                                Add New <i class="fa fa-plus"></i>
+                                                                Add New Tenant <i class="fa fa-plus"></i>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -262,165 +301,9 @@
                                                                             <i class="fa fa-bell "></i>
                                                                         </a>
                                                                         {{-- update business details start --}}
-                                                                        <div class="modal fade"
-                                                                            id="sendReminderNotification{{ $tenant->id }}"
-                                                                            tabindex="-1"
-                                                                            aria-labelledby="exampleModalLabel"
-                                                                            aria-hidden="true">
-                                                                            <div
-                                                                                class="modal-dialog modal-dialog-centered">
-                                                                                <div class="modal-content">
-                                                                                    <form
-                                                                                        action="{{ route('admin.tenants.sendReminder') }}"
-                                                                                        method="post">
-                                                                                        @csrf
-                                                                                        <input type="hidden"
-                                                                                            name="tenant_id"
-                                                                                            value="{{ $tenant->id }}">
-                                                                                        <div class="modal-body">
-                                                                                            <div aria-labelledby="swal2-title"
-                                                                                                aria-describedby="swal2-content"
-                                                                                                class="swal2-popup swal2-modal swal2-show"
-                                                                                                tabindex="-1" role="dialog"
-                                                                                                aria-live="assertive"
-                                                                                                aria-modal="true"
-                                                                                                style="display: flex;">
-                                                                                                <div
-                                                                                                    class="swal2-header">
-                                                                                                    <ul class="swal2-progress-steps"
-                                                                                                        style="display: none;">
-                                                                                                    </ul>
-                                                                                                    <div class="swal2-icon swal2-error"
-                                                                                                        style="display: none;">
-                                                                                                    </div>
-                                                                                                    <div class="swal2-icon swal2-question"
-                                                                                                        style="display: none;">
-                                                                                                    </div>
-                                                                                                    <div class="swal2-icon swal2-warning"
-                                                                                                        style="display: none;">
-                                                                                                    </div>
-                                                                                                    <div class="swal2-icon swal2-info"
-                                                                                                        style="display: none;">
-                                                                                                    </div>
-                                                                                                    <div class="swal2-icon swal2-success"
-                                                                                                        style="display: none;">
-                                                                                                    </div><img
-                                                                                                        class="swal2-image"
-                                                                                                        style="display: none;">
-                                                                                                    <h2 class="swal2-title"
-                                                                                                        id="swal2-title"
-                                                                                                        style="display: none;">
-                                                                                                    </h2><button
-                                                                                                        type="button"
-                                                                                                        class="swal2-close"
-                                                                                                        aria-label="Close this dialog"
-                                                                                                        style="display: none;">×</button>
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="swal2-content">
-                                                                                                    <div id="swal2-content"
-                                                                                                        class="swal2-html-container"
-                                                                                                        style="display: block;">
-                                                                                                        <div
-                                                                                                            class="card-head">
-                                                                                                            <small
-                                                                                                                class="text-uppercase">
-                                                                                                                <i
-                                                                                                                    class="fa fa-bell"></i>
-                                                                                                                &nbsp;
-                                                                                                                &nbsp;Send
-                                                                                                                Reminders</small>
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="row">
-                                                                                                            <div
-                                                                                                                class="col-lg-12 p-t-20">
-                                                                                                                <div class="mdl-textfield mdl-js-textfield txt-full-width is-upgraded is-dirty"
-                                                                                                                    data-upgraded="MaterialTextfield">
-                                                                                                                    <textarea
-                                                                                                                    name="message"
-                                                                                                                    class="mdl-textfield__input"
-                                                                                                                    rows="4"
-                                                                                                                    id="msg-input"
-                                                                                                                    style="outline: none !important;"
-                                                                                                                    placeholder="Compose Message:"
-                                                                                                                    spellcheck="false">Hi {{ $tenant->name }}, your rent is now overdue, please make payments to avoid being disconnected.  </textarea>
-                                                                                                                    <label
-                                                                                                                        class="mdl-textfield__label text-info"
-                                                                                                                        for="msg-input">Compose
-                                                                                                                        Message:</label>
-                                                                                                                    <small
-                                                                                                                        class="float-left">
-                                                                                                                        SMS:
-                                                                                                                        <a
-                                                                                                                            href="{{ $tenant->phone }}">{{ $tenant->phone }}</a>
-                                                                                                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                                                        Mail-to:
-                                                                                                                        <a
-                                                                                                                            href="{{ $tenant->email }}">{{ $tenant->email }}</a>
-                                                                                                                    </small>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div><input
-                                                                                                        class="swal2-input"
-                                                                                                        style="display: none;"><input
-                                                                                                        type="file"
-                                                                                                        class="swal2-file"
-                                                                                                        style="display: none;">
-                                                                                                    <div class="swal2-range"
-                                                                                                        style="display: none;">
-                                                                                                        <input
-                                                                                                            type="range"><output></output>
-                                                                                                    </div><select
-                                                                                                        class="swal2-select"
-                                                                                                        style="display: none;"></select>
-                                                                                                    <div class="swal2-radio"
-                                                                                                        style="display: none;">
-                                                                                                    </div><label
-                                                                                                        for="swal2-checkbox"
-                                                                                                        class="swal2-checkbox"
-                                                                                                        style="display: none;"><input
-                                                                                                            type="checkbox"><span
-                                                                                                            class="swal2-label"></span></label>
-                                                                                                    <blade
-                                                                                                        ___html_tags_1___ />
-                                                                                                    <div class="swal2-validation-message"
-                                                                                                        id="swal2-validation-message">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="swal2-actions">
-                                                                                                    <button type="submit"
-                                                                                                        class="swal2-confirm swal2-styled"
-                                                                                                        aria-label="Save Changes"
-                                                                                                        style="display: inline-block; background-color: rgb(48, 133, 214); border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);"><i
-                                                                                                            class="fa fa-send fa-rotate-90"></i>
-                                                                                                        Send message
-                                                                                                    </button><button
-                                                                                                        type="button"
-                                                                                                        class="swal2-cancel swal2-styled"
-                                                                                                        aria-label="Cancel"
-                                                                                                        onclick="window.location=''"
-                                                                                                        style="display: inline-block; background-color: rgb(221, 51, 51);"><i
-                                                                                                            class="fa fa-times-circle"></i>
-                                                                                                        Cancel</button>
-                                                                                                </div>
-                                                                                                <div class="swal2-footer"
-                                                                                                    style="display: none;">
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="swal2-timer-progress-bar-container">
-                                                                                                    <div class="swal2-timer-progress-bar"
-                                                                                                        style="display: none;">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                        @include(
+                                                                            'modals.send-sms-reminder'
+                                                                        )
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
