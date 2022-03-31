@@ -855,3 +855,165 @@
 #15 /home/developer/brance/blocks/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
 #16 {main}
 "} 
+[2022-03-31 14:03:49] local.ERROR: Target class [App\Console\Commands\DeleteOldUsers] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [App\\Console\\Commands\\DeleteOldUsers] does not exist. at /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php:879)
+[stacktrace]
+#0 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\\Container\\Container->build()
+#1 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\\Container\\Container->resolve()
+#2 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\\Foundation\\Application->resolve()
+#3 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(836): Illuminate\\Container\\Container->make()
+#4 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(262): Illuminate\\Foundation\\Application->make()
+#5 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(276): Illuminate\\Console\\Application->resolve()
+#6 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(331): Illuminate\\Console\\Application->resolveCommands()
+#7 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->getArtisan()
+#8 /home/developer/brance/blocks/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class App\\Console\\Commands\\DeleteOldUsers does not exist at /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php:877)
+[stacktrace]
+#0 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct()
+#1 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\\Container\\Container->build()
+#2 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\\Container\\Container->resolve()
+#3 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\\Foundation\\Application->resolve()
+#4 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(836): Illuminate\\Container\\Container->make()
+#5 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(262): Illuminate\\Foundation\\Application->make()
+#6 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(276): Illuminate\\Console\\Application->resolve()
+#7 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(331): Illuminate\\Console\\Application->resolveCommands()
+#8 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->getArtisan()
+#9 /home/developer/brance/blocks/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#10 {main}
+"} 
+[2022-03-31 14:04:06] local.ERROR: Target class [App\Console\Commands\DeleteOldUsers] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [App\\Console\\Commands\\DeleteOldUsers] does not exist. at /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php:879)
+[stacktrace]
+#0 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\\Container\\Container->build()
+#1 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\\Container\\Container->resolve()
+#2 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\\Foundation\\Application->resolve()
+#3 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(836): Illuminate\\Container\\Container->make()
+#4 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(262): Illuminate\\Foundation\\Application->make()
+#5 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(276): Illuminate\\Console\\Application->resolve()
+#6 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(331): Illuminate\\Console\\Application->resolveCommands()
+#7 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->getArtisan()
+#8 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class App\\Console\\Commands\\DeleteOldUsers does not exist at /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php:877)
+[stacktrace]
+#0 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct()
+#1 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\\Container\\Container->build()
+#2 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\\Container\\Container->resolve()
+#3 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\\Foundation\\Application->resolve()
+#4 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(836): Illuminate\\Container\\Container->make()
+#5 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(262): Illuminate\\Foundation\\Application->make()
+#6 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(276): Illuminate\\Console\\Application->resolve()
+#7 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(331): Illuminate\\Console\\Application->resolveCommands()
+#8 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->getArtisan()
+#9 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#10 {main}
+"} 
+[2022-03-31 14:04:06] local.ERROR: Target class [App\Console\Commands\DeleteOldUsers] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [App\\Console\\Commands\\DeleteOldUsers] does not exist. at /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php:879)
+[stacktrace]
+#0 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\\Container\\Container->build()
+#1 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\\Container\\Container->resolve()
+#2 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\\Foundation\\Application->resolve()
+#3 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(836): Illuminate\\Container\\Container->make()
+#4 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(262): Illuminate\\Foundation\\Application->make()
+#5 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(276): Illuminate\\Console\\Application->resolve()
+#6 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(331): Illuminate\\Console\\Application->resolveCommands()
+#7 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->getArtisan()
+#8 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class App\\Console\\Commands\\DeleteOldUsers does not exist at /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php:877)
+[stacktrace]
+#0 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct()
+#1 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\\Container\\Container->build()
+#2 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\\Container\\Container->resolve()
+#3 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\\Foundation\\Application->resolve()
+#4 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(836): Illuminate\\Container\\Container->make()
+#5 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(262): Illuminate\\Foundation\\Application->make()
+#6 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(276): Illuminate\\Console\\Application->resolve()
+#7 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(331): Illuminate\\Console\\Application->resolveCommands()
+#8 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->getArtisan()
+#9 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#10 {main}
+"} 
+[2022-03-31 14:04:11] local.ERROR: Target class [Commands\DeleteOldUsers] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [Commands\\DeleteOldUsers] does not exist. at /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php:879)
+[stacktrace]
+#0 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\\Container\\Container->build()
+#1 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\\Container\\Container->resolve()
+#2 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\\Foundation\\Application->resolve()
+#3 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(836): Illuminate\\Container\\Container->make()
+#4 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(262): Illuminate\\Foundation\\Application->make()
+#5 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(276): Illuminate\\Console\\Application->resolve()
+#6 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(331): Illuminate\\Console\\Application->resolveCommands()
+#7 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->getArtisan()
+#8 /home/developer/brance/blocks/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class Commands\\DeleteOldUsers does not exist at /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php:877)
+[stacktrace]
+#0 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct()
+#1 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\\Container\\Container->build()
+#2 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\\Container\\Container->resolve()
+#3 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\\Foundation\\Application->resolve()
+#4 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(836): Illuminate\\Container\\Container->make()
+#5 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(262): Illuminate\\Foundation\\Application->make()
+#6 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(276): Illuminate\\Console\\Application->resolve()
+#7 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(331): Illuminate\\Console\\Application->resolveCommands()
+#8 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->getArtisan()
+#9 /home/developer/brance/blocks/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#10 {main}
+"} 
+[2022-03-31 14:05:06] local.ERROR: Target class [App\Console\Commands\DeleteOldUsers] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [App\\Console\\Commands\\DeleteOldUsers] does not exist. at /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php:879)
+[stacktrace]
+#0 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\\Container\\Container->build()
+#1 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\\Container\\Container->resolve()
+#2 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\\Foundation\\Application->resolve()
+#3 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(836): Illuminate\\Container\\Container->make()
+#4 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(262): Illuminate\\Foundation\\Application->make()
+#5 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(276): Illuminate\\Console\\Application->resolve()
+#6 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(331): Illuminate\\Console\\Application->resolveCommands()
+#7 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->getArtisan()
+#8 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class App\\Console\\Commands\\DeleteOldUsers does not exist at /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php:877)
+[stacktrace]
+#0 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct()
+#1 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\\Container\\Container->build()
+#2 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\\Container\\Container->resolve()
+#3 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\\Foundation\\Application->resolve()
+#4 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(836): Illuminate\\Container\\Container->make()
+#5 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(262): Illuminate\\Foundation\\Application->make()
+#6 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(276): Illuminate\\Console\\Application->resolve()
+#7 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(331): Illuminate\\Console\\Application->resolveCommands()
+#8 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->getArtisan()
+#9 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#10 {main}
+"} 
+[2022-03-31 14:05:06] local.ERROR: Target class [App\Console\Commands\DeleteOldUsers] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [App\\Console\\Commands\\DeleteOldUsers] does not exist. at /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php:879)
+[stacktrace]
+#0 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\\Container\\Container->build()
+#1 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\\Container\\Container->resolve()
+#2 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\\Foundation\\Application->resolve()
+#3 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(836): Illuminate\\Container\\Container->make()
+#4 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(262): Illuminate\\Foundation\\Application->make()
+#5 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(276): Illuminate\\Console\\Application->resolve()
+#6 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(331): Illuminate\\Console\\Application->resolveCommands()
+#7 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->getArtisan()
+#8 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#9 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class App\\Console\\Commands\\DeleteOldUsers does not exist at /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php:877)
+[stacktrace]
+#0 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct()
+#1 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\\Container\\Container->build()
+#2 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\\Container\\Container->resolve()
+#3 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\\Foundation\\Application->resolve()
+#4 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(836): Illuminate\\Container\\Container->make()
+#5 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(262): Illuminate\\Foundation\\Application->make()
+#6 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Console/Application.php(276): Illuminate\\Console\\Application->resolve()
+#7 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(331): Illuminate\\Console\\Application->resolveCommands()
+#8 /home/developer/brance/blocks/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->getArtisan()
+#9 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#10 {main}
+"} 
